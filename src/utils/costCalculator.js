@@ -3,8 +3,19 @@
 // Safe formula evaluation function
 const safeEvaluateFormula = (formula) => {
   try {
+    // Security validation: only allow numbers, operators, parentheses, and Math functions
+    // This prevents malicious code injection
+    const allowedPattern = /^[0-9+\-*/(). Mathsqrtlogexpabs]*$/;
+    if (!allowedPattern.test(formula)) {
+      console.error('Formula contains invalid characters:', formula);
+      return 0;
+    }
+    
     // Use Function constructor instead of eval for safer evaluation
-    return new Function('"use strict"; return (' + formula + ')')();
+    const result = new Function('"use strict"; return (' + formula + ')')();
+    
+    // Fix float precision to 2 decimal places
+    return Number(result.toFixed(2));
   } catch (error) {
     console.error('Formula evaluation error:', error);
     return 0;
