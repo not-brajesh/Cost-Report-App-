@@ -4,7 +4,7 @@ A professional cost report application for SUPRA SAEINDIA competitions, designed
 
 ## 🌐 Live Website
 
-[Visit the App](https://your-deployed-url-here.com)
+[Visit the App](https://cost-report-app.vercel.app)
 
 ## Features
 
