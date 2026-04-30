@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Calculator, FileText, Settings, Download, Upload, Trash2, Plus, FileSpreadsheet } from 'lucide-react';
+import { Calculator, FileText, Settings, Download, Upload, Trash2, Plus, FileSpreadsheet, Moon, Sun } from 'lucide-react';
 import { materialsDatabase, getMaterialsByCategory } from './data/materialsData';
 import { processesDatabase, getProcessesByCategory } from './data/processesData';
 import { toolingDatabase, getToolingByProcess } from './data/toolingData';
@@ -21,6 +21,10 @@ function App() {
   const [customProcesses, setCustomProcesses] = useState([]);
   const [customTooling, setCustomTooling] = useState([]);
   const [customAssemblies, setCustomAssemblies] = useState([]);
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem('darkMode');
+    return saved ? JSON.parse(saved) : false;
+  });
   
   // Header fields (global)
   const [headerData, setHeaderData] = useState({
@@ -395,7 +399,8 @@ function App() {
     localStorage.setItem('costReportParts', JSON.stringify(parts));
     localStorage.setItem('costReportAssemblies', JSON.stringify(assemblies));
     localStorage.setItem('headerData', JSON.stringify(headerData));
-  }, [parts, assemblies, headerData]);
+    localStorage.setItem('darkMode', JSON.stringify(darkMode));
+  }, [parts, assemblies, headerData, darkMode]);
 
   // Load from localStorage on mount
   useEffect(() => {
@@ -752,7 +757,7 @@ function App() {
   };
 
   return (
-    <div className="app">
+    <div className={`app ${darkMode ? 'dark-mode' : ''}`}>
       <header className="app-header">
         <div className="header-content">
           <div className="logo">
@@ -760,6 +765,13 @@ function App() {
             <h1>SUPRA SAEINDIA Cost Report</h1>
           </div>
           <div className="header-actions">
+            <button 
+              onClick={() => setDarkMode(!darkMode)} 
+              className="btn btn-icon"
+              title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            >
+              {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
             <button onClick={addPart} className="btn btn-primary">
               <Plus size={18} />
               Add Part
