@@ -6,7 +6,7 @@ import { toolingDatabase, getToolingByProcess } from './data/toolingData';
 import { multipliersDatabase, getMultipliersByUse } from './data/multipliersData';
 import { fastenersDatabase, getFastenersByCategory } from './data/fastenersData';
 import { assemblyDatabase, getAssemblyByCategory } from './data/assemblyData';
-import { calculateMaterialCost, calculateProcessCost, calculateToolingCost, calculateTotalCost, formatCurrency } from './utils/costCalculator';
+import { calculateMaterialCost, calculateFastenerCost, calculateProcessCost, calculateToolingCost, calculateTotalCost, formatCurrency } from './utils/costCalculator';
 import SearchableSelect from './components/SearchableSelect';
 import * as XLSX from 'xlsx';
 import './App.css';
@@ -238,7 +238,7 @@ function App() {
             
             if (['fastener', 'fastenerSize1', 'fastenerSize2', 'fastenerQuantity'].includes(field)) {
               const fastener = fastenersDatabase[updatedItem.fastener] || customFasteners.find(f => f.name === updatedItem.fastener);
-              updatedItem.fastenerCost = calculateMaterialCost(
+              updatedItem.fastenerCost = calculateFastenerCost(
                 fastener,
                 parseFloat(updatedItem.fastenerSize1) || 0,
                 parseFloat(updatedItem.fastenerSize2) || 0,
@@ -311,7 +311,7 @@ function App() {
             
             if (['fastener', 'fastenerSize1', 'fastenerSize2', 'fastenerQuantity'].includes(field)) {
               const fastener = fastenersDatabase[updatedItem.fastener] || customFasteners.find(f => f.name === updatedItem.fastener);
-              updatedItem.fastenerCost = calculateMaterialCost(
+              updatedItem.fastenerCost = calculateFastenerCost(
                 fastener,
                 parseFloat(updatedItem.fastenerSize1) || 0,
                 parseFloat(updatedItem.fastenerSize2) || 0,

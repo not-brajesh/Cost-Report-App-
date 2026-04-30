@@ -19,8 +19,15 @@ export const calculateMaterialCost = (material, size1 = 0, size2 = 0, quantity =
       formula = formula.replace(/\[C2\]/g, material.c2 || 0);
       formula = formula.replace(/\[Size1\]/g, size1 || 0);
       formula = formula.replace(/\[Size2\]/g, size2 || 0);
+      formula = formula.replace(/\[Quantity\]/g, quantity || 1);
       
-      // Evaluate the formula safely
+      // Replace mathematical functions with JavaScript equivalents
+      formula = formula.replace(/SQRT\(/g, 'Math.sqrt(');
+      formula = formula.replace(/EXP\(/g, 'Math.exp(');
+      formula = formula.replace(/LN\(/g, 'Math.log(');
+      formula = formula.replace(/LOG\(/g, 'Math.log10(');
+      formula = formula.replace(/ABS\(/g, 'Math.abs(');
+      
       // Handle power operator ^ (JavaScript uses **)
       formula = formula.replace(/\^/g, '**');
       
@@ -33,6 +40,53 @@ export const calculateMaterialCost = (material, size1 = 0, size2 = 0, quantity =
       return cost * quantity;
     } catch (error) {
       console.error('Error calculating material cost:', error);
+      return 0;
+    }
+  }
+  
+  return 0;
+};
+
+export const calculateFastenerCost = (fastener, size1 = 0, size2 = 0, quantity = 1) => {
+  if (!fastener) return 0;
+  
+  // If fastener has a fixed price
+  if (fastener.price !== undefined) {
+    return fastener.price * quantity;
+  }
+  
+  // If fastener has a formula
+  if (fastener.formula) {
+    let formula = fastener.formula;
+    let cost = 0;
+    
+    try {
+      // Replace formula variables with values
+      formula = formula.replace(/\[C1\]/g, fastener.c1 || 0);
+      formula = formula.replace(/\[C2\]/g, fastener.c2 || 0);
+      formula = formula.replace(/\[Size1\]/g, size1 || 0);
+      formula = formula.replace(/\[Size2\]/g, size2 || 0);
+      formula = formula.replace(/\[Quantity\]/g, quantity || 1);
+      
+      // Replace mathematical functions with JavaScript equivalents
+      formula = formula.replace(/SQRT\(/g, 'Math.sqrt(');
+      formula = formula.replace(/EXP\(/g, 'Math.exp(');
+      formula = formula.replace(/LN\(/g, 'Math.log(');
+      formula = formula.replace(/LOG\(/g, 'Math.log10(');
+      formula = formula.replace(/ABS\(/g, 'Math.abs(');
+      
+      // Handle power operator ^ (JavaScript uses **)
+      formula = formula.replace(/\^/g, '**');
+      
+      cost = eval(formula);
+      
+      if (isNaN(cost) || !isFinite(cost)) {
+        return 0;
+      }
+      
+      return cost * quantity;
+    } catch (error) {
+      console.error('Error calculating fastener cost:', error);
       return 0;
     }
   }
