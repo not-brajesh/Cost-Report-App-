@@ -1478,7 +1478,7 @@ function App() {
       <footer className="app-footer">
         <p>SUPRA SAEINDIA Cost Report Application - Javitron</p>
         <p>Version 1.0 | 2026 Cost Tables</p>
-        <p>developed by not-brajesh</p>
+        <p>developed by <a href="https://www.linkedin.com/in/not-brajesh" target="_blank" rel="noopener noreferrer" style={{ color: '#ff375f', textDecoration: 'none', fontWeight: 600 }}>not-brajesh</a></p>
       </footer>
     </div>
   );
