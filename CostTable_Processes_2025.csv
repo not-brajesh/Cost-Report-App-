@@ -1,0 +1,154 @@
+"Process Table.  Posted Version 1, 19-May-25",Unnamed: 1,Unnamed: 2,Unnamed: 3,Unnamed: 4,Unnamed: 5,Unnamed: 6,Unnamed: 7,Unnamed: 8,Unnamed: 9
+Process ID,Process,Unit Cost,Unit,Category,Tooling Required,Near Net Shape,Multiplier Type Used,Modified,Comments
+,,0,,,,,,2017-05-10 00:00:00,
+,Die Casting,260,kg,Basic Forming,Yes,Yes,,2017-05-10 00:00:00,
+,Investment Casting,520,kg,Basic Forming,,Yes,,2017-05-10 00:00:00,
+,Plastic injection molding,178.75,kg,Basic Forming,Yes,Yes,,2017-05-10 00:00:00,
+,Powder Metal Forming,195,kg,Basic Forming,Yes,Yes,,2017-05-10 00:00:00,
+,Rapid Prototype - Metal,21450,kg,Basic Forming,,Yes,,2017-05-10 00:00:00,Updated terminology for clarity
+,Rapid Prototype - Plastic,2080,kg,Basic Forming,,Yes,,2017-05-10 00:00:00,Updated terminology for clarity
+,Sand Casting,195,kg,Basic Forming,Yes,,,2017-05-10 00:00:00,
+,Vacuum Form,650,m^2,Basic Forming,Yes,,,2017-05-10 00:00:00,
+,Exhaust System Ceramic Coating,1625,m,Coating,,,,2017-05-10 00:00:00,"Linear distance of coating on exhaust header and tubing including all runners, etc.  Material included."
+,"Cure, Autoclave",3250,m^2,Composite,Yes,,,2017-05-10 00:00:00,Includes all consumable materials and labor.
+,"Cure, Oven",1300,m^2,Composite,Yes,,,2017-05-10 00:00:00,Includes all consumable materials and labor.
+,"Cure, Room Temperature",650,m^2,Composite,Yes,,,2017-05-10 00:00:00,Includes all consumable materials and labor.
+,"Lamination, Fillament Winding",1625,kg,Composite,,,,2017-05-10 00:00:00,Cost based on finished part mass of composite fibers and resin.
+,"Lamination, Manual",2275,m^2,Composite,,,,2017-05-10 00:00:00,
+,Potting,32.5,cm,Composite,,,,2017-05-10 00:00:00,Cost based on perimeter of insert.  Includes potting compund material cost
+,"Resin application, Infusion Molding",162.5,m^2,Composite,,,,2017-05-10 00:00:00,
+,"Resin application, Manual",325,m^2,Composite,,,,2017-05-10 00:00:00,If prepreg composites are used do not included the resin application step.
+,"Attach Wire, Fork",16.25,unit,Electrical - Attach Wires,,,,2017-05-10 00:00:00,
+,"Attach Wire, Quick connect terminal",6.77,unit,Electrical - Attach Wires,,,,2017-05-10 00:00:00,
+,"Attach Wire, Ring",31.15,unit,Electrical - Attach Wires,,,,2017-05-10 00:00:00,
+,"Attach Wire, Solder wire, bent",23.02,unit,Electrical - Attach Wires,,,,2017-05-10 00:00:00,
+,"Attach Wire, Solder wire, not bent",33.85,unit,Electrical - Attach Wires,,,,2017-05-10 00:00:00,
+,"Attach Wire, Terminated wire with screw",23.02,unit,Electrical - Attach Wires,,,,2017-05-10 00:00:00,
+,"Attach Wire, Terminated wire with screw and nut",33.85,unit,Electrical - Attach Wires,,,,2017-05-10 00:00:00,
+,"Attach Wire, Wire to screw",31.15,unit,Electrical - Attach Wires,,,,2017-05-10 00:00:00,
+,"Attach Wire, Wire to screw with nut",41.98,unit,Electrical - Attach Wires,,,,2017-05-10 00:00:00,
+,"Attach Wire, Wire to terminal block",23.02,unit,Electrical - Attach Wires,,,,2017-05-10 00:00:00,
+,"Attach Wire, Wire wrap around terminal post",17.6,unit,Electrical - Attach Wires,,,,2017-05-10 00:00:00,
+,"Install Tie Wrap (Zip Tie, Cable Clamp)",6.09,unit,Electrical - Bundle Install,,,,2017-05-10 00:00:00,
+,Wire Dressing (Install and route),65,m,Electrical - Bundle Install,,,,2017-05-10 00:00:00,
+,Insert Bundle Into Tube or Sleeve,1.3,m,Electrical - Bundle Processing,,,,2017-05-10 00:00:00,
+,Install Adhesive Cable Clamp,12.19,unit,Electrical - Bundle Processing,,,,2017-05-10 00:00:00,
+,Lace,9.48,unit,Electrical - Bundle Processing,,,,2017-05-10 00:00:00,
+,Shrink Tube,9.75,cm,Electrical - Bundle Processing,,,,2017-05-10 00:00:00,
+,Taping Wire Bundle,2.6,cm,Electrical - Bundle Processing,,,,2017-05-10 00:00:00,
+,"Connector Install, Circular, Bayonet",7.04,unit,Electrical - Connections,,,,2017-05-10 00:00:00,
+,"Connector Install, Circular, Friction",9.07,unit,Electrical - Connections,,,,2017-05-10 00:00:00,
+,"Connector Install, Circular, Screw Thread",15.3,unit,Electrical - Connections,,,,2017-05-10 00:00:00,
+,"Connector Install, Square, Friction",9.07,unit,Electrical - Connections,,,,2017-05-10 00:00:00,
+,"Connector Install, Square, Latch/Snap-on Type",10.97,unit,Electrical - Connections,,,,2017-05-10 00:00:00,
+,"Connector Install, Square, Screw (x2)",32.5,unit,Electrical - Connections,,,,2017-05-10 00:00:00,
+,"Connector Install, Square, Spring Clip",13.27,unit,Electrical - Connections,,,,2017-05-10 00:00:00,
+,Lay Wire - Control,1.3,m,Electrical - Layout,,,,2017-05-10 00:00:00,
+,Lay Wire - Power,1.95,m,Electrical - Layout,,,,2017-05-10 00:00:00,
+,Lay Wire - Signal,1.3,m,Electrical - Layout,,,,2017-05-10 00:00:00,
+,Crimp Wire,10.83,unit,Electrical - Prep,,,,2017-05-10 00:00:00,
+,Cut wire,5.42,unit,Electrical - Prep,,,,2017-05-10 00:00:00,
+,Strip Multi-Conductor,8.45,wire(s),Electrical - Prep,,,,2017-05-10 00:00:00,
+,Strip Wire,5.42,unit,Electrical - Prep,,,,2017-05-10 00:00:00,
+,Tin Wire,8.13,unit,Electrical - Prep,,,,2017-05-10 00:00:00,
+,"Connector Assembley, Crimp",23.4,contacts,Electrical - Wire in Connector,,,,2017-05-10 00:00:00,
+,"Connector Assembley, Solder",15.6,contacts,Electrical - Wire in Connector,,,,2017-05-10 00:00:00,
+,Hand - Start Only,7.8,unit,Fasteners,,,,2017-05-10 00:00:00,
+,"Hand, Loose <= 25.4 mm",32.5,unit,Fasteners,,,,2017-05-10 00:00:00,
+,"Hand, Loose <= 6.35 mm",16.25,unit,Fasteners,,,,2017-05-10 00:00:00,
+,"Hand, Loose > 25.4 mm",48.75,unit,Fasteners,,,,2017-05-10 00:00:00,
+,"Hand, Tight <= 6.35 mm",32.5,unit,Fasteners,,,,2017-05-10 00:00:00,
+,Power Tool <= 25.4 mm,16.25,unit,Fasteners,,,Fastener Installation,2017-05-10 00:00:00,
+,Power Tool <= 6.35 mm,16.25,unit,Fasteners,,,Fastener Installation,2017-05-10 00:00:00,
+,Power Tool > 25.4 mm,32.5,unit,Fasteners,,,Fastener Installation,2017-05-10 00:00:00,
+,Ratchet <= 25.4 mm,48.75,unit,Fasteners,,,Fastener Installation,2017-05-10 00:00:00,
+,Ratchet <= 6.35 mm,32.5,unit,Fasteners,,,Fastener Installation,2017-05-10 00:00:00,
+,Ratchet > 25.4 mm,97.5,unit,Fasteners,,,Fastener Installation,2017-05-10 00:00:00,
+,Reaction Tool <= 25.4 mm,16.25,unit,Fasteners,,,,2017-05-10 00:00:00,
+,Reaction Tool <= 6.35 mm,16.25,unit,Fasteners,,,,2017-05-10 00:00:00,
+,Reaction Tool > 25.4 mm,32.5,unit,Fasteners,,,,2017-05-10 00:00:00,
+,Screwdriver < 1 Turn,7.8,unit,Fasteners,,,Fastener Installation,2017-05-10 00:00:00,
+,Screwdriver > 1 Turn,32.5,unit,Fasteners,,,Fastener Installation,2017-05-10 00:00:00,
+,Wrench <= 25.4 mm,97.5,unit,Fasteners,,,Fastener Installation,2017-05-10 00:00:00,
+,Wrench <= 6.35 mm,65,unit,Fasteners,,,Fastener Installation,2017-05-10 00:00:00,
+,Wrench > 25.4 mm,130,unit,Fasteners,,,Fastener Installation,2017-05-10 00:00:00,
+,Braze,9.75,cm,Joining,Yes,,,2017-05-10 00:00:00,
+,Sewing,5.2,cm,Joining,,,,2017-05-10 00:00:00,
+,Weld,9.75,cm,Joining,Yes,,,2017-05-10 00:00:00,
+,Adjustment - Misc.,325,unit,Labor,,,,2017-05-10 00:00:00,"Chain tension, etc."
+,Aerosol Apply,341.25,m^2,Labor,,,,2017-05-10 00:00:00,
+,Annodize,0,unit,Labor,,,,2017-05-10 00:00:00,It is not necessary to include any cost for annodizing.  Included for reference only.
+,"Assemble, >20 kg, Interference",365.63,unit,Labor,,,Assembly,2017-05-10 00:00:00,
+,"Assemble, >20 kg, Line-on-Line",243.75,unit,Labor,,,Assembly,2017-05-10 00:00:00,
+,"Assemble, >20 kg, Loose",121.88,unit,Labor,,,Assembly,2017-05-10 00:00:00,
+,"Assemble, 1 kg, Interference",12.19,unit,Labor,,,Assembly,2017-05-10 00:00:00,
+,"Assemble, 1 kg, Line-on-Line",8.13,unit,Labor,,,Assembly,2017-05-10 00:00:00,
+,"Assemble, 1 kg, Loose",4.06,unit,Labor,,,Assembly,2017-05-10 00:00:00,
+,"Assemble, 10 kg, Interference",121.88,unit,Labor,,,Assembly,2017-05-10 00:00:00,
+,"Assemble, 10 kg, Line-on-Line",81.25,unit,Labor,,,Assembly,2017-05-10 00:00:00,
+,"Assemble, 10 kg, Loose",40.63,unit,Labor,,,Assembly,2017-05-10 00:00:00,
+,"Assemble, 15 kg, Interference",182.81,unit,Labor,,,Assembly,2017-05-10 00:00:00,
+,"Assemble, 15 kg, Line-on-Line",121.88,unit,Labor,,,Assembly,2017-05-10 00:00:00,
+,"Assemble, 15 kg, Loose",60.94,unit,Labor,,,Assembly,2017-05-10 00:00:00,
+,"Assemble, 20 kg, Interference",243.75,unit,Labor,,,Assembly,2017-05-10 00:00:00,
+,"Assemble, 20 kg, Line-on-Line",162.5,unit,Labor,,,Assembly,2017-05-10 00:00:00,
+,"Assemble, 20 kg, Loose",81.25,unit,Labor,,,Assembly,2017-05-10 00:00:00,
+,"Assemble, 3 kg, Interference",36.56,unit,Labor,,,Assembly,2017-05-10 00:00:00,
+,"Assemble, 3 kg, Line-on-Line",24.38,unit,Labor,,,Assembly,2017-05-10 00:00:00,
+,"Assemble, 3 kg, Loose",12.19,unit,Labor,,,Assembly,2017-05-10 00:00:00,
+,"Assemble, 5 kg, Interference",60.94,unit,Labor,,,Assembly,2017-05-10 00:00:00,
+,"Assemble, 5 kg, Line-on-Line",40.63,unit,Labor,,,Assembly,2017-05-10 00:00:00,
+,"Assemble, 5 kg, Loose",20.31,unit,Labor,,,Assembly,2017-05-10 00:00:00,
+,Brake Bleed - Per Bleeder Valve,162.5,unit,Labor,,,,2017-05-10 00:00:00,
+,Brush Apply,1.3,cm^2,Labor,,,,2017-05-10 00:00:00,"For use with glue, adhesives, paint, resin, etc."
+,"Cut (scissors, knife)",3.9,cm,Labor,,,,2017-05-10 00:00:00,
+,"Engine first start, includes fuel",3250,unit,Labor,,,,2017-05-10 00:00:00,Includes Fuel
+,Heat Treatment,0,unit,Labor,,,,2017-05-10 00:00:00,It is not necessary to include any cost for heat treatment.  Included for reference only.
+,Liquid Applicator Gun,1.3,cm,Labor,,,,2017-05-10 00:00:00,"For use with glue, adhesives, paint, resin, etc."
+,Liquid Apply - Pour Expanding Foam,130,m^3,Labor,Yes - if not fully captured,,,2017-05-10 00:00:00,Cost based on volume of fully expanded final part before trimming.  Added note explaining that if final part is foam (not fully contained in something else) than tooling is required and added tooling for liquid pour operations to tooling table.
+,Liquid Apply - Spot,6.5,unit,Labor,,,,2017-05-10 00:00:00,"For use with glue, adhesives, paint, resin, etc."
+,"Machining Setup, Change",42.25,unit,Labor,,,,2017-05-10 00:00:00,The quantity for this process may be used to scale the cost to the number of parts yielded from each setup.  For example if 4 parts can be machined from a single plate then the quantity per part may be set to 0.25 to spread the cost out over each part.
+,"Machining Setup, Install and remove",84.5,unit,Labor,,,,2017-05-10 00:00:00,The quantity for this process may be used to scale the cost to the number of parts yielded from each setup.  For example if 4 parts can be machined from a single plate then the quantity per part may be 0.25 to spread the cost out over each part.
+,Riveting,16.25,unit,Labor,,,,2017-05-10 00:00:00,
+,"Safety Wire, Install",39,unit,Labor,,,,2017-05-10 00:00:00,"Unit includes each item or hole included in safety wire path.  One item could include bolt, nut, hole in an axle, hub, etc."
+,Suspension Setup - Solid Axle (per corner),292.5,unit,Labor,,,,2017-05-10 00:00:00,
+,Suspension Setup-Independent Susp. (per corner),568.75,unit,Labor,,,,2017-05-10 00:00:00,
+,Tape,52,m,Labor,,,,2017-05-10 00:00:00,
+,"Broach, External",32.5,cm,Material Removal,,,,2017-05-10 00:00:00,Linear distance of broach
+,"Broach, Internal",32.5,cm,Material Removal,,,,2017-05-10 00:00:00,Linear distance of broach
+,Drilled hole < 50.8 mm dia.,45.5,hole,Material Removal,,,Drill & Tap,2017-05-10 00:00:00,Holes >= 50.8 mm must be machined
+,Drilled holes < 25.4 mm dia.,22.75,hole,Material Removal,,,Drill & Tap,2017-05-10 00:00:00,
+,EDM - Plunge,19.5,cm^3,Material Removal,,,Machining,2017-05-10 00:00:00,
+,EDM - Wire,13,cm,Material Removal,,,Machining,2017-05-10 00:00:00,
+,Gear Shaping (hobbing),32.5,cm,Material Removal,,,Machining,2017-05-10 00:00:00,Linear travel of gear shaping.  A half-shaft end 5cm long would cost Rupees 162.5
+,"Grind, Cylindrical",9.75,cm^2,Material Removal,,,Machining,2017-05-10 00:00:00,0.25mm machine stock
+,"Grind, Flat",9.75,cm^2,Material Removal,,,Machining,2017-05-10 00:00:00,0.25mm machine stock
+,"Grind, Profile",9.75,cm^2,Material Removal,,,Machining,2017-05-10 00:00:00,0.25mm machine stock
+,Hand Finish - Material Removal,13,cm^3,Material Removal,,,Machining,2017-05-10 00:00:00,"Hand sanding, grinding, shaping.  Any manual material removal process."
+,Hand Finish - Surface Preperation,1.3,cm^2,Material Removal,,,Machining,2017-05-10 00:00:00,"Hand sanding, cleaning or other operations used to prepare the surface, such as for bonding."
+,Knurling,6.5,cm,Material Removal,,,Machining,2017-05-10 00:00:00,"Linear distance of knurl on part (length of knurl, not diameter)"
+,Laser Cut,0.65,cm,Material Removal,,,Machining,2017-05-10 00:00:00,Revised cost for 2011 Competition Years
+,Machining,2.6,cm^3,Material Removal,,,Machining,2017-05-10 00:00:00,"Machining can include roughing (1.5mm machine stock min., Tol +/- 0.5mm) and/or finishing (0.5mm machine stock min.).  All parts should include the minimum 1.5mm material stock except parts produced by ""near net shaped"" basic forming processes.  It is not necessary to break down rough and finish cuts, only use the correct minimum stock in the calculation of material removed."
+,Mill - Form Cutter,6.5,cm,Material Removal,,,Machining,2017-05-10 00:00:00,0.5mm machine stock min.  Linear distance of cutter motion.
+,Non-metallic cutting <= 25.4 mm,22.75,cut,Material Removal,,,Machining,2017-05-10 00:00:00,
+,Non-metallic cutting <= 50.8 mm,45.5,cut,Material Removal,,,Machining,2017-05-10 00:00:00,
+,Non-metallic cutting <= 76.2 mm,68.25,cut,Material Removal,,,Machining,2017-05-10 00:00:00,
+,Non-metallic cutting > 76.2 mm,91,cut,Material Removal,,,Machining,2017-05-10 00:00:00,
+,Plasma Cutting,6.5,cm,Material Removal,,,Machining,2017-05-10 00:00:00,
+,Reemed hole,22.75,hole,Material Removal,,,Machining,2017-05-10 00:00:00,Reemed holes must first be drilled or machined
+,Saw or tubing cuts,26,cm,Material Removal,,,Machining,2017-05-10 00:00:00,
+,Tapping holes,22.75,hole,Material Removal,,,Drill & Tap,2017-05-10 00:00:00,
+,"Threading, External (machining)",6.5,cm,Material Removal,,,,2017-05-10 00:00:00,"Linear distance of thread (length of bolt thread, not diameter)"
+,"Threading, Internal (machining)",6.5,cm,Material Removal,,,,2017-05-10 00:00:00,"Linear distance of thread (length of bolt thread, not diameter)"
+,Waterjet Cut,0.65,cm,Material Removal,,,Machining,2017-05-10 00:00:00,
+,"Spinning, Metal",1.3,cm^3,Shaping,,,,2017-05-10 00:00:00,Cost based on the total volume created between the metal starting position and final position.
+,Sheet metal bends,16.25,bend,Sheet Materials,,,,2017-05-10 00:00:00,
+,Sheet metal punching,1.95,cm^2,Sheet Materials,,,,2017-05-10 00:00:00,
+,Sheet Metal Saw Cut,13,cm,Sheet Materials,,,,2017-05-10 00:00:00,Includes linear saw cuts and hole saw cuts.  Linear cuts by linear distance and hole saw cuts by hole circumference.
+,Sheet metal shearing,16.25,cut,Sheet Materials,,,,2017-05-10 00:00:00,
+,Sheet metal stamping,1.95,cm^2,Sheet Materials,,,,2017-05-10 00:00:00,
+,Tube bends,48.75,bend,Tubing,,,,2017-05-10 00:00:00,
+,Tube cut,9.75,cm,Tubing,,,,2017-05-10 00:00:00,Use diameter of tube
+,Tube end preperation for welding,48.75,end,Tubing,,,,2017-05-10 00:00:00,"Includes mitering, nothing, sanding, wire wheeling and surface prep.  All steps necessary for welding of one tube end except cutting and welding."
+,Tube Flare/Bead,29.25,end,Tubing,,,,2017-05-10 00:00:00,"Form flare or bead for brake lines, cooling lines, etc. in hard lines"
+,Weld - Round Tubing,24.7,cm,Tubing,,,,2017-05-10 00:00:00,Use diameter for dimension.  Ratio of pi included.

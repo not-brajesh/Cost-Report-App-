@@ -1,0 +1,1638 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="description" content="SUPRA SAEINDIA Cost Report Application" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="SUPRA Cost" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <title>SUPRA SAEINDIA Cost Report - Javitron</title>
+    <script type="module" crossorigin src="./assets/index-DQ0lPwaa.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-C5zfTLSS.css">
+  <style>
+    .download-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+    }
+    .download-btn.hidden {
+      display: none;
+    }
+
+    /* Grey background for entire app */
+    body, html {
+      background-color: #808080 !important;
+      background: #808080 !important;
+    }
+    #root {
+      background-color: #808080 !important;
+      min-height: 100vh;
+    }
+
+  </style>
+</head>
+  <body>
+    <div id="root"></div>
+    <button id="downloadBtn" class="download-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+        <polyline points="7 10 12 15 17 10"></polyline>
+        <line x1="12" y1="15" x2="12" y2="3"></line>
+      </svg>
+      Download App
+    </button>
+    <script>
+      const downloadBtn = document.getElementById('downloadBtn');
+      let deferredPrompt;
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        downloadBtn.classList.remove('hidden');
+      });
+
+      downloadBtn.addEventListener('click', async () => {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          if (outcome === 'accepted') {
+            downloadBtn.classList.add('hidden');
+          }
+          deferredPrompt = null;
+        } else {
+          // Fallback for browsers that don't support PWA install prompt
+          alert('To download this app for offline use:\n\n1. Tap the Share button in your browser\n2. Tap "Add to Home Screen" or "Install App"\n3. Confirm the installation');
+        }
+      });
+
+      // Hide button if already installed
+      window.addEventListener('appinstalled', () => {
+        downloadBtn.classList.add('hidden');
+      });
+    </script>
+
+    <!-- LocalStorage Form Data Persistence -->
+    <script>
+    (function() {
+      const STORAGE_KEY = 'supra_cost_report_data';
+      
+      // Save form data to localStorage
+      function saveFormData() {
+        const formData = {};
+        const inputs = document.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+          if (input.id || input.name) {
+            const key = input.id || input.name;
+            formData[key] = input.value;
+          }
+        });
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
+        console.log('Form data saved to localStorage');
+      }
+      
+      // Restore form data from localStorage
+      function restoreFormData() {
+        const savedData = localStorage.getItem(STORAGE_KEY);
+        if (savedData) {
+          const formData = JSON.parse(savedData);
+          Object.keys(formData).forEach(key => {
+            const input = document.getElementById(key) || document.querySelector(`[name="${key}"]`);
+            if (input) {
+              input.value = formData[key];
+              // Trigger change event for React to recognize the value
+              input.dispatchEvent(new Event('input', { bubbles: true }));
+              input.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+          });
+          console.log('Form data restored from localStorage');
+        }
+      }
+      
+      // Setup event listeners on form inputs
+      function setupFormListeners() {
+        const inputs = document.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+          input.addEventListener('input', saveFormData);
+          input.addEventListener('change', saveFormData);
+        });
+        console.log('Form listeners attached:', inputs.length, 'inputs');
+      }
+      
+      // Wait for React app to render, then restore data
+      function initPersistence() {
+        // Try to restore immediately
+        setTimeout(() => {
+          restoreFormData();
+          setupFormListeners();
+        }, 1000);
+        
+        // Also try after a longer delay (for slower devices)
+        setTimeout(() => {
+          restoreFormData();
+          setupFormListeners();
+        }, 3000);
+        
+        // Watch for new form elements being added
+        const observer = new MutationObserver(() => {
+          setupFormListeners();
+        });
+        
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true
+        });
+      }
+      
+      // Start when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initPersistence);
+      } else {
+        initPersistence();
+      }
+      
+      // Expose clear function globally
+      window.clearSavedData = function() {
+        localStorage.removeItem(STORAGE_KEY);
+        console.log('Saved form data cleared');
+      };
+    })();
+    </script>
+
+    <!-- Comma Formatting for Cost Fields -->
+    <script>
+    (function() {
+      // Format number with commas
+      function formatWithCommas(value) {
+        if (!value) return value;
+        // Remove existing commas first
+        const numStr = value.toString().replace(/,/g, '');
+        // Check if it's a number
+        const num = parseFloat(numStr);
+        if (isNaN(num)) return value;
+        // Format with commas
+        return num.toLocaleString('en-IN');
+      }
+
+      // Format input value
+      function formatInput(input) {
+        const cursorPosition = input.selectionStart;
+        const originalLength = input.value.length;
+        
+        const formatted = formatWithCommas(input.value);
+        input.value = formatted;
+        
+        // Restore cursor position
+        const newLength = input.value.length;
+        const diff = newLength - originalLength;
+        input.setSelectionRange(cursorPosition + diff, cursorPosition + diff);
+      }
+
+      // Setup comma formatting for cost fields
+      function setupCommaFormatting() {
+        // Target cost-related inputs
+        const costKeywords = ['cost', 'price', 'unit', 'list', 'process', 'amount', 'total'];
+        
+        const inputs = document.querySelectorAll('input[type="text"], input[type="number"], input');
+        inputs.forEach(input => {
+          const id = (input.id || '').toLowerCase();
+          const name = (input.name || '').toLowerCase();
+          const placeholder = (input.placeholder || '').toLowerCase();
+          const label = input.labels && input.labels[0] ? input.labels[0].textContent.toLowerCase() : '';
+          
+          // Check if this is a cost-related field
+          const isCostField = costKeywords.some(keyword => 
+            id.includes(keyword) || 
+            name.includes(keyword) || 
+            placeholder.includes(keyword) ||
+            label.includes(keyword)
+          );
+          
+          if (isCostField) {
+            // Format on input
+            input.addEventListener('input', function() {
+              formatInput(input);
+            });
+            
+            // Format on blur
+            input.addEventListener('blur', function() {
+              input.value = formatWithCommas(input.value);
+            });
+            
+            // Initial format
+            if (input.value) {
+              input.value = formatWithCommas(input.value);
+            }
+          }
+        });
+      }
+
+      // Setup on DOM ready and watch for new elements
+      function initCommaFormatting() {
+        setupCommaFormatting();
+        
+        // Watch for new inputs being added
+        const observer = new MutationObserver(() => {
+          setupCommaFormatting();
+        });
+        
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true
+        });
+      }
+
+      // Start when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCommaFormatting);
+      } else {
+        setTimeout(initCommaFormatting, 1000);
+      }
+
+      // Global format function
+      window.formatNumberWithCommas = formatWithCommas;
+    })();
+    </script>
+
+    <!-- Updated Process Costs from CSV -->
+    <script>
+    // Updated process costs from CostTable_Processes_2025.csv (Posted Version 1, 19-May-25)
+    window.updatedProcessCosts = {
+      "Die Casting": { unitCost: 260, unit: "kg", category: "Basic Forming" },
+      "Investment Casting": { unitCost: 520, unit: "kg", category: "Basic Forming" },
+      "Plastic injection molding": { unitCost: 178.75, unit: "kg", category: "Basic Forming" },
+      "Powder Metal Forming": { unitCost: 195, unit: "kg", category: "Basic Forming" },
+      "Rapid Prototype - Metal": { unitCost: 21450, unit: "kg", category: "Basic Forming" },
+      "Rapid Prototype - Plastic": { unitCost: 2080, unit: "kg", category: "Basic Forming" },
+      "Sand Casting": { unitCost: 195, unit: "kg", category: "Basic Forming" },
+      "Vacuum Form": { unitCost: 650, unit: "m^2", category: "Basic Forming" },
+      "Exhaust System Ceramic Coating": { unitCost: 1625, unit: "m", category: "Coating" },
+      "Cure, Autoclave": { unitCost: 3250, unit: "m^2", category: "Composite" },
+      "Cure, Oven": { unitCost: 1300, unit: "m^2", category: "Composite" },
+      "Cure, Room Temperature": { unitCost: 650, unit: "m^2", category: "Composite" },
+      "Lamination, Fillament Winding": { unitCost: 1625, unit: "kg", category: "Composite" },
+      "Lamination, Manual": { unitCost: 2275, unit: "m^2", category: "Composite" },
+      "Potting": { unitCost: 32.5, unit: "cm", category: "Composite" },
+      "Resin application, Infusion Molding": { unitCost: 162.5, unit: "m^2", category: "Composite" },
+      "Resin application, Manual": { unitCost: 325, unit: "m^2", category: "Composite" },
+      "Attach Wire, Fork": { unitCost: 16.25, unit: "unit", category: "Electrical - Attach Wires" },
+      "Attach Wire, Quick connect terminal": { unitCost: 6.77, unit: "unit", category: "Electrical - Attach Wires" },
+      "Attach Wire, Ring": { unitCost: 31.15, unit: "unit", category: "Electrical - Attach Wires" },
+      "Attach Wire, Solder wire, bent": { unitCost: 23.02, unit: "unit", category: "Electrical - Attach Wires" },
+      "Attach Wire, Solder wire, not bent": { unitCost: 33.85, unit: "unit", category: "Electrical - Attach Wires" },
+      "Attach Wire, Terminated wire with screw": { unitCost: 23.02, unit: "unit", category: "Electrical - Attach Wires" },
+      "Attach Wire, Terminated wire with screw and nut": { unitCost: 33.85, unit: "unit", category: "Electrical - Attach Wires" },
+      "Attach Wire, Wire to screw": { unitCost: 31.15, unit: "unit", category: "Electrical - Attach Wires" },
+      "Attach Wire, Wire to screw with nut": { unitCost: 41.98, unit: "unit", category: "Electrical - Attach Wires" },
+      "Attach Wire, Wire to terminal block": { unitCost: 23.02, unit: "unit", category: "Electrical - Attach Wires" },
+      "Attach Wire, Wire wrap around terminal post": { unitCost: 17.6, unit: "unit", category: "Electrical - Attach Wires" },
+      "Install Tie Wrap (Zip Tie, Cable Clamp)": { unitCost: 6.09, unit: "unit", category: "Electrical - Bundle Install" },
+      "Wire Dressing (Install and route)": { unitCost: 65, unit: "m", category: "Electrical - Bundle Install" },
+      "Insert Bundle Into Tube or Sleeve": { unitCost: 1.3, unit: "m", category: "Electrical - Bundle Processing" },
+      "Install Adhesive Cable Clamp": { unitCost: 12.19, unit: "unit", category: "Electrical - Bundle Processing" },
+      "Lace": { unitCost: 9.48, unit: "unit", category: "Electrical - Bundle Processing" },
+      "Shrink Tube": { unitCost: 9.75, unit: "cm", category: "Electrical - Bundle Processing" },
+      "Taping Wire Bundle": { unitCost: 2.6, unit: "cm", category: "Electrical - Bundle Processing" },
+      "Connector Install, Circular, Bayonet": { unitCost: 7.04, unit: "unit", category: "Electrical - Connections" },
+      "Connector Install, Circular, Friction": { unitCost: 9.07, unit: "unit", category: "Electrical - Connections" },
+      "Connector Install, Circular, Screw Thread": { unitCost: 15.3, unit: "unit", category: "Electrical - Connections" },
+      "Connector Install, Square, Friction": { unitCost: 9.07, unit: "unit", category: "Electrical - Connections" },
+      "Connector Install, Square, Latch/Snap-on Type": { unitCost: 10.97, unit: "unit", category: "Electrical - Connections" },
+      "Connector Install, Square, Screw (x2)": { unitCost: 32.5, unit: "unit", category: "Electrical - Connections" },
+      "Connector Install, Square, Spring Clip": { unitCost: 13.27, unit: "unit", category: "Electrical - Connections" },
+      "Lay Wire - Control": { unitCost: 1.3, unit: "m", category: "Electrical - Layout" },
+      "Lay Wire - Power": { unitCost: 1.95, unit: "m", category: "Electrical - Layout" },
+      "Lay Wire - Signal": { unitCost: 1.3, unit: "m", category: "Electrical - Layout" },
+      "Crimp Wire": { unitCost: 10.83, unit: "unit", category: "Electrical - Prep" },
+      "Cut wire": { unitCost: 5.42, unit: "unit", category: "Electrical - Prep" },
+      "Strip Multi-Conductor": { unitCost: 8.45, unit: "wire(s)", category: "Electrical - Prep" },
+      "Strip Wire": { unitCost: 5.42, unit: "unit", category: "Electrical - Prep" },
+      "Tin Wire": { unitCost: 8.13, unit: "unit", category: "Electrical - Prep" },
+      "Connector Assembley, Crimp": { unitCost: 23.4, unit: "contacts", category: "Electrical - Wire in Connector" },
+      "Connector Assembley, Solder": { unitCost: 15.6, unit: "contacts", category: "Electrical - Wire in Connector" },
+      "Hand - Start Only": { unitCost: 7.8, unit: "unit", category: "Fasteners" },
+      "Hand, Loose <= 25.4 mm": { unitCost: 32.5, unit: "unit", category: "Fasteners" },
+      "Hand, Loose <= 6.35 mm": { unitCost: 16.25, unit: "unit", category: "Fasteners" },
+      "Hand, Loose > 25.4 mm": { unitCost: 48.75, unit: "unit", category: "Fasteners" },
+      "Hand, Tight <= 6.35 mm": { unitCost: 32.5, unit: "unit", category: "Fasteners" },
+      "Power Tool <= 25.4 mm": { unitCost: 16.25, unit: "unit", category: "Fasteners" },
+      "Power Tool <= 6.35 mm": { unitCost: 16.25, unit: "unit", category: "Fasteners" },
+      "Power Tool > 25.4 mm": { unitCost: 32.5, unit: "unit", category: "Fasteners" },
+      "Ratchet <= 25.4 mm": { unitCost: 48.75, unit: "unit", category: "Fasteners" },
+      "Ratchet <= 6.35 mm": { unitCost: 32.5, unit: "unit", category: "Fasteners" },
+      "Ratchet > 25.4 mm": { unitCost: 97.5, unit: "unit", category: "Fasteners" },
+      "Reaction Tool <= 25.4 mm": { unitCost: 16.25, unit: "unit", category: "Fasteners" },
+      "Reaction Tool <= 6.35 mm": { unitCost: 16.25, unit: "unit", category: "Fasteners" },
+      "Reaction Tool > 25.4 mm": { unitCost: 32.5, unit: "unit", category: "Fasteners" },
+      "Screwdriver < 1 Turn": { unitCost: 7.8, unit: "unit", category: "Fasteners" },
+      "Screwdriver > 1 Turn": { unitCost: 32.5, unit: "unit", category: "Fasteners" },
+      "Wrench <= 25.4 mm": { unitCost: 97.5, unit: "unit", category: "Fasteners" },
+      "Wrench <= 6.35 mm": { unitCost: 65, unit: "unit", category: "Fasteners" },
+      "Wrench > 25.4 mm": { unitCost: 130, unit: "unit", category: "Fasteners" },
+      "Braze": { unitCost: 9.75, unit: "cm", category: "Joining" },
+      "Sewing": { unitCost: 5.2, unit: "cm", category: "Joining" },
+      "Weld": { unitCost: 9.75, unit: "cm", category: "Joining" },
+      "Adjustment - Misc.": { unitCost: 325, unit: "unit", category: "Labor" },
+      "Aerosol Apply": { unitCost: 341.25, unit: "m^2", category: "Labor" },
+      "Annodize": { unitCost: 0, unit: "unit", category: "Labor" },
+      "Assemble, >20 kg, Interference": { unitCost: 365.63, unit: "unit", category: "Labor" },
+      "Assemble, >20 kg, Line-on-Line": { unitCost: 243.75, unit: "unit", category: "Labor" },
+      "Assemble, >20 kg, Loose": { unitCost: 121.88, unit: "unit", category: "Labor" },
+      "Assemble, 1 kg, Interference": { unitCost: 12.19, unit: "unit", category: "Labor" },
+      "Assemble, 1 kg, Line-on-Line": { unitCost: 8.13, unit: "unit", category: "Labor" },
+      "Assemble, 1 kg, Loose": { unitCost: 4.06, unit: "unit", category: "Labor" },
+      "Assemble, 10 kg, Interference": { unitCost: 121.88, unit: "unit", category: "Labor" },
+      "Assemble, 10 kg, Line-on-Line": { unitCost: 81.25, unit: "unit", category: "Labor" },
+      "Assemble, 10 kg, Loose": { unitCost: 40.63, unit: "unit", category: "Labor" },
+      "Assemble, 15 kg, Interference": { unitCost: 182.81, unit: "unit", category: "Labor" },
+      "Assemble, 15 kg, Line-on-Line": { unitCost: 121.88, unit: "unit", category: "Labor" },
+      "Assemble, 15 kg, Loose": { unitCost: 60.94, unit: "unit", category: "Labor" },
+      "Assemble, 20 kg, Interference": { unitCost: 243.75, unit: "unit", category: "Labor" },
+      "Assemble, 20 kg, Line-on-Line": { unitCost: 162.5, unit: "unit", category: "Labor" },
+      "Assemble, 20 kg, Loose": { unitCost: 81.25, unit: "unit", category: "Labor" },
+      "Assemble, 3 kg, Interference": { unitCost: 36.56, unit: "unit", category: "Labor" },
+      "Assemble, 3 kg, Line-on-Line": { unitCost: 24.38, unit: "unit", category: "Labor" },
+      "Assemble, 3 kg, Loose": { unitCost: 12.19, unit: "unit", category: "Labor" },
+      "Assemble, 5 kg, Interference": { unitCost: 60.94, unit: "unit", category: "Labor" },
+      "Assemble, 5 kg, Line-on-Line": { unitCost: 40.63, unit: "unit", category: "Labor" },
+      "Assemble, 5 kg, Loose": { unitCost: 20.31, unit: "unit", category: "Labor" },
+      "Brake Bleed - Per Bleeder Valve": { unitCost: 162.5, unit: "unit", category: "Labor" },
+      "Brush Apply": { unitCost: 1.3, unit: "cm^2", category: "Labor" },
+      "Engine first start, includes fuel": { unitCost: 3250, unit: "unit", category: "Labor" },
+      "Heat Treatment": { unitCost: 0, unit: "unit", category: "Labor" },
+      "Liquid Applicator Gun": { unitCost: 1.3, unit: "cm", category: "Labor" },
+      "Liquid Apply - Pour Expanding Foam": { unitCost: 130, unit: "m^3", category: "Labor" },
+      "Liquid Apply - Spot": { unitCost: 6.5, unit: "unit", category: "Labor" },
+      "Machining Setup, Change": { unitCost: 42.25, unit: "unit", category: "Labor" },
+      "Machining Setup, Install and remove": { unitCost: 84.5, unit: "unit", category: "Labor" },
+      "Riveting": { unitCost: 16.25, unit: "unit", category: "Labor" },
+      "Safety Wire, Install": { unitCost: 39, unit: "unit", category: "Labor" },
+      "Suspension Setup - Solid Axle (per corner)": { unitCost: 292.5, unit: "unit", category: "Labor" },
+      "Suspension Setup-Independent Susp. (per corner)": { unitCost: 568.75, unit: "unit", category: "Labor" },
+      "Tape": { unitCost: 52, unit: "m", category: "Labor" },
+      "Broach, External": { unitCost: 32.5, unit: "cm", category: "Material Removal" },
+      "Broach, Internal": { unitCost: 32.5, unit: "cm", category: "Material Removal" },
+      "Drilled hole < 50.8 mm dia.": { unitCost: 45.5, unit: "hole", category: "Material Removal" },
+      "Drilled holes < 25.4 mm dia.": { unitCost: 22.75, unit: "hole", category: "Material Removal" },
+      "EDM - Plunge": { unitCost: 19.5, unit: "cm^3", category: "Material Removal" },
+      "EDM - Wire": { unitCost: 13, unit: "cm", category: "Material Removal" },
+      "Gear Shaping (hobbing)": { unitCost: 32.5, unit: "cm", category: "Material Removal" },
+      "Grind, Cylindrical": { unitCost: 9.75, unit: "cm^2", category: "Material Removal" },
+      "Grind, Flat": { unitCost: 9.75, unit: "cm^2", category: "Material Removal" },
+      "Grind, Profile": { unitCost: 9.75, unit: "cm^2", category: "Material Removal" },
+      "Hand Finish - Material Removal": { unitCost: 13, unit: "cm^3", category: "Material Removal" },
+      "Hand Finish - Surface Preperation": { unitCost: 1.3, unit: "cm^2", category: "Material Removal" },
+      "Knurling": { unitCost: 6.5, unit: "cm", category: "Material Removal" },
+      "Laser Cut": { unitCost: 0.65, unit: "cm", category: "Material Removal" },
+      "Machining": { unitCost: 2.6, unit: "cm^3", category: "Material Removal" },
+      "Mill - Form Cutter": { unitCost: 6.5, unit: "cm", category: "Material Removal" },
+      "Non-metallic cutting <= 25.4 mm": { unitCost: 22.75, unit: "cut", category: "Material Removal" },
+      "Non-metallic cutting <= 50.8 mm": { unitCost: 45.5, unit: "cut", category: "Material Removal" },
+      "Non-metallic cutting <= 76.2 mm": { unitCost: 68.25, unit: "cut", category: "Material Removal" },
+      "Non-metallic cutting > 76.2 mm": { unitCost: 91, unit: "cut", category: "Material Removal" },
+      "Plasma Cutting": { unitCost: 6.5, unit: "cm", category: "Material Removal" },
+      "Reemed hole": { unitCost: 22.75, unit: "hole", category: "Material Removal" },
+      "Saw or tubing cuts": { unitCost: 26, unit: "cm", category: "Material Removal" },
+      "Tapping holes": { unitCost: 22.75, unit: "hole", category: "Material Removal" },
+      "Threading, External (machining)": { unitCost: 6.5, unit: "cm", category: "Material Removal" },
+      "Threading, Internal (machining)": { unitCost: 6.5, unit: "cm", category: "Material Removal" },
+      "Waterjet Cut": { unitCost: 0.65, unit: "cm", category: "Material Removal" },
+      "Spinning, Metal": { unitCost: 1.3, unit: "cm^3", category: "Shaping" },
+      "Sheet metal bends": { unitCost: 16.25, unit: "bend", category: "Sheet Materials" },
+      "Sheet metal punching": { unitCost: 1.95, unit: "cm^2", category: "Sheet Materials" },
+      "Sheet Metal Saw Cut": { unitCost: 13, unit: "cm", category: "Sheet Materials" },
+      "Sheet metal shearing": { unitCost: 16.25, unit: "cut", category: "Sheet Materials" },
+      "Sheet metal stamping": { unitCost: 1.95, unit: "cm^2", category: "Sheet Materials" },
+      "Tube bends": { unitCost: 48.75, unit: "bend", category: "Tubing" },
+      "Tube cut": { unitCost: 9.75, unit: "cm", category: "Tubing" },
+      "Tube end preperation for welding": { unitCost: 48.75, unit: "end", category: "Tubing" },
+      "Tube Flare/Bead": { unitCost: 29.25, unit: "end", category: "Tubing" },
+      "Weld - Round Tubing": { unitCost: 24.7, unit: "cm", category: "Tubing" }
+    };
+
+    // Store in localStorage for app to access
+    localStorage.setItem('processCosts_2025', JSON.stringify(window.updatedProcessCosts));
+    console.log('Updated process costs from CostTable_Processes_2025.csv loaded successfully');
+
+    // Updated material costs from CostTable_Materials_2025_converted.csv (Posted Version 1.0, 19-May-2025)
+    window.updatedMaterialCosts = {
+      // Bearings
+      "Bearing Ball, Steel": { tablePrice: "[C1]*[Size1]+[C2]", unit: "mm", c1: 0.195, c2: 3.25, category: "Bearings" },
+      "Bearing, Ball, Deep Groove": { tablePrice: "[C1]*(([Size1]^2*[Size2]))^([C2])", unit: "mm", c1: 6.5, c2: 32.5, category: "Bearings" },
+      "Bearing, Cylindrical Roller": { tablePrice: "[C1]*[Size1]*[Size2]+[C2]", unit: "mm", c1: 0.2925, c2: 234, category: "Bearings" },
+      "Bearing, Needle": { tablePrice: "[C1]*[Size1]*[Size2]+[C2]", unit: "mm", c1: 0.2925, c2: 234, category: "Bearings" },
+      "Bearing, Spherical": { tablePrice: "[C1]*[Size1]^2+[C2]", unit: "mm", c1: 1.95, c2: 325, category: "Bearings" },
+      "Bearing, Tapered Roller": { tablePrice: "[C1]*[Size1]*[Size2]+[C2]", unit: "mm", c1: 0.2925, c2: 679.25, category: "Bearings" },
+      "Wheel Bearing, Ball, Radial": { tablePrice: "[C1]*(([Size1]^2*[Size2]))^([C2])", unit: "mm", c1: 26, c2: 32.5, category: "Bearings" },
+      "Rod End, Aluminum": { tablePrice: "[C1]*[Size1]^2+[C2]", unit: "mm", c1: 3.25, c2: 247, category: "Bearings" },
+      "Rod End, Industrial": { tablePrice: "[C1]*[Size1]^2+[C2]", unit: "mm", c1: 1.3, c2: 79.04, category: "Bearings" },
+      "Rod End, Precison (Aircraft)": { tablePrice: "[C1]*[Size1]^2+[C2]", unit: "mm", c1: 3.25, c2: 325, category: "Bearings" },
+      "Bushing, Student Built": { tablePrice: 0, unit: "unit", category: "Bearings" },
+
+      // Raw Materials - Metals
+      "Aluminum, Normal": { tablePrice: 273, unit: "kg", category: "Raw Material" },
+      "Aluminum, Premium": { tablePrice: 273, unit: "kg", category: "Raw Material" },
+      "Aluminum Metal Matrix Composite": { tablePrice: 2145, unit: "kg", category: "Raw Material" },
+      "Brass": { tablePrice: 143, unit: "kg", category: "Raw Material" },
+      "Bronze": { tablePrice: 143, unit: "kg", category: "Raw Material" },
+      "Copper": { tablePrice: 143, unit: "kg", category: "Raw Material" },
+      "Iron": { tablePrice: 65, unit: "kg", category: "Raw Material" },
+      "Inconel": { tablePrice: 1430, unit: "kg", category: "Raw Material" },
+      "Magnesium": { tablePrice: 390, unit: "kg", category: "Raw Material" },
+      "Nickel": { tablePrice: 143, unit: "kg", category: "Raw Material" },
+      "Steel, Mild": { tablePrice: 146.25, unit: "kg", category: "Raw Material" },
+      "Steel, Alloy": { tablePrice: 146.25, unit: "kg", category: "Raw Material" },
+      "Steel, Stainless": { tablePrice: 146.25, unit: "kg", category: "Raw Material" },
+      "Titanium": { tablePrice: 1430, unit: "kg", category: "Raw Material" },
+      "Tubing, Steel": { tablePrice: 146.25, unit: "kg", category: "Raw Material" },
+
+      // Raw Materials - Plastics
+      "Plastic, ABS": { tablePrice: 214.5, unit: "kg", category: "Raw Material" },
+      "Plastic, Acetal": { tablePrice: 214.5, unit: "kg", category: "Raw Material" },
+      "Plastic, Acrylic": { tablePrice: 214.5, unit: "kg", category: "Raw Material" },
+      "Plastic, Nylon": { tablePrice: 214.5, unit: "kg", category: "Raw Material" },
+      "Plastic, PEEK": { tablePrice: 214.5, unit: "kg", category: "Raw Material" },
+      "Plastic, Polycarbonate": { tablePrice: 214.5, unit: "kg", category: "Raw Material" },
+      "Plastic, Polyethelene": { tablePrice: 214.5, unit: "kg", category: "Raw Material" },
+      "Plastic, Polypropolene": { tablePrice: 214.5, unit: "kg", category: "Raw Material" },
+      "Plastic, PVC": { tablePrice: 214.5, unit: "kg", category: "Raw Material" },
+      "Rubber": { tablePrice: 214.5, unit: "kg", category: "Raw Material" },
+
+      // Composites
+      "Carbon Fiber, 1 Ply": { tablePrice: 13000, unit: "kg", category: "Composite" },
+      "Aramid (Kevlar) Fiber, 1 Ply": { tablePrice: 9750, unit: "kg", category: "Composite" },
+      "Glass Fiber, 1 Ply": { tablePrice: 6500, unit: "kg", category: "Composite" },
+      "Basalt Fiber, 1 Ply": { tablePrice: 7150, unit: "kg", category: "Composite" },
+      "Flax Fiber, 1 Ply": { tablePrice: 7150, unit: "kg", category: "Composite" },
+      "Ceramic Matrix Composite, 1 Ply": { tablePrice: 32500, unit: "kg", category: "Composite" },
+      "Honeycomb, Aluminum": { tablePrice: 3250, unit: "kg", category: "Composite" },
+      "Honeycomb, Nomex": { tablePrice: 8125, unit: "kg", category: "Composite" },
+      "Honeycomb, Cardboard": { tablePrice: 650, unit: "kg", category: "Composite" },
+      "Honeycomb, Plastic": { tablePrice: 1300, unit: "kg", category: "Composite" },
+      "Structural Foam": { tablePrice: 8125, unit: "kg", category: "Composite" },
+      "Carbon Fiber Reinf Carbon": { tablePrice: 0.6, unit: "mm^3", category: "Composite" },
+
+      // Brake System Components
+      "Brake Caliper, AP, CP2577": { tablePrice: 8125, unit: "unit", category: "Brake System" },
+      "Brake Caliper, AP, CP3696-6E0": { tablePrice: 5037.5, unit: "unit", category: "Brake System" },
+      "Brake Caliper, Brembo, 20.6950.10": { tablePrice: 4550, unit: "unit", category: "Brake System" },
+      "Brake Caliper, Brembo, 20.6951.12/P34G": { tablePrice: 4550, unit: "unit", category: "Brake System" },
+      "Brake Caliper, Wilwood, Dynalite Single Floater": { tablePrice: 3250, unit: "unit", category: "Brake System" },
+      "Brake Caliper, Wilwood, GP310": { tablePrice: 6825, unit: "unit", category: "Brake System" },
+      "Brake Caliper, Wilwood, GP320": { tablePrice: 6370, unit: "unit", category: "Brake System" },
+      "Brake Caliper, Student Built": { tablePrice: 0, unit: "unit", category: "Brake System" },
+      "Master Cylinder, AP, CP2623": { tablePrice: 5297.5, unit: "unit", category: "Brake System" },
+      "Master Cylinder, AP, CP3756": { tablePrice: 6305, unit: "unit", category: "Brake System" },
+      "Master Cylinder, AP, CP4400": { tablePrice: 7637.5, unit: "unit", category: "Brake System" },
+      "Master Cylinder, Brembo, 10.4776.10": { tablePrice: 1690, unit: "unit", category: "Brake System" },
+      "Master Cylinder, Brembo, 10.4776.65": { tablePrice: 3022.5, unit: "unit", category: "Brake System" },
+      "Master Cylinder, Magura, 10.5mm": { tablePrice: 3575, unit: "unit", category: "Brake System" },
+      "Master Cylinder, Magura, 770.1": { tablePrice: 14462.5, unit: "unit", category: "Brake System" },
+      "Master Cylinder, Wilwood, 260-10371": { tablePrice: 2795, unit: "unit", category: "Brake System" },
+      "Master Cylinder, Wilwood, 260-1304": { tablePrice: 1755, unit: "unit", category: "Brake System" },
+      "Master Cylinder, Tilton, Model 74": { tablePrice: 2567.5, unit: "unit", category: "Brake System" },
+      "Master Cylinder, Tilton, Model 75": { tablePrice: 3217.5, unit: "unit", category: "Brake System" },
+      "Master Cylinder, Tilton, Model 76": { tablePrice: 4062.5, unit: "unit", category: "Brake System" },
+      "Brake Rotor (All Cost as Made)": { tablePrice: 0, unit: "unit", category: "Brake System" },
+      "Brake Pad, Iron or Steel Rotor": { tablePrice: 0.01, unit: "mm^3", category: "Brake System" },
+      "Brake Pad, Aluminum or MMC Rotor": { tablePrice: 0.03, unit: "mm^3", category: "Brake System" },
+      "Proportioning Valve, Hydraulic": { tablePrice: 2275, unit: "unit", category: "Brake System" },
+      "Proportioning Valve, Tilton, 90-1000": { tablePrice: 3217.5, unit: "unit", category: "Brake System" },
+
+      // Suspension Components
+      "Suspension Springs, Coil Spring, Steel": { tablePrice: 1625, unit: "unit", category: "Springs" },
+      "Suspension Springs, Coil Spring, Titanium": { tablePrice: 7150, unit: "unit", category: "Springs" },
+      "Spring, Compression (General)": { tablePrice: 65, unit: "unit", category: "Springs" },
+      "Spring, Tension (General)": { tablePrice: 65, unit: "unit", category: "Springs" },
+      "Spring, Torsion (General)": { tablePrice: 65, unit: "unit", category: "Springs" },
+
+      // Chassis (Cost as Made)
+      "Chassis (All Cost as Made)": { tablePrice: 0, unit: "unit", category: "Chassis" },
+      "Upright (All Cost as Made)": { tablePrice: 0, unit: "unit", category: "Chassis" },
+      "Hubs (All Cost as Made)": { tablePrice: 0, unit: "unit", category: "Chassis" },
+      "A-Arms (All Cost as Made)": { tablePrice: 0, unit: "unit", category: "Suspension" },
+      "Wishbones (All Cost as Made)": { tablePrice: 0, unit: "unit", category: "Suspension" },
+      "Rockers (All Cost as Made)": { tablePrice: 0, unit: "unit", category: "Chassis" },
+      "Monocoque (All Cost as Made)": { tablePrice: 0, unit: "unit", category: "Chassis" },
+      "Steering Rack (All Cost as Made)": { tablePrice: 0, unit: "unit", category: "Steering" },
+      "Steering Wheel (All Cost as Made)": { tablePrice: 0, unit: "unit", category: "Steering" },
+
+      // Tires
+      "Tire, American Racer, SD44, 8\"-15.0 x6.0": { tablePrice: 4420, unit: "unit", category: "Tire" },
+      "Tire, American Racer, SD44, 8\"-15.0 x7.0": { tablePrice: 4420, unit: "unit", category: "Tire" },
+      "Tire, Avon, A45, 13\"-20.0 x 7.2": { tablePrice: 6500, unit: "unit", category: "Tire" },
+      "Tire, Bridgestone, 13\"-180mm/510mm": { tablePrice: 5200, unit: "unit", category: "Tire" },
+      "Tire, Continental, 13\"": { tablePrice: 5200, unit: "unit", category: "Tire" },
+      "Tire, Hoosier, R25B, 13\"-20.0 x 7.5": { tablePrice: 5525, unit: "unit", category: "Tire" },
+      "Tire, Hoosier, R25B, 13\"-20.0 x 8.0": { tablePrice: 5525, unit: "unit", category: "Tire" },
+      "Tire, Hoosier, R25B, 13\"-20.0 x 9.0": { tablePrice: 5525, unit: "unit", category: "Tire" },
+      "Tire, Hoosier, Wet, 13\"-20.0 x 7.5": { tablePrice: 6500, unit: "unit", category: "Tire" },
+      "Tire, Michelin, P220, 13\"-20.9 x 6.3": { tablePrice: 6500, unit: "unit", category: "Tire" },
+      "Tire, Yokohoma, ADVAN Dry, 13\" 160-55": { tablePrice: 8775, unit: "unit", category: "Tire" },
+      "Valve Stem (and Tire Inflation)": { tablePrice: 65, unit: "unit", category: "Tire" },
+
+      // Safety
+      "Harness, Driver": { tablePrice: 2925, unit: "unit", category: "Safety" },
+
+      // Sensors
+      "Sensor, Accelerometer, 3 Axis": { tablePrice: 520, unit: "unit", category: "Sensors" },
+      "Sensor, Fluid Pressure": { tablePrice: 260, unit: "unit", category: "Sensors" },
+      "Sensor, Hall Effect": { tablePrice: 260, unit: "unit", category: "Sensors" },
+      "Sensor, Temperature": { tablePrice: 520, unit: "unit", category: "Sensors" },
+      "Sensor, Wide Band Air Fuel Raito": { tablePrice: 2275, unit: "unit", category: "Sensors" },
+
+      // Hardware
+      "Grommet, Elastomer": { tablePrice: 3.25, unit: "unit", category: "Hardware" },
+      "Cable Tie Mount, Adhesive Backed": { tablePrice: 9.75, unit: "unit", category: "Hardware" },
+      "Woodruff Key": { tablePrice: 6.5, unit: "unit", category: "Hardware" },
+
+      // Plumbing
+      "Hose, High Pressure, Stainless Steel Braided Outer": { tablePrice: "[C1]*[Size1]+[C2]", unit: "mm", c1: 160.55, c2: -176.15, category: "Plumbing" },
+      "Hose, Low Pressure, Fabric Outer": { tablePrice: "[C1]*[Size1]+[C2]", unit: "mm", c1: 210.6, c2: 631.8, category: "Plumbing" },
+      "Hose, Rubber": { tablePrice: "[C1]*[Size1]+[C2]", unit: "mm", c1: 11.7, c2: 0, category: "Plumbing" },
+      "Hose, Silicone": { tablePrice: "[C1]*[Size1]+[C2]", unit: "mm", c1: 30.55, c2: 0, category: "Plumbing" },
+      "Hose, Polyurethane": { tablePrice: "[C1]*[Size1]+[C2]", unit: "mm", c1: 4.55, c2: 0, category: "Plumbing" },
+
+      // Pedals
+      "Pedal Assembly, Optimum Balance Products OBP0181": { tablePrice: 7150, unit: "unit", category: "Pedals" },
+      "Pedal, Wilwood, 340-1285": { tablePrice: 3965, unit: "unit", category: "Pedals" },
+
+      // Fuel System
+      "Foam, Fuel Anti-Surge": { tablePrice: 65, unit: "liter", category: "Fuel System" },
+      "Fuel Check Valve, In-line, Aluminum Rollover": { tablePrice: 975, unit: "unit", category: "Fuel System" },
+
+      // EV Components
+      "Battery, Tractive Lithium": { tablePrice: 39000, unit: "kWh", category: "EV - Electronics" },
+      "Motor, Tractive AC": { tablePrice: 6500, unit: "kW", category: "EV - Tractive Drive" },
+      "Motor, Tractive DC": { tablePrice: 3250, unit: "kW", category: "EV - Tractive Drive" },
+
+      // Fluids
+      "Fluid, Oil": { tablePrice: 48.75, unit: "liter", category: "Fluid" },
+      "Fluid, Coolant": { tablePrice: 0.01, unit: "liter", category: "Fluid" },
+
+      // Misc
+      "Paint": { tablePrice: 650, unit: "m^2", category: "Misc" },
+      "Heat Barrier": { tablePrice: 3250, unit: "m^2", category: "Misc" },
+      "Seat (All Cost as Made)": { tablePrice: 0, unit: "unit", category: "Misc" },
+      "Filler Cap": { tablePrice: 195, unit: "unit", category: "Misc" },
+      "Tape": { tablePrice: 0, unit: "unit", category: "Misc" },
+
+      // Sheet Materials
+      "Fabric": { tablePrice: 162.5, unit: "m^2", category: "Sheet Material" },
+      "Glass": { tablePrice: 650, unit: "m^2", category: "Sheet Material" },
+      "Leather": { tablePrice: 6500, unit: "m^2", category: "Sheet Material" },
+      "Suede": { tablePrice: 6500, unit: "m^2", category: "Sheet Material" },
+
+      // Seals
+      "Seal, O-Ring, Elastomer": { tablePrice: 3.25, unit: "unit", category: "Seals" },
+      "Seal, Radial Lip Seal": { tablePrice: 65, unit: "unit", category: "Seals" },
+
+      // Wood
+      "Wood, Hard": { tablePrice: 0.26, unit: "cm^3", category: "Raw Material" },
+      "Wood, Soft": { tablePrice: 0.2, unit: "cm^3", category: "Raw Material" },
+      "Wood, Medium Density Fiberboard": { tablePrice: 0.13, unit: "cm^3", category: "Raw Material" },
+
+      // Cork
+      "Cork": { tablePrice: 0.33, unit: "cm^3", category: "Raw Material" }
+    };
+
+    // Store in localStorage for app to access
+    localStorage.setItem('materialCosts_2025', JSON.stringify(window.updatedMaterialCosts));
+    console.log('Updated material costs from CostTable_Materials_2025_converted.csv loaded successfully');
+
+// Complete Material Database from CostTable_Materials_2025.csv
+// Generated on: 2026-04-30T05:28:26.007Z
+// Total materials: 898
+
+window.completeMaterialDatabase = {
+  "Bearing Ball, Steel": { formula: "[C1]*[Size1]+[C2]", c1: 0.195, c2: 3.25, unit: "mm", category: "Bearings" },
+  "Bearing, Ball, Angular Contact": { formula: "[C1]*(([Size1]^2*[Size2]))^([C2])", c1: 6.5, c2: 32.5, unit: "mm", category: "Bearings" },
+  "Bearing, Ball, Deep Groove": { formula: "[C1]*(([Size1]^2*[Size2]))^([C2])", c1: 6.5, c2: 32.5, unit: "mm", category: "Bearings" },
+  "Bearing, Ball, Radial": { formula: "[C1]*(([Size1]^2*[Size2]))^([C2])", c1: 6.5, c2: 32.5, unit: "mm", category: "Bearings" },
+  "Bearing, Cylindrical Roller": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.2925, c2: 234, unit: "mm", category: "Bearings" },
+  "Bearing, Double Row, Ball, Angular Contact": { formula: "[C1]*(([Size1]^2*[Size2]))^([C2])", c1: 6.5, c2: 32.5, unit: "mm", category: "Bearings" },
+  "Bearing, Double Row, Ball, Deep Groove": { formula: "[C1]*(([Size1]^2*[Size2]))^([C2])", c1: 6.5, c2: 32.5, unit: "mm", category: "Bearings" },
+  "Bearing, Double Row, Ball, Radial": { formula: "[C1]*(([Size1]^2*[Size2]))^([C2])", c1: 6.5, c2: 32.5, unit: "mm", category: "Bearings" },
+  "Bearing, Linear, Closed": { formula: "[C1]*[Size1]^2*[Size2]+[C2]", c1: 0.0065, c2: 479.7, unit: "mm", category: "Bearings" },
+  "Bearing, Linear, Open": { formula: "[C1]*[Size1]^2*[Size2]+[C2]", c1: 0.0078, c2: 851.5, unit: "mm", category: "Bearings" },
+  "Bearing, Needle": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.2925, c2: 234, unit: "mm", category: "Bearings" },
+  "Bearing, Spherical": { formula: "[C1]*[Size1]^2+[C2]", c1: 1.95, c2: 325, unit: "mm", category: "Bearings" },
+  "Bearing, Tapered Needle": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.2925, c2: 679.25, unit: "mm", category: "Bearings" },
+  "Bearing, Tapered Roller": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.2925, c2: 679.25, unit: "mm", category: "Bearings" },
+  "Bearing, Thrust Needle Roller, Cage Assembly": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 1.3, c2: 9.75, unit: "mm", category: "Bearings" },
+  "Bearing, Thrust Needle Roller, Washers": { formula: "[C1]*[Size1]^2*[Size2]+[C2]", c1: 0.0195, c2: 8.45, unit: "mm", category: "Bearings" },
+  "Bushing, Student Built": { price: 0, unit: "unit", category: "Bearings" },
+  "Rod End, Aluminum": { formula: "[C1]*[Size1]^2+[C2]", c1: 3.25, c2: 247, unit: "mm", category: "Bearings" },
+  "Rod End, Industrial": { formula: "[C1]*[Size1]^2+[C2]", c1: 1.3, c2: 79.04, unit: "mm", category: "Bearings" },
+  "Rod End, Precison (Aircraft)": { formula: "[C1]*[Size1]^2+[C2]", c1: 3.25, c2: 325, unit: "mm", category: "Bearings" },
+  "Wheel Bearing, Ball, Angular Contact": { formula: "[C1]*(([Size1]^2*[Size2]))^([C2])", c1: 26, c2: 32.5, unit: "mm", category: "Bearings" },
+  "Wheel Bearing, Ball, Deep Groove": { formula: "[C1]*(([Size1]^2*[Size2]))^([C2])", c1: 26, c2: 32.5, unit: "mm", category: "Bearings" },
+  "Wheel Bearing, Ball, Radial": { formula: "[C1]*(([Size1]^2*[Size2]))^([C2])", c1: 26, c2: 32.5, inputs: ["size1", "size2"], unit: "mm", category: "Bearings" },
+  "Wheel Bearing, Double Row, Ball, Angular Contact": { formula: "[C1]*(([Size1]^2*[Size2]))^([C2])", c1: 26, c2: 32.5, unit: "mm", category: "Bearings" },
+  "Wheel Bearing, Double Row, Ball, Deep Groove": { formula: "[C1]*(([Size1]^2*[Size2]))^([C2])", c1: 26, c2: 32.5, unit: "mm", category: "Bearings" },
+  "Wheel Bearing, Double Row, Ball, Radial": { formula: "[C1]*(([Size1]^2*[Size2]))^([C2])", c1: 26, c2: 32.5, unit: "mm", category: "Bearings" },
+  "Wheel Bearing, Tapered Needle": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.585, c2: 1358.5, unit: "mm", category: "Bearings" },
+  "Wheel Bearing, Tapered Roller": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.585, c2: 1358.5, unit: "mm", category: "Bearings" },
+  "90-Degree Coupler, Tilton 72-560": { price: 2925, unit: "unit", category: "Brake System" },
+  "90-Degree Coupler, Tilton 72-561": { price: 3087.5, unit: "unit", category: "Brake System" },
+  "90-Degree Coupler, Tilton 72-562": { price: 3250, unit: "unit", category: "Brake System" },
+  "ABS Kit, Bosch, M4 Kit 1": { price: 229710, unit: "unit", category: "Brake System" },
+  "ABS Kit, Bosch, M4 Kit 2": { price: 270270, unit: "unit", category: "Brake System" },
+  "Balance Bar Cable Adjuster, Racetech, Any BBAxx series": { price: 2925, unit: "unit", category: "Brake System" },
+  "Balance Bar Cable Adjuster, Right Angle Drive, AP CP5500-10": { price: 6695, unit: "unit", category: "Brake System" },
+  "Balance Bar Cable Adjuster, Sandtler, 128154": { price: 4745, unit: "unit", category: "Brake System" },
+  "Balance Bar, AP, CP5500-9": { price: 17550, unit: "unit", category: "Brake System" },
+  "Balance Bar, AP, CP5520-4": { price: 19500, unit: "unit", category: "Brake System" },
+  "Balance Bar, Brake, Student Built": { price: 0, unit: "unit", category: "Brake System" },
+  "Balance Bar, Sandtler, 128153": { price: 4225, unit: "unit", category: "Brake System" },
+  "Balance Bar, Sandtler, 128154": { price: 4745, unit: "unit", category: "Brake System" },
+  "Balance Bar, Tilton, 72-250": { price: 1950, unit: "unit", category: "Brake System" },
+  "Balance Bar, Tilton, 72-260": { price: 1950, unit: "unit", category: "Brake System" },
+  "Balance Bar, Tilton, 72-280": { price: 20312.5, unit: "unit", category: "Brake System" },
+  "Balance Bar, Tilton, 72-281": { price: 21125, unit: "unit", category: "Brake System" },
+  "Balance Bar, Tilton, 72-300": { price: 2080, unit: "unit", category: "Brake System" },
+  "Balance Bar, Timms Autoteile, 013 901": { price: 1846, unit: "unit", category: "Brake System" },
+  "Balance Bar, Wilwood, 340-4745": { price: 1950, unit: "unit", category: "Brake System" },
+  "Brake Caliper Piston, Student Built": { price: 325, unit: "unit", category: "Brake System" },
+  "Brake Caliper,  Harrison, 121019P": { price: 10530, unit: "unit", category: "Brake System" },
+  "Brake Caliper, AP, CP2577": { price: 8125, unit: "unit", category: "Brake System" },
+  "Brake Caliper, AP, CP3696-6E0": { price: 5037.5, unit: "unit", category: "Brake System" },
+  "Brake Caliper, AP, CP4226": { price: 7312.5, unit: "unit", category: "Brake System" },
+  "Brake Caliper, AP, CP4227": { price: 13000, unit: "unit", category: "Brake System" },
+  "Brake Caliper, AP, CP4488": { price: 31850, unit: "unit", category: "Brake System" },
+  "Brake Caliper, AP, CP7003": { price: 6500, unit: "unit", category: "Brake System" },
+  "Brake Caliper, AP, CP7853": { price: 22132.5, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Beringer, 2D1": { price: 5395, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Beringer, 4H02": { price: 7150, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Beringer, 4H12": { price: 7150, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Brembo, 20.5161.46/P32F": { price: 3250, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Brembo, 20.6001/P2-24": { price: 22750, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Brembo, 20.6101/GP4-24": { price: 29250, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Brembo, 20.6950.10": { price: 4550, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Brembo, 20.6950.11/P32G": { price: 4550, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Brembo, 20.6950.21/P32G": { price: 4550, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Brembo, 20.6951.12/P34G": { price: 4550, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Brembo, 20.6951.50/P34C": { price: 4550, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Comet 650, Front": { price: 2795, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Harrison, 222004P": { price: 6110, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Harrison, 222005P": { price: 6110, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Honda,  45150-HP1-006": { price: 3575, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Honda, 45150-HN6-006": { price: 1950, unit: "unit", category: "Brake System" },
+  "Brake Caliper, ISR, 22-028": { price: 4225, unit: "unit", category: "Brake System" },
+  "Brake Caliper, ISR, 22-034": { price: 15600, unit: "unit", category: "Brake System" },
+  "Brake Caliper, ISR, 22-036": { price: 5037.5, unit: "unit", category: "Brake System" },
+  "Brake Caliper, ISR, 22-048": { price: 6240, unit: "unit", category: "Brake System" },
+  "Brake Caliper, ISR, 22-049": { price: 6305, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Magura, 908.1": { price: 14690, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Motorcycle, OEM (Any)": { price: "AIR", unit: "unit", category: "Brake System" },
+  "Brake Caliper, NISSIN, 08-1CP-32-15": { price: 5330, unit: "unit", category: "Brake System" },
+  "Brake Caliper, NISSIN, 08-2CP-25-08": { price: 6240, unit: "unit", category: "Brake System" },
+  "Brake Caliper, NISSIN, 08-2CT-25-06": { price: 7085, unit: "unit", category: "Brake System" },
+  "Brake Caliper, NISSIN, 08-2CT-38-07": { price: 7085, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Polaris, 1910825/1910826": { price: 4290, unit: "unit", category: "Brake System" },
+  "Brake Caliper, PVM, 2-Piston Monoblock Radial Mount": { price: 14625, unit: "unit", category: "Brake System" },
+  "Brake Caliper, PVM, 6-piston Monoblock Radial Mount": { price: 39000, unit: "unit", category: "Brake System" },
+  "Brake Caliper, PVM, Front 4-Piston Monoblock Radial Mount": { price: 25025, unit: "unit", category: "Brake System" },
+  "Brake Caliper, PVM, Rear 4-Piston Monoblock Radial Mount": { price: 14625, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Red Devil,240 Sprint": { price: 9587.5, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Spiegler, S070": { price: 13455, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Spiegler, S108": { price: 16705, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Student Built": { price: 0, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Tokico, 45150-MEL-023": { price: 4875, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Wilwood, Billet Dynalite Single": { price: 3250, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Wilwood, Billet NDL": { price: 5070, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Wilwood, Dynalite Single Floater": { price: 3250, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Wilwood, DynaPro Radial": { price: 7150, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Wilwood, DynaPro Single": { price: 3445, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Wilwood, Forged Dynalite": { price: 4420, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Wilwood, GP200": { price: 3217.5, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Wilwood, GP310": { price: 6825, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Wilwood, GP320": { price: 6370, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Wilwood, Kart": { price: 3770, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Wilwood, NDL": { price: 4550, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Wilwood, PS-1": { price: 2990, unit: "unit", category: "Brake System" },
+  "Brake Caliper, Yamaha (YZF 450), 5TG-2580T-00-00": { price: 5915, unit: "unit", category: "Brake System" },
+  "Brake Hard Line, Any Material (All Cost as Made)": { price: 0, unit: "unit", category: "Brake System" },
+  "Brake Light Pressure Switch Banjo Bolt": { price: 520, unit: "unit", category: "Brake System" },
+  "Brake Pad, Aluminum or MMC Rotor": { price: 0.03, unit: "mm^3", category: "Brake System" },
+  "Brake Pad, Carbon Rotor": { price: 0.08, unit: "mm^3", category: "Brake System" },
+  "Brake Pad, Iron or Steel Rotor": { price: 0.01, unit: "mm^3", category: "Brake System" },
+  "Brake Rotor (All Cost as Made)": { price: 0, unit: "unit", category: "Brake System" },
+  "Hydraulic Fluid Reservoir, Remote (Plastic)": { price: 325, unit: "unit", category: "Brake System" },
+  "Master Cyilnder, ISR, 21-010-OE": { price: 5265, unit: "unit", category: "Brake System" },
+  "Master Cylinder, AP, CP2623": { price: 5297.5, unit: "unit", category: "Brake System" },
+  "Master Cylinder, AP, CP3756": { price: 6305, unit: "unit", category: "Brake System" },
+  "Master Cylinder, AP, CP4400": { price: 7637.5, unit: "unit", category: "Brake System" },
+  "Master Cylinder, AP, CP4623": { price: 4452.5, unit: "unit", category: "Brake System" },
+  "Master Cylinder, AP, CP5854": { price: 13227.5, unit: "unit", category: "Brake System" },
+  "Master Cylinder, AP, CP5855": { price: 16900, unit: "unit", category: "Brake System" },
+  "Master Cylinder, AP, CP6465": { price: 13227.5, unit: "unit", category: "Brake System" },
+  "Master Cylinder, AP, CP7855": { price: 11342.5, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Beck Arnley, 072-9455": { price: 2925, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Brembo, 10.4776.10": { price: 1690, unit: "Unit", category: "Brake System" },
+  "Master Cylinder, Brembo, 10.4776.20": { price: 1690, unit: "Unit", category: "Brake System" },
+  "Master Cylinder, Brembo, 10.4776.65": { price: 3022.5, unit: "Unit", category: "Brake System" },
+  "Master Cylinder, Brembo, XA3.G1.A2/L2": { price: 20605, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Brembo, XA6.C2.3": { price: 13325, unit: "Unit", category: "Brake System" },
+  "Master Cylinder, Bremob, 10.6815.16/97": { price: 12545, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Bremob, 10.9243.54/96": { price: 10887.5, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Centric Parts, CE130.51017": { price: 3315, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Girling": { price: 2860, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Honda CBR600F4i, 43510MBW006": { price: 8268, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Hyundai Mobis, 41610-2D100": { price: 1820, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Magura, 10.5mm": { price: 3575, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Magura, 770.1": { price: 14462.5, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Magura, 770.50": { price: 14462.5, unit: "unit", category: "Brake System" },
+  "Master Cylinder, New Concept Products, G3": { price: 2112.5, unit: "unit", category: "Brake System" },
+  "Master Cylinder, NISSIN, 08-2RM-14-02": { price: 3575, unit: "unit", category: "Brake System" },
+  "Master Cylinder, NISSIN, 08-4RM-15-05": { price: 3705, unit: "unit", category: "Brake System" },
+  "Master cylinder, Nissin, 153-M00-125B": { price: 3575, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Student Made": { price: 0, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Suzuki OEM 69600-16G00": { price: 4225, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Tilton, Model 73": { price: 1787.5, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Tilton, Model 74": { price: 2567.5, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Tilton, Model 75": { price: 3217.5, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Tilton, Model 76": { price: 4062.5, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Tilton, Model 77": { price: 12837.5, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Tripmatic & Speed 18771": { price: 1982.5, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Wilwood, 260-10371": { price: 2795, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Wilwood, 260-1304": { price: 1755, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Wilwood, 260-2636": { price: 1755, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Wilwood, 260-5520": { price: 2561, unit: "unit", category: "Brake System" },
+  "Master Cylinder, Wilwood, 260-6087": { price: 1690, unit: "unit", category: "Brake System" },
+  "Proportioning Valve, Hydraulic": { price: 2275, unit: "unit", category: "Brake System" },
+  "Proportioning Valve, Tilton, 90-1000": { price: 3217.5, unit: "unit", category: "Brake System" },
+  "Proportioning Valve, Tilton, 90-1003": { price: 3217.5, unit: "unit", category: "Brake System" },
+  "Proportioning Valve, Tilton, 90-2000": { price: 3217.5, unit: "unit", category: "Brake System" },
+  "Proportioning Valve, Tilton, 90-2003": { price: 3217.5, unit: "unit", category: "Brake System" },
+  "Remote Brake Bias Adjuster, AP Racing, CP2905-8": { price: 45.5, unit: "unit", category: "Brake System" },
+  "Remote Brake Bias Adjuster, Tilton 72-408": { price: 6337.5, unit: "unit", category: "Brake System" },
+  "Remote Brake Bias Adjuster, Tilton 72-501": { price: 2161.25, unit: "unit", category: "Brake System" },
+  "Remote Brake Bias Adjuster, Wilwood, 340-4990": { price: 1690, unit: "unit", category: "Brake System" },
+  "Slave Cylinder, CNC, SERIES 305": { price: 2275, unit: "unit", category: "Brake System" },
+  "Chassis (All Cost as Made)": { price: 0, unit: "unit", category: "Chassis" },
+  "Hubs (All Cost as Made)": { price: 0, unit: "unit", category: "Chassis" },
+  "Monocoque (All Cost as Made)": { price: 0, unit: "unit", category: "Chassis" },
+  "Rockers (All Cost as Made)": { price: 0, unit: "unit", category: "Chassis" },
+  "Upright (All Cost as Made)": { price: 0, unit: "unit", category: "Chassis" },
+  "Adhesive Film": { price: 0, unit: "m^2", category: "Composite" },
+  "Aramid (Kevlar) Fiber, 1 Ply": { price: 9750, unit: "kg", category: "Composite" },
+  "Basalt Fiber, 1 Ply": { price: 7150, unit: "kg", category: "Composite" },
+  "Carbon Fiber Reinf Carbon": { price: 0.6, unit: "mm^3", category: "Composite" },
+  "Carbon Fiber Reinf Silicon Carbide, Brake Pads": { price: 0.08, unit: "mm^3", category: "Composite" },
+  "Carbon Fiber Reinf Silicon Carbide, Brake Rotors": { price: 0.6, unit: "mm^3", category: "Composite" },
+  "Carbon Fiber, 1 Ply": { price: 13000, unit: "kg", category: "Composite" },
+  "Ceramic Matrix Composite, 1 Ply": { price: 32500, unit: "kg", category: "Composite" },
+  "Flax Fiber, 1 Ply": { price: 7150, unit: "kg", category: "Composite" },
+  "Glass Fiber, 1 Ply": { price: 6500, unit: "kg", category: "Composite" },
+  "Honeycomb, Aluminum": { price: 3250, unit: "kg", category: "Composite" },
+  "Honeycomb, Cardboard": { price: 650, unit: "kg", category: "Composite" },
+  "Honeycomb, Nomex": { price: 8125, unit: "kg", category: "Composite" },
+  "Honeycomb, Plastic": { price: 1300, unit: "kg", category: "Composite" },
+  "Polypropylene, High Modulus": { price: 2275, unit: "kg", category: "Composite" },
+  "Structural Foam": { price: 8125, unit: "kg", category: "Composite" },
+  "Carbon Fiber Tubes, Purchased (All Cost as Made)": { price: 0, unit: "unit", category: "Composites" },
+  "Composite Panel Insert, Potted-in (NAS) Style, Torlon": { price: 130, unit: "unit", category: "Composites" },
+  "Composite Panel Insert, Press Fit, Torlon": { price: 130, unit: "unit", category: "Composites" },
+  "Composite Tubes, Purchased (All Cost as Made)": { price: 0, unit: "unit", category: "Composites" },
+  "Aim Evo 3 Pista Car": { price: 61100, unit: "unit", category: "Electronics" },
+  "Aim Evo 3 Pro Car": { price: 78000, unit: "unit", category: "Electronics" },
+  "Aim Evo 4 DataLogger Car": { price: 37375, unit: "unit", category: "Electronics" },
+  "Aim MXL Pista Race Graphic Car": { price: 61100, unit: "unit", category: "Electronics" },
+  "Aim MXL Pista Road Graphic Car": { price: 61100, unit: "unit", category: "Electronics" },
+  "Aim MXL Pro05 Car": { price: 78000, unit: "unit", category: "Electronics" },
+  "Aim MXL Strada Race Graphic Car": { price: 34125, unit: "unit", category: "Electronics" },
+  "Aim MXL Strada Road Graphic Car": { price: 34125, unit: "unit", category: "Electronics" },
+  "Aim SmartyCam GPS Standard": { price: 32500, unit: "unit", category: "Electronics" },
+  "Aim SmartyCamGP Complete Car": { price: 32500, unit: "unit", category: "Electronics" },
+  "Aim Solo DL GPS LapTimer For Car": { price: 19500, unit: "unit", category: "Electronics" },
+  "Aim Solo GPS Lap Timer Kit 1 Car": { price: 11700, unit: "unit", category: "Electronics" },
+  "Aim TG Lap Timer External Power": { price: 10725, unit: "unit", category: "Electronics" },
+  "Aim TG Lap Timer Internal Power": { price: 10725, unit: "unit", category: "Electronics" },
+  "Chassis Cntrl Module, +Active Differential": { price: 8125, unit: "unit", category: "Control Module" },
+  "Chassis Control Module, +Active Suspension": { price: 8125, unit: "unit", category: "Control Module" },
+  "Chassis Control Module, +Automatic Shifter": { price: 325, unit: "unit", category: "Control Module" },
+  "Chassis Control Module, +Battery Charger": { price: 650, unit: "unit", category: "Control Module" },
+  "Chassis Control Module, +Dashboard": { price: 325, unit: "unit", category: "Control Module" },
+  "Chassis Control Module, +Electronic Brake Bias": { price: 1625, unit: "unit", category: "Control Module" },
+  "Chassis Control Module, +Traction Control": { price: 9750, unit: "unit", category: "Control Module" },
+  "Chassis Control Module, Baseline Enclosure": { price: 1625, unit: "unit", category: "Control Module" },
+  "Controller, Active Differential": { price: 13000, unit: "unit", category: "Control Module" },
+  "Controller, Active Suspension": { price: 13000, unit: "unit", category: "Control Module" },
+  "Datalogger, 2D, Formula Student Data Logger": { price: 66300, unit: "unit", category: "Control Module" },
+  "Datalogger, Aim EVO4": { price: 45500, unit: "unt", category: "Control Module" },
+  "Datalogger, Aim MXL Pista": { price: 65000, unit: "unt", category: "Control Module" },
+  "Datalogger, Motec, ADL": { price: 240500, unit: "unit", category: "Control Module" },
+  "Datalogger, Motec, ADL2": { price: 253500, unit: "unit", category: "Control Module" },
+  "Datalogger, Motec, CDL3": { price: 78000, unit: "unit", category: "Control Module" },
+  "Dashboard, Translogic Systems, Micro Dash": { price: 20410, unit: "unit", category: "Control Module" },
+  "ECU, AEM, Coil driver 30-2840": { price: 6093.75, unit: "unit", category: "Control Module" },
+  "ECU, AEM Plug & Play, AVM-30-1052U": { price: 47125, unit: "unit", category: "Control Module" },
+  "ECU, AEM Plug & Play, Infinity-8, 30-7101": { price: 84857.5, unit: "unit", category: "Control Module" },
+  "ECU, AEM Plug & Play, Infinity-10, 30-7100": { price: 97500, unit: "unit", category: "Control Module" },
+  "ECU, AEM Plug & Play, Infinity-12, 30-7102": { price: 115553.75, unit: "unit", category: "Control Module" },
+  "ECU, AEM Wire & Play": { price: 48875.13, unit: "unit", category: "Control Module" },
+  "ECU, Aeromotive, Fuel Pump Controller, 16306": { price: 11375, unit: "unit", category: "Control Module" },
+  "ECU, Autronic, SM4": { price: 74750, unit: "unit", category: "Control Module" },
+  "ECU, Bosch Motorsport, HPI Box 1.1": { price: 78000, unit: "unit", category: "Control Module" },
+  "ECU, Bosch Motorsport, MS3 Sport": { price: 61880, unit: "unit", category: "Control Module" },
+  "ECU, Bosch Motorsport, MS4.0 Sport": { price: 71500, unit: "unit", category: "Control Module" },
+  "ECU, Bosch Motorsport, MS4.4 Sport, F01TA20068": { price: 91000, unit: "unit", category: "Control Module" },
+  "ECU, DTA, S100 Pro": { price: 61750, unit: "unit", category: "Control Module" },
+  "ECU, DTA, S40 Pro": { price: 32175, unit: "unit", category: "Control Module" },
+  "ECU, DTA, S60 Pro": { price: 48750, unit: "unit", category: "Control Module" },
+  "ECU, DTA, S80 Pro": { price: 55250, unit: "unit", category: "Control Module" },
+  "ECU, Dynojet, Autotune (single channel), AT-200": { price: 9100, unit: "unit", category: "Control Module" },
+  "ECU, Dynojet, LCD unit, LCD-100 &200": { price: 9750, unit: "unit", category: "Control Module" },
+  "ECU, Dynojet, Power Commander V USB": { price: 13000, unit: "unit", category: "Control Module" },
+  "ECU, Dynojet, Power Commander V-PTi USB": { price: 14625, unit: "unit", category: "Control Module" },
+  "ECU, Dynojet, Power Commender III USB": { price: 11375, unit: "unit", category: "Control Module" },
+  "ECU, Electromotive, TEC-GT": { price: 65000, unit: "unit", category: "Control Module" },
+  "ECU, EngineLab, EL1140L": { price: 81250, unit: "unit", category: "Control Module" },
+  "ECU, Haltech, E11v2": { price: 62790, unit: "unit", category: "Control Module" },
+  "ECU, Haltech, E6x": { price: 38350, unit: "unit", category: "Control Module" },
+  "ECU, Haltech, E8": { price: 49530, unit: "unit", category: "Control Module" },
+  "ECU, Haltech, Platinum Sport 2000 Long Flying Lead Kit": { price: 55250, unit: "unit", category: "Control Module" },
+  "ECU, Haltech, PS1000": { price: 34840, unit: "unit", category: "Control Module" },
+  "ECU, Life Racing, F88R": { price: 56550, unit: "unit", category: "Control Module" },
+  "ECU, Link, G4 Storm": { price: 42087.5, unit: "unit", category: "Control Module" },
+  "ECU, Magneti Marelli, SRA-E": { price: 56550, unit: "unit", category: "Control Module" },
+  "ECU, Magneti Marelli, SRA-EDL 4": { price: 82875, unit: "unit", category: "Control Module" },
+  "ECU, Magneti Marelli, SRA-EDL 8": { price: 82875, unit: "unit", category: "Control Module" },
+  "ECU, Magneti Marelli, SRT-E": { price: 126425, unit: "unit", category: "Control Module" },
+  "ECU, Magneti Marelli, SRT-EDL 16": { price: 152425, unit: "unit", category: "Control Module" },
+  "ECU, Magneti Marelli, SRT-EDL 32": { price: 178425, unit: "unit", category: "Control Module" },
+  "ECU, McLaren MESL TAG-400": { price: 162500, unit: "unit", category: "Control Module" },
+  "ECU, Megasquirt": { price: 26000, unit: "unit", category: "Control Module" },
+  "ECU, Microsquirt": { price: 26000, unit: "unit", category: "Control Module" },
+  "ECU, MoTeC, IEX - Ignition Expander": { price: 9750, unit: "unit", category: "Control Module" },
+  "ECU, MoTeC, M130": { price: 71500, unit: "unit", category: "Control Module" },
+  "ECU, MoTeC, M150": { price: 123500, unit: "unit", category: "Control Module" },
+  "ECU, MoTeC, M170": { price: 130000, unit: "unit", category: "Control Module" },
+  "ECU, MoTeC, M190": { price: 185575, unit: "unit", category: "Control Module" },
+  "ECU, MoTeC, M4": { price: 68250, unit: "unit", category: "Control Module" },
+  "ECU, MoTeC, M400": { price: 91000, unit: "unit", category: "Control Module" },
+  "ECU, MoTeC, M48": { price: 80340, unit: "unit", category: "Control Module" },
+  "ECU, MoTeC, M600": { price: 102700, unit: "unit", category: "Control Module" },
+  "ECU, MoTeC, M800": { price: 107250, unit: "unit", category: "Control Module" },
+  "ECU, MoTeC, M84": { price: 61750, unit: "unit", category: "Control Module" },
+  "ECU, MoTeC, SDL3, Backlighting": { price: 91000, unit: "unit", category: "Control Module" },
+  "ECU, MoTeC, SDL3, No Backlighting": { price: 70850, unit: "unit", category: "Control Module" },
+  "ECU, MoTeC, TCMUX - Traction Control Multiplexer": { price: 9750, unit: "unit", category: "Control Module" },
+  "ECU, Nira, i3+": { price: 51090, unit: "unit", category: "Control Module" },
+  "ECU, OEM Spark & Fuel": { price: 32500, unit: "unit", category: "Control Module" },
+  "ECU, OEM Spark Only": { price: 16250, unit: "unit", category: "Control Module" },
+  "ECU, OEM Spark, Fuel & Traction Control": { price: 48750, unit: "unit", category: "Control Module" },
+  "ECU, Ole Buhl Racing, EFI Euro4": { price: 108485, unit: "unit", category: "Control Module" },
+  "ECU, Pectel, SQ-6 ECU": { price: 129350, unit: "unit", category: "Control Module" },
+  "ECU, Performance Electronics, PE-ECU-1": { price: 32500, unit: "unit", category: "Control Module" },
+  "ECU, Performance Electronics, PE-ECU-3": { price: 34775, unit: "unit", category: "Control Module" },
+  "ECU, Simple Digital Systems, EM-4 D": { price: 31622.5, unit: "unit", category: "Control Module" },
+  "ECU, Simple Digital Systems, EM-4 E/MSD": { price: 37862.5, unit: "unit", category: "Control Module" },
+  "ECU, Simple Digital Systems, EM-4 F": { price: 37212.5, unit: "unit", category: "Control Module" },
+  "ECU, Sodemo Moteurs, EV11/4": { price: 45045, unit: "unit", category: "Control Module" },
+  "ECU, SPDi, programmable spark module 910001": { price: 15600, unit: "unit", category: "Control Module" },
+  "ECU, Student Built, +Active Diff": { price: 8125, unit: "unit", category: "Control Module" },
+  "ECU, Student Built, +Traction Control": { price: 9750, unit: "unit", category: "Control Module" },
+  "ECU, Student Built, Spark & Fuel": { price: 24375, unit: "unit", category: "Control Module" },
+  "ECU, Student Built, Spark Only": { price: 12350, unit: "unit", category: "Control Module" },
+  "ECU, Trecs, Model II": { price: 52195, unit: "unit", category: "Control Module" },
+  "ECU, Trikejt Plus": { price: 49400, unit: "unit", category: "Control Module" },
+  "ECU, VEMS, v3": { price: 26000, unit: "unit", category: "Control Module" },
+  "M3 XG LOG Datalogger": { price: 38350, unit: "unit", category: "Control Module" },
+  "Mychron 3 Basic": { price: 9100, unit: "unit", category: "Control Module" },
+  "Mychron 4 Basic": { price: 9100, unit: "unit", category: "Control Module" },
+  "Cable, Pull": { price: 975, unit: "m", category: "Controls" },
+  "Cable, Push/Pull": { price: 1950, unit: "m", category: "Controls" },
+  "Damper, AVO, 1.9 Alum Dbl Adj (DAAWA100/75)": { price: 9425, unit: "unit", category: "Damper" },
+  "Damper, Cane Creek Double Barrel": { price: 19500, unit: "unit", category: "Damper" },
+  "Damper, Cane Creek Double Barrel Air (DBAir)": { price: 20150, unit: "unit", category: "Damper" },
+  "Damper, DNM Burner RCP": { price: 190, unit: "unit", category: "Damper" },
+  "Damper, Elka Stage-5 MTB": { price: 14625, unit: "unit", category: "Damper" },
+  "Damper, Fox DHX 5.0": { price: 13650, unit: "unit", category: "Damper" },
+  "Damper, Fox Van R": { price: 8125, unit: "unit", category: "Damper" },
+  "Damper, Fox Vanilla R": { price: 12350, unit: "unit", category: "Damper" },
+  "Damper, Hotbits 4WD DT1": { price: 16900, unit: "unit", category: "Damper" },
+  "Damper, Kind Shock, KS-504": { price: 5070, unit: "unit", category: "Damper" },
+  "Damper, Koni 3012": { price: 16250, unit: "unit", category: "Damper" },
+  "Damper, Koni, Trax Spax DA, Double Adjustable": { price: 11765, unit: "unit", category: "Damper" },
+  "Damper, Koni, Trax Spax DA, Single Adjustable": { price: 9425, unit: "unit", category: "Damper" },
+  "Damper, KW GFw 3-Way Adjustable": { price: 24375, unit: "unit", category: "Damper" },
+  "Damper, Manitou, Swinger 4 Way": { price: 6500, unit: "unit", category: "Damper" },
+  "Damper, Marzocchi, Roco TST R": { price: 8775, unit: "unit", category: "Damper" },
+  "Damper, Ohlins SD115": { price: 12285, unit: "unit", category: "Damper" },
+  "Damper, Ohlins ST44": { price: 21125, unit: "unit", category: "Damper" },
+  "Damper, Ohlins TTX 25": { price: 19825, unit: "unit", category: "Damper" },
+  "Damper, Ohlins TTX 36": { price: 32500, unit: "unit", category: "Damper" },
+  "Damper, Penske 7800-Non-Adjustable Quarter Midget": { price: 7637.5, unit: "unit", category: "Damper" },
+  "Damper, Penske 7800-Piggyback Dbl. Adj. (Kaz Tech.)": { price: 21937.5, unit: "unit", category: "Damper" },
+  "Damper, Penske 7800-Piggyback Non-Adj.(Kaz Tech.)": { price: 16575, unit: "unit", category: "Damper" },
+  "Damper, Penske 8100": { price: 26000, unit: "unit", category: "Damper" },
+  "Damper, Penske 8300": { price: 26812.5, unit: "unit", category: "Damper" },
+  "Damper, Penske 8760": { price: 42900, unit: "unit", category: "Damper" },
+  "Damper, Risse Jupiter 5": { price: 11375, unit: "unit", category: "Damper" },
+  "Damper, Risse Jupiter 5R": { price: 13000, unit: "unit", category: "Damper" },
+  "Damper, Risse Jupiter 7R": { price: 19500, unit: "unit", category: "Damper" },
+  "Damper, SRAM, Rock Shox, Vivid R2C": { price: 13975, unit: "unit", category: "Damper" },
+  "Damper, Tanner": { price: 5525, unit: "unit", category: "Damper" },
+  "Damper, Team Built": { price: 0, unit: "unit", category: "Damper" },
+  "Damper, Team Built, Reservoir Bladder": { price: 325, unit: "unit", category: "Damper" },
+  "Damper, X-Fusion Vektor DH 1.0": { price: 11050, unit: "unt", category: "Damper" },
+  "Damper, ZF Sachs, ETX36/15x": { price: 23400, unit: "unit", category: "Damper" },
+  "Damper, ZF Sachs, RD 36-2": { price: 24050, unit: "unit", category: "Damper" },
+  "Axle (All Cost as Made)": { price: 0, unit: "unit", category: "Drivetrain" },
+  "Axle Snubber": { price: 162.5, unit: "unit", category: "Drivetrain" },
+  "Belt": { price: 3.25, unit: "mm", category: "Drivetrain" },
+  "Chain": { price: 3.25, unit: "mm", category: "Drivetrain" },
+  "Chain Guard (All Cost as Made)": { price: 0, unit: "unit", category: "Drivetrain" },
+  "Constant Velocity Joint, Boot": { price: 325, unit: "unit", category: "Drivetrain" },
+  "Constant Velocity Joint, Housing (All Cost as Made)": { price: 0, unit: "unit", category: "Drivetrain" },
+  "Constant Velocity Joint, Plug, Axial Locating": { price: 162.5, unit: "unit", category: "Drivetrain" },
+  "Constant Velocity Joint, Rzepa Plunging": { price: 1300, unit: "unit", category: "Drivetrain" },
+  "Constant Velocity Joint, Rzeppa Fixed": { price: 1300, unit: "unit", category: "Drivetrain" },
+  "Constant Velocity Joint, Stub-shaft (All Cost as Made)": { price: 0, unit: "unit", category: "Drivetrain" },
+  "Constant Velocity Joint, Tripod": { price: 2925, unit: "unit", category: "Drivetrain" },
+  "Differential Housing (All Cost as Made)": { price: 0, unit: "unit", category: "Drivetrain" },
+  "Differential Internals, Limited Slip, Cam & Pawl": { price: 7150, unit: "unit", category: "Drivetrain" },
+  "Differential Internals, Limited Slip, Quaife": { price: 10725, unit: "unit", category: "Drivetrain" },
+  "Differential Internals, Limited Slip, Salisbury or Powerflow or Clutch Style": { price: 7150, unit: "unit", category: "Drivetrain" },
+  "Differential Internals, Limited Slip, Torsen T1": { price: 10725, unit: "unit", category: "Drivetrain" },
+  "Differential Internals, Limited Slip, Torsen T2": { price: 10725, unit: "unit", category: "Drivetrain" },
+  "Differential Internals, Open Gearset (Any)": { price: 3900, unit: "unit", category: "Drivetrain" },
+  "Half Shaft (All Cost as Made)": { price: 0, unit: "unit", category: "Drivetrain" },
+  "Pulley (All Cost as Made)": { price: 0, unit: "unit", category: "Drivetrain" },
+  "Sprocket (All Cost as Made)": { price: 0, unit: "unit", category: "Drivetrain" },
+  "Universal Joint": { price: 1300, unit: "unit", category: "Drivetrain" },
+  "Aim M3 XG LOG Datalogger": { price: 38350, unit: "unit", category: "Electronics" },
+  "Battery, Advanced Chemistry (NiMH, Li-Ion, etc.)": { price: 4225, unit: "kg", category: "Electronics" },
+  "Battery, Lead Acid": { price: 195, unit: "kg", category: "Electronics" },
+  "Circuit Breaker, Thermal, Klixon 7277-2-20": { price: 572, unit: "unit", category: "Electronics" },
+  "Connector, Aerospace Quality": { price: 65, unit: "pin(s)", category: "Electronics" },
+  "Connector, Computer  Type": { price: 65, unit: "pin(s)", category: "Electronics" },
+  "Connector, High Power, > 2 Amps": { price: 130, unit: "pin(s)", category: "Electronics" },
+  "Connector, OEM Quality": { price: 32.5, unit: "pin(s)", category: "Electronics" },
+  "Connector, Single Wire": { price: 3.25, unit: "wire", category: "Electronics" },
+  "Dashpanel, Haltech, Racepak IQ3 Display": { price: 24895, unit: "unit", category: "Electronics" },
+  "Display, 7 Segment": { price: 65, unit: "digit", category: "Electronics" },
+  "Display, LCD (for Student Built Elect. Only), Area": { formula: "[C1]*[Size1]+[C2]", c1: 81.25, c2: 0, unit: "cm^2", category: "Electronics" },
+  "Display, LCD (for Student Built Elect. Only), Rect": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 81.25, c2: 0, unit: "cm", category: "Electronics" },
+  "Display, Matrix": { price: 130, unit: "digit", category: "Electronics" },
+  "Fuse Box": { price: 16.25, unit: "pin(s)", category: "Electronics" },
+  "Fuse, Control": { price: 32.5, unit: "unit", category: "Electronics" },
+  "Fuse, Power": { price: 65, unit: "unit", category: "Electronics" },
+  "Fuse, Signal": { price: 32.5, unit: "unit", category: "Electronics" },
+  "Gauge, Analog": { price: 325, unit: "unit", category: "Electronics" },
+  "Gauge, Analog Housing": { price: 520, unit: "unit", category: "Electronics" },
+  "Gauge, Digital Pro Shifter System, 6187": { price: 5525, unit: "unit", category: "Electronics" },
+  "Heat Shrink Tubing": { price: 32.5, unit: "m", category: "Electronics" },
+  "Lamp, Brake with Housing": { price: 260, unit: "unit", category: "Electronics" },
+  "Lamp, Incandescent": { price: 130, unit: "unit", category: "Electronics" },
+  "Lamp, LED": { price: 32.5, unit: "unit", category: "Electronics" },
+  "Motor, 12 Volt, DC Brush": { price: 1300, unit: "unit", category: "Electronics" },
+  "Motor, 12 Volt, DC Brushless Servo": { price: 2600, unit: "unit", category: "Electronics" },
+  "Relay, Control": { price: 130, unit: "unit", category: "Electronics" },
+  "Relay, Power": { price: 260, unit: "unit", category: "Electronics" },
+  "Relay, Signal": { price: 130, unit: "unit", category: "Electronics" },
+  "Sensor to CAN Converter": { price: 1625, unit: "unit", category: "Electronics" },
+  "Servo, 12V": { price: 1625, unit: "unit", category: "Electronics" },
+  "Solenoid, 12 Volt": { price: 487.5, unit: "unit", category: "Electronics" },
+  "Speaker": { price: 162.5, unit: "unit", category: "Electronics" },
+  "Switch, Kill": { price: 195, unit: "unit", category: "Electronics" },
+  "Switch, Pushbutton": { price: 65, unit: "unit", category: "Electronics" },
+  "Switch, Rotary Multi-position Selector": { price: 195, unit: "unit", category: "Electronics" },
+  "Switch, Toggle": { price: 65, unit: "unit", category: "Electronics" },
+  "Terminal Block, Wiring": { price: 16.25, unit: "pin(s)", category: "Electronics" },
+  "Wire Sleeving, Expandable": { price: 65, unit: "m", category: "Electronics" },
+  "Wire Sleeving, Split": { price: 32.5, unit: "m", category: "Electronics" },
+  "Wire, Control": { price: 65, unit: "m", category: "Electronics" },
+  "Wire, Power": { price: 195, unit: "m", category: "Electronics" },
+  "Wire, Signal": { price: 65, unit: "m", category: "Electronics" },
+  "Accusump": { formula: "([C1]*[Size1]+[C2])", c1: 929.5, c2: 5330, unit: "L", category: "Engine" },
+  "Air Filter": { price: 9.75, unit: "cm^2", category: "Engine" },
+  "Boost Control Solenoid Valve, MR561312": { price: 910, unit: "unit", category: "Engine" },
+  "Carburetor": { price: 3250, unit: "unit", category: "Engine" },
+  "Coolant Pump, External Electric": { price: 1300, unit: "unit", category: "Engine" },
+  "Cooling System Air Bleed Valve": { price: 422.5, unit: "unit", category: "Engine" },
+  "Dry Sump Pump, Aviad, 003-32000": { price: 16250, unit: "unit", category: "Engine" },
+  "Dry Sump Pump, Dailey Engineering, 04-00-2162": { price: 47190, unit: "unit", category: "Engine" },
+  "Dry Sump Pump, Dailey Engineering, 04-99-2162": { price: 47190, unit: "unit", category: "Engine" },
+  "Dry Sump Pump, Dailey Engineering, 04-99-2162-2": { price: 47190, unit: "unit", category: "Engine" },
+  "Dry Sump Pump, Dailey Engineering, 04-99-2186": { price: 17160, unit: "unit", category: "Engine" },
+  "Dry Sump Pump, Dailey Engineering, 04-99-2204": { price: 27885, unit: "unit", category: "Engine" },
+  "Dry Sump Pump, Dailey Engineering, 04-99-2204-2": { price: 27885, unit: "unit", category: "Engine" },
+  "Dry Sump Pump, Dailey Engineering, 04-99-2264-2": { price: 47190, unit: "unit", category: "Engine" },
+  "Dry Sump Pump, Pace, 2 Stage": { price: 20475, unit: "unit", category: "Engine" },
+  "Dry Sump Pump, Pace, 3 Stage": { price: 24700, unit: "unit", category: "Engine" },
+  "Dry Sump Pump, Pace, Single Stage": { price: 13975, unit: "unit", category: "Engine" },
+  "Dry Sump Pump, Student Made": { price: 0, unit: "unit", category: "Engine" },
+  "Engine and Transmission, High Performance (5-10 HP/100 cc)": { price: 130, unit: "cc", category: "Engine" },
+  "Engine and Transmission, Low Performance (<5 HP/100 cc)": { price: 78, unit: "cc", category: "Engine" },
+  "Engine and Transmission, Ultra High Performance (>10 HP/100 cc)": { price: 162.5, unit: "cc", category: "Engine" },
+  "Exhaust Manifold (All Cost as Made)": { price: 0, unit: "unit", category: "Engine" },
+  "Exhaust Pipe, Flexible": { formula: "([C1]*[Size1]*[Size2]+[C2])", c1: 0.065, c2: 0, unit: "unit", category: "Engine" },
+  "Fuel Check Valve": { price: 520, unit: "unit", category: "Engine" },
+  "Fuel Filter": { price: 520, unit: "unit", category: "Engine" },
+  "Fuel Injector, Direct Injection": { price: 1950, unit: "unit", category: "Engine" },
+  "Fuel Injector, E85": { price: 845, unit: "unit", category: "Engine" },
+  "Fuel Injector, Gasoline": { price: 650, unit: "unit", category: "Engine" },
+  "Fuel Pressure Regulator, E85": { price: 1267.5, unit: "unit", category: "Engine" },
+  "Fuel Pressure Regulator, Gasoline": { price: 975, unit: "unit", category: "Engine" },
+  "Fuel Pump, Carburetor, Gasoline or E85": { price: 1300, unit: "unit", category: "Engine" },
+  "Fuel Pump, Direct Injection": { price: 7800, unit: "unit", category: "Engine" },
+  "Fuel Pump, Fuel Injected, E85": { price: 2957.5, unit: "unit", category: "Engine" },
+  "Fuel Pump, Fuel Injected, Gasoline": { price: 2275, unit: "unit", category: "Engine" },
+  "Fuel Rail (All Cost as Made)": { price: 0, unit: "unit", category: "Engine" },
+  "Fuel Tank (All Cost as Made)": { price: 0, unit: "unit", category: "Engine" },
+  "Header Wrap": { price: 1950, unit: "m^2", category: "Engine" },
+  "Heat Exchanger Fan": { price: 1950, unit: "unit", category: "Engine" },
+  "Heat Exchanger Fan, small <120mm diameter": { price: 650, unit: "unit", category: "Engine" },
+  "Heat Exchanger Fan Shroud (All Cost as Made)": { price: 0, unit: "unit", category: "Engine" },
+  "Heat Exchanger, Air-to-Air": { price: 0.23, unit: "cm^3", category: "Engine" },
+  "Heat Exchanger, Air-to-Liquid": { price: 0.23, unit: "cm^3", category: "Engine" },
+  "Heat Exchanger, Liquid-to-Liquid": { price: 0.23, unit: "cm^3", category: "Engine" },
+  "Intake (All Cost as Made)": { price: 0, unit: "unit", category: "Engine" },
+  "Muffler (All Cost as Made)": { price: 0, unit: "unit", category: "Engine" },
+  "Muffler Batting": { price: 0.2, unit: "cm^3", category: "Engine" },
+  "Oil Filter": { price: 0, unit: "unit", category: "Engine" },
+  "Overflow Bottle, Aluminum Drinking Bottle": { price: 650, unit: "unit", category: "Engine" },
+  "Overflow Bottle, JAX 1 Qt. Oil Breather Tank": { price: 1852.5, unit: "unit", category: "Engine" },
+  "Overflow Bottle, JAX, 1 Qt. Recirc. Catch Can": { price: 780, unit: "unit", category: "Engine" },
+  "Overflow Bottle, Nalgene Bottle": { price: 325, unit: "unit", category: "Engine" },
+  "Overflow Bottle, Plastic Bottle": { price: 325, unit: "unit", category: "Engine" },
+  "Overflow Bottle, Plastic Drinking Bottle": { price: 325, unit: "unit", category: "Engine" },
+  "Overflow Bottle, Steel Oil Can": { price: 65, unit: "unit", category: "Engine" },
+  "Overflow Bottle, Student Built": { price: 0, unit: "unit", category: "Engine" },
+  "Pump, Transmission Oil, Hope Technik, 006": { price: 6825, unit: "unit", category: "Engine" },
+  "Spark Plug Coil": { price: 0, unit: "unit", category: "Engine" },
+  "Spark Plug Wire": { price: 0, unit: "unit", category: "Engine" },
+  "Supercharger": { price: 19500, unit: "unit", category: "Engine" },
+  "Throttle Body (All Cost as Made)": { price: 0, unit: "unit", category: "Engine" },
+  "Turbocharger": { price: 19500, unit: "unit", category: "Engine" },
+  "Chassis Control Module, + Battery Charger HV": { price: 39000, unit: "kW", category: "EV - Control Module" },
+  "Chassis Control Module, + Battery Charger LV": { price: 6500, unit: "pack", category: "EV - Control Module" },
+  "Chassis Control Module, + Battery Management System": { price: 1300, unit: "channel", category: "EV - Control Module" },
+  "Chassis Control Module, + DCDC-Power (>1A) HV->LV": { price: 4550, unit: "unit", category: "EV - Control Module" },
+  "Chassis Control Module, + HC-HV Fuse incl. Box": { price: 6500, unit: "unit", category: "EV - Control Module" },
+  "Chassis Control Module, + HV Housing": { price: 1625, unit: "unit", category: "EV - Control Module" },
+  "Chassis Control Module, + HV Insulation Relay": { price: 7800, unit: "unit", category: "EV - Control Module" },
+  "Chassis Control Module, + HV Precharge": { price: 3250, unit: "unit", category: "EV - Control Module" },
+  "Chassis Control Module, + Isolation Monitoring Device": { price: 19500, unit: "unit", category: "EV - Control Module" },
+  "Chassis Control Module, + Motor Controller AC": { price: 2925, unit: "kW", category: "EV - Control Module" },
+  "Chassis Control Module, + Motor Controller DC": { price: 1462.5, unit: "kW", category: "EV - Control Module" },
+  "Chassis Control Module, + Power Distribution Module": { price: 455, unit: "channel", category: "EV - Control Module" },
+  "Chassis Control Module, + TSAL": { price: 650, unit: "unit", category: "EV - Control Module" },
+  "Chassis Control Module, + TSAS, buzzer": { price: 325, unit: "unit", category: "EV - Control Module" },
+  "Chassis Control Module, + TSAS, melody": { price: 975, unit: "unit", category: "EV - Control Module" },
+  "ECU, Automotive": { price: 130000, unit: "unit", category: "EV - Control Module" },
+  "ECU, Industrial": { price: 195000, unit: "unit", category: "EV - Control Module" },
+  "ECU, Rapid Prototyping": { price: 325000, unit: "unit", category: "EV - Control Module" },
+  "ECU, student built": { price: 32500, unit: "unit", category: "EV - Control Module" },
+  "Battery, Tractive Lithium": { price: 39000, unit: "kWh", category: "EV - Electronics" },
+  "Conduit incl. Nuts, Elbows etc.": { price: 65, unit: "m", category: "EV - Electronics" },
+  "Connector, HC-HV incl. Interlock": { price: 1950, unit: "pin", category: "EV - Electronics" },
+  "Connector, HC-HV Lug Type": { price: 65, unit: "pin", category: "EV - Electronics" },
+  "Wiring HV (> 12 mm²)": { price: 975, unit: "m", category: "EV - Electronics" },
+  "Motor, Tractive AC": { price: 6500, unit: "kW", category: "EV - Tractive Drive" },
+  "Motor, Tractive DC": { price: 3250, unit: "kW", category: "EV - Tractive Drive" },
+  "Fluid, Coolant": { price: 0.01, unit: "liter", category: "Fluid" },
+  "Fluid, Oil": { price: 48.75, unit: "liter", category: "Fluid" },
+  "Foam, Fuel Anti-Surge": { price: 65, unit: "liter", category: "Fuel System" },
+  "Fuel Check Valve, In-line, Aluminum Rollover": { price: 975, unit: "unit", category: "Fuel System" },
+  "Fuel Check Valve, In-line, Plastic Rollover": { price: 455, unit: "unit", category: "Fuel System" },
+  "Cable Tie Mount, Adhesive Backed": { price: 9.75, unit: "unit", category: "Hardware" },
+  "Coupling, Shaft, Helical Beam": { formula: "([C1]*[Size1]+[C2])", c1: 8.125, c2: 520, unit: "mm", category: "Hardware" },
+  "Drawbolt Catch & Hook": { price: 81.25, unit: "unit", category: "Hardware" },
+  "Grommet, Elastomer": { price: 3.25, unit: "unit", category: "Hardware" },
+  "Locating Pin, Bullet-Nose Dowel, Steel": { formula: "[C1]*[Size1]+[C2]", c1: 2.08, c2: 72.8, unit: "mm", category: "Hardware" },
+  "Locating Pin, Liner, Steel": { formula: "[C1]*[Size1]+[C2]", c1: 3.25, c2: 152.1, unit: "mm", category: "Hardware" },
+  "Mount, Vibration-Damping Sandwich": { price: 0, unit: "unit", category: "Misc" },
+  "Piano Hinge, Aluminum": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 2.6, c2: 75.4, unit: "mm", category: "Hardware" },
+  "Woodruff Key": { price: 6.5, unit: "unit", category: "Hardware" },
+  "Adhesive": { price: 0, unit: "unit", category: "Misc." },
+  "Balance Bar Cable Adjuster, AP CP2905-8": { price: 5200, unit: "unit", category: "Misc." },
+  "Balance Bar Cable Adjuster, Optimum Balance Prod": { price: 1430, unit: "unit", category: "Misc." },
+  "Cable Adjuster": { price: 65, unit: "unit", category: "Misc." },
+  "Clevis": { formula: "[C1]*[Size1]^2+[C2]", c1: 0.65, c2: 39.65, unit: "mm", category: "Misc." },
+  "Filler Cap": { price: 195, unit: "unit", category: "Misc." },
+  "Gearbox Oil Temp. Control Valve, GearZmo": { price: 15080, unit: "unit", category: "Misc." },
+  "Head Rest Padding": { price: 0.33, unit: "cm^3", category: "Misc." },
+  "Heat Barrier": { price: 3250, unit: "m^2", category: "Misc." },
+  "Mirror Lens": { price: 9.75, unit: "cm^2", category: "Misc." },
+  "Mirror, Rear View, Housing (All Cost as Made)": { price: 0, unit: "in^2", category: "Misc." },
+  "Paint": { price: 650, unit: "m^2", category: "Misc." },
+  "Roll Hoop Padding": { price: 3.25, unit: "cm", category: "Misc." },
+  "Seat (All Cost as Made)": { price: 0, unit: "unit", category: "Misc." },
+  "Tape": { price: 0, unit: "unit", category: "Misc." },
+  "Throttle Linkage, Tilton, 72-790": { price: 5525, unit: "unit", category: "Misc." },
+  "Pedal Assembly, Optimum Balance Products OBP0181": { price: 7150, unit: "unit", category: "Pedals" },
+  "Pedal Assembly, Tilton, 72-680": { price: 23400, unit: "unit", category: "Pedals" },
+  "Pedal, Wilwood, 340-1285": { price: 3965, unit: "unit", category: "Pedals" },
+  "Adapter, Hex Nipple, Brass": { formula: "[C1]*[Size1]+[C2]", c1: 71.5, c2: 14.3, unit: "mm", category: "Plumbing" },
+  "Adapter, Hex Nipple, Reducing, Brass": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 1.3, c2: 144.95, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P.///Aluminum/Anodized": { formula: "[C1]*[Size1]+[C2]", c1: 11.44, c2: 3.64, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Barb to Male Pipe/90 Deg./Aluminum/Anodized": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 3.12, c2: 129.675, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Barb to Male Pipe/Elbow/Plastic": { price: 32.5, unit: "unit", category: "Plumbing" },
+  "Adapter/L.P./Barb to Male Pipe/Straight/Aluminum/Anodized": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 2.08, c2: 86.45, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Barb to Male Pipe/Straight/Plastic": { price: 32.5, unit: "unit", category: "Plumbing" },
+  "Adapter/L.P./Bulkhead Male Connector//Steel/": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 1.0075, c2: 378.3, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Bulkhead Run Tee//Aluminum/Anodized": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 1.235, c2: 693.55, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Bulkhead Run Tee//Steel/": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 1.0075, c2: 990.6, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Bulkhead Tee//Aluminum/Anodized": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.91, c2: 685.1, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Bulkhead Tee//Steel/": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.975, c2: 839.15, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Bulkhead Union//Aluminum/Anodized": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.52, c2: 214.5, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Bulkhead Union//Steel/": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.468, c2: 355.55, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Bulkhead Union/45 deg./Aluminum/Anodized": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 1.56, c2: 153.4, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Bulkhead Union/45 deg./Steel/": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 1.56, c2: 153.4, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Bulkhead Union/90 deg./Aluminum/Anodized": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.845, c2: 420.55, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Bulkhead Union/90 deg./Steel/": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.65, c2: 789.75, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Elbow/FeMale to Male Pipe/90 deg./Aluminum/Anodized": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 9.36, c2: 560.95, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Female Flare Tee//Aluminum/Anodized": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 1.56, c2: 490.75, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Female Flare Tee//Brass": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.65, c2: 196.3, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Female Pipe Tee//Aluminum/Anodized": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 4.55, c2: 851.5, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./FemAle Pipe to Male Flare//Steel/": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 1.17, c2: 419.25, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Male Branch Tee//Aluminum/Anodized": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 5.2, c2: 579.8, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Male Flare to Pipe//Aluminum/Nickel-Plated": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.26, c2: 282.1, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Male Flare to Pipe//Brass/": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.104, c2: 113.1, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Male Flare to Pipe//Steel/": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.039, c2: 95.55, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Male Flare to Pipe/45 deg./Aluminum/Anodized": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.013, c2: 750.75, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Male Flare to Pipe/45 deg./Aluminum/Nickel-Plated": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.026, c2: 1208.35, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Male Flare to Pipe/45 deg./Steel/": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.039, c2: 440.7, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Male Flare to Pipe/90 deg./Aluminum/Anodized": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.026, c2: 343.2, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Male Flare to Pipe/90 deg./Aluminum/Nickel-Plated": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.039, c2: 585, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Male Flare to Pipe/90 deg./Brass/": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.013, c2: 137.15, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Male Flare to Pipe/90 deg./Steel/": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.0195, c2: 122.2, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Male Pip Nipple//Aluminum/Anodized": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 2.275, c2: 227.5, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Male Run Tee//Aluminum/Anodized": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 4.29, c2: 636.35, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Male Run Tee//Steel/": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 4.485, c2: 713.7, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Pipe Coupling//Aluminum/Anodized": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 4.355, c2: 255.45, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Pipe to Pipe//Aluminum/Anodized": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 1.04, c2: 468, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Union Reducer//Aluminum/Anodized": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.4095, c2: 113.75, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Union Reducer//Brass": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.1625, c2: 45.5, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Union Tee//Aluminum/Anodized": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.78, c2: 463.45, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Union Tee//Brass/": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.325, c2: 185.25, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Union//Aluminum/Anodized": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.4095, c2: 113.75, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Union/90 deg./Aluminum/Anodized": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.806, c2: 606.45, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Union/90 deg./Brass": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.325, c2: 242.45, unit: "mm", category: "Plumbing" },
+  "Adapter/L.P./Union/FeMale Flare//Aluminum/Anodized": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 0.5785, c2: 273, unit: "mm", category: "Plumbing" },
+  "Banjo Bolt, Aluminum": { formula: "[C1]*[Size1]+[C2]", c1: 44.2, c2: 0, unit: "mm", category: "Plumbing" },
+  "Banjo Bolt, Steel": { formula: "[C1]*[Size1]+[C2]", c1: 44.2, c2: 0, unit: "mm", category: "Plumbing" },
+  "Banjo Fitting, 45 Deg., Aluminum": { formula: "[C1]*[Size1]+[C2]", c1: 81.25, c2: 121.875, unit: "mm", category: "Plumbing" },
+  "Banjo Fitting, 45 Deg., Steel": { formula: "[C1]*[Size1]+[C2]", c1: 170.625, c2: 0, unit: "mm", category: "Plumbing" },
+  "Banjo Fitting, 90 Deg., Aluminum": { formula: "[C1]*[Size1]+[C2]", c1: 97.5, c2: 146.25, unit: "mm", category: "Plumbing" },
+  "Banjo Fitting, 90 Deg., Steel": { formula: "[C1]*[Size1]+[C2]", c1: 204.75, c2: 0, unit: "mm", category: "Plumbing" },
+  "Banjo Fitting, Aluminum": { formula: "[C1]*[Size1]+[C2]", c1: 65, c2: 97.5, unit: "mm", category: "Plumbing" },
+  "Banjo Fitting, Double, Aluminum": { formula: "[C1]*[Size1]+[C2]", c1: 97.5, c2: 146.25, unit: "mm", category: "Plumbing" },
+  "Banjo Fitting, Double, Steel": { formula: "[C1]*[Size1]+[C2]", c1: 204.75, c2: 0, unit: "mm", category: "Plumbing" },
+  "Banjo Fitting, Steel": { formula: "[C1]*[Size1]+[C2]", c1: 136.5, c2: 0, unit: "mm", category: "Plumbing" },
+  "Bleedscrew, Hydraulic (Brake, clutch, etc.)": { price: 65, unit: "unt", category: "Plumbing" },
+  "Break Coupling, Dry, Female, KC Engineering": { price: 5525, unit: "unit", category: "Plumbing" },
+  "Break Coupling, Dry, Female, Staubli": { price: 5525, unit: "unit", category: "Plumbing" },
+  "Break Coupling, Dry, Male, KC Engineering": { price: 4777.5, unit: "unit", category: "Plumbing" },
+  "Break Coupling, Dry, Male, Staubli": { price: 4777.5, unit: "unit", category: "Plumbing" },
+  "Check Valve, High Press, Adj, In-Line, Generant": { price: 650, unit: "unit", category: "Plumbing" },
+  "Crush Washer": { formula: "[C1]*[Size1]+[C2]", c1: 1.755, c2: 7.8, unit: "mm", category: "Plumbing" },
+  "Drain Plug, Hex Head, Magnetic": { formula: "[C1]*[Size1]+[C2]", c1: 6.045, c2: 3.25, unit: "mm", category: "Plumbing" },
+  "Drain Plug, Square Head, Magnetic": { formula: "[C1]*[Size1]+[C2]", c1: 6.045, c2: 3.25, unit: "mm", category: "Plumbing" },
+  "Fitting, Fuel Pressure Gauge": { price: 195, unit: "unit", category: "Plumbing" },
+  "Fitting, JT2000, Quick Con. Plug to Flare, 45 Deg.": { price: 942.5, unit: "unit", category: "Plumbing" },
+  "Fitting, JT2000, Quick Con. Plug to Flare, 90 Deg.": { price: 942.5, unit: "unit", category: "Plumbing" },
+  "Fitting, JT2000, Quick Con. Plug to Flare, Str.": { price: 747.5, unit: "unit", category: "Plumbing" },
+  "Fitting, JT2000, Quick Con. Socket to Flare, 45 Deg.": { price: 1040, unit: "unit", category: "Plumbing" },
+  "Fitting, JT2000, Quick Con. Socket to Flare, 90 Deg.": { price: 1202.5, unit: "unit", category: "Plumbing" },
+  "Fitting, JT2000, Quick Con. Socket to Flare, Straight": { price: 1137.5, unit: "unit", category: "Plumbing" },
+  "Fitting, Push-to-Connect, Plastic, Elbow 90°": { formula: "[C1]*[Size1]+[C2]", c1: 16.25, c2: 26, unit: "mm", category: "Plumbing" },
+  "Fitting, Push-to-Connect, Plastic, Straight": { formula: "[C1]*[Size1]+[C2]", c1: 16.25, c2: 26, unit: "mm", category: "Plumbing" },
+  "Fitting, Push-to-Connect, Plastic, Tee": { formula: "[C1]*[Size1]+[C2]", c1: 13, c2: 61.75, unit: "mm", category: "Plumbing" },
+  "Fitting, Push-to-Connect, Plastic, Wye": { formula: "[C1]*[Size1]+[C2]", c1: 13, c2: 61.75, unit: "mm", category: "Plumbing" },
+  "Fitting, Weld-in, Male, Aluminum": { formula: "[C1]*EXP([C2]*[Size1])", c1: 84.5, c2: 2.86, unit: "mm", category: "Plumbing" },
+  "Fitting, Wiggins, Clamshell Assembly": { formula: "[C1]*[Size1]+[C2]", c1: 32.5, c2: 1040, unit: "mm", category: "Plumbing" },
+  "Fitting, Wiggins, Coupling Assembly": { formula: "[C1]*[Size1]+[C2]", c1: 104, c2: 520, unit: "mm", category: "Plumbing" },
+  "Fitting, Wiggins, Weld Ferrule": { formula: "[C1]*[Size1]+[C2]", c1: 20.8, c2: 292.5, unit: "mm", category: "Plumbing" },
+  "Fitting/H.P./Elbow/45 deg./Steel/": { formula: "[C1]*[Size1]+[C2]", c1: 58.5, c2: 474.5, unit: "mm", category: "Plumbing" },
+  "Fitting/H.P./Elbow/90 deg./Steel/": { formula: "[C1]*[Size1]+[C2]", c1: 39, c2: 617.5, unit: "mm", category: "Plumbing" },
+  "Fitting/H.P./MAluminume Flare//Brass/": { formula: "[C1]*[Size1]+[C2]", c1: 0, c2: 715, unit: "mm", category: "Plumbing" },
+  "Fitting/H.P./MAluminume Inverted Flare//Brass/": { formula: "[C1]*[Size1]+[C2]", c1: 67.6, c2: -26.65, unit: "mm", category: "Plumbing" },
+  "Fitting/H.P./MAluminume Inverted Flare//Steel/": { formula: "[C1]*[Size1]+[C2]", c1: 27.95, c2: 442, unit: "mm", category: "Plumbing" },
+  "Fitting/H.P./MAluminume Inverted Flare/45 deg./Steel/": { formula: "[C1]*[Size1]+[C2]", c1: 0, c2: 780, unit: "mm", category: "Plumbing" },
+  "Fitting/H.P./MAluminume Inverted Flare/90 deg./Steel/": { formula: "[C1]*[Size1]+[C2]", c1: 0, c2: 975, unit: "mm", category: "Plumbing" },
+  "Fitting/H.P./MAluminume Pipe//Brass/": { formula: "[C1]*[Size1]+[C2]", c1: 43.55, c2: -136.5, unit: "mm", category: "Plumbing" },
+  "Fitting/H.P./MAluminume Pipe//Steel/": { formula: "[C1]*[Size1]+[C2]", c1: 0, c2: 520, unit: "mm", category: "Plumbing" },
+  "Fitting/H.P./Straight//Brass/": { formula: "[C1]*[Size1]+[C2]", c1: 56.55, c2: -236.6, unit: "mm", category: "Plumbing" },
+  "Fitting/H.P./Straight//Steel/": { formula: "[C1]*[Size1]+[C2]", c1: 34.45, c2: 222.95, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Cap//Aluminum/Anodized": { formula: "[C1]*[Size1]+[C2]", c1: 42.9, c2: -139.1, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Cap//Steel/": { formula: "[C1]*[Size1]+[C2]", c1: 20.8, c2: 0, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Elbow/120 deg./Aluminum/Anodized": { formula: "[C1]*[Size1]+[C2]", c1: 22.75, c2: 2236, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Elbow/120 deg./Aluminum/Crimp": { formula: "[C1]*[Size1]+[C2]", c1: 144.95, c2: 852.15, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Elbow/150 deg./Aluminum/Anodized": { formula: "[C1]*[Size1]+[C2]", c1: 87.1, c2: 1647.1, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Elbow/150 deg./Aluminum/Crimp": { formula: "[C1]*[Size1]+[C2]", c1: 163.8, c2: 663, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Elbow/180 deg./Aluminum/Anodized": { formula: "[C1]*[Size1]+[C2]", c1: 115.05, c2: 1283.75, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Elbow/180 deg./Aluminum/Crimp": { formula: "[C1]*[Size1]+[C2]", c1: 287.3, c2: -1248.65, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Elbow/30 deg./Aluminum/Anodized": { formula: "[C1]*[Size1]+[C2]", c1: 136.5, c2: 298.35, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Elbow/30 deg./Aluminum/Crimp": { formula: "[C1]*[Size1]+[C2]", c1: 103.35, c2: 1235, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Elbow/45 deg./Aluminum/Anodized": { formula: "[C1]*[Size1]+[C2]", c1: 137.15, c2: -174.2, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Elbow/45 deg./Aluminum/Crimp": { formula: "[C1]*[Size1]+[C2]", c1: 145.6, c2: 250.9, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Elbow/45 deg./Aluminum/Nickel-Plated": { formula: "[C1]*[Size1]+[C2]", c1: 104, c2: 871, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Elbow/45 deg./Steel/": { formula: "[C1]*[Size1]+[C2]", c1: 306.8, c2: -522.6, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Elbow/60 deg./Aluminum/Anodized": { formula: "[C1]*[Size1]+[C2]", c1: 136.5, c2: 298.35, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Elbow/60 deg./Aluminum/Crimp": { formula: "[C1]*[Size1]+[C2]", c1: 68.9, c2: 1919.45, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Elbow/90 deg./Aluminum/Anodized": { formula: "[C1]*[Size1]+[C2]", c1: 94.9, c2: 380.25, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Elbow/90 deg./Aluminum/Crimp": { formula: "[C1]*[Size1]+[C2]", c1: 154.05, c2: 79.3, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Elbow/90 deg./Aluminum/Nickel-Plated": { formula: "[C1]*[Size1]+[C2]", c1: 104, c2: 884, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Elbow/90 deg./Steel/": { formula: "[C1]*[Size1]+[C2]", c1: 310.7, c2: -814.45, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Male Flare to Pipe//Aluminum/Anodized": { formula: "[C1]*[Size1]*[Size2]+[C2]", c1: 2.08, c2: 86.45, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Male Pipe//Aluminum/": { formula: "[C1]*[Size1]+[C2]", c1: 177.45, c2: 435.5, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Orb/45 deg./Aluminum/": { formula: "[C1]*[Size1]+[C2]", c1: 143, c2: 1560, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Orb/90 deg./Aluminum/": { formula: "[C1]*[Size1]+[C2]", c1: 0, c2: 4225, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Straight/Aluminum/Anodized": { formula: "[C1]*[Size1]+[C2]", c1: 85.8, c2: -395.2, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Straight/Aluminum/Crimp": { formula: "[C1]*[Size1]+[C2]", c1: 106.6, c2: -204.75, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Straight/Aluminum/Nickel-Plated": { formula: "[C1]*[Size1]+[C2]", c1: 117, c2: -419.25, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Straight/Steel/": { formula: "[C1]*[Size1]+[C2]", c1: 423.8, c2: -1766.7, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Tee/Flare-Flare-Pipe/Steel/": { formula: "[C1]*[Size1]+[C2]", c1: 13, c2: 578.5, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Tube Nut//Aluminum/Anodized": { formula: "[C1]*[Size1]+[C2]", c1: 23.92, c2: -87.1, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Tube Nut//Steel/": { formula: "[C1]*[Size1]+[C2]", c1: 7.15, c2: 111.15, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Tube Sleeve//Aluminum/Anodized": { formula: "[C1]*[Size1]+[C2]", c1: 11.7, c2: 0, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Tube Sleeve/Brass": { formula: "[C1]*[Size1]+[C2]", c1: 4.55, c2: 0, unit: "mm", category: "Plumbing" },
+  "Fitting/L.P./Tube Sleeve/Steel/": { formula: "[C1]*[Size1]+[C2]", c1: 14.95, c2: 0, unit: "mm", category: "Plumbing" },
+  "Grease Nipple, 45 Deg.": { price: 32.5, unit: "unit", category: "Plumbing" },
+  "Grease Nipple, 90 Deg.": { price: 32.5, unit: "unit", category: "Plumbing" },
+  "Grease Nipple, Straight": { price: 32.5, unit: "unit", category: "Plumbing" },
+  "Hose, High Pressure, Stainless Steel Braided Outer": { formula: "[C1]*[Size1]+[C2]", c1: 160.55, c2: -176.15, unit: "mm", category: "Plumbing" },
+  "Hose, Low Pressure, Fabric Outer": { formula: "[C1]*[Size1]+[C2]", c1: 210.6, c2: 631.8, unit: "mm", category: "Plumbing" },
+  "Hose, Low Pressure, Stainless Steel Braided Outer": { formula: "[C1]*[Size1]+[C2]", c1: 144.95, c2: 228.8, unit: "mm", category: "Plumbing" },
+  "Hose, Low Presure, Fabric Outer, Socketless": { formula: "[C1]*[Size1]+[C2]", c1: 64.35, c2: 292.5, unit: "mm", category: "Plumbing" },
+  "Hose, Polyurethane": { formula: "[C1]*[Size1]+[C2]", c1: 4.55, c2: 0, unit: "mm", category: "Plumbing" },
+  "Hose, Rubber": { formula: "[C1]*[Size1]+[C2]", c1: 11.7, c2: 0, unit: "mm", category: "Plumbing" },
+  "Hose, Silicone": { formula: "[C1]*[Size1]+[C2]", c1: 30.55, c2: 0, unit: "mm", category: "Plumbing" },
+  "Locknut/L.P.///Steel/": { formula: "[C1]*[Size1]+[C2]", c1: 8.19, c2: 102.05, unit: "mm", category: "Plumbing" },
+  "Locknut/L.P./Flare//Aluminum/Anodized": { formula: "[C1]*[Size1]+[C2]", c1: 25.025, c2: 52, unit: "mm", category: "Plumbing" },
+  "Plug/L.P./Flare//Steel/": { formula: "[C1]*[Size1]+[C2]", c1: 20.28, c2: 58.825, unit: "mm", category: "Plumbing" },
+  "Plug/L.P./O-Ring Boss//Aluminum/Anodized": { formula: "[C1]*[Size1]+[C2]", c1: 24.7, c2: 352.17, unit: "mm", category: "Plumbing" },
+  "Plug/L.P./Pipe/Allen Head/Aluminum/Anodized": { formula: "[C1]*[Size1]+[C2]", c1: 23.4, c2: 115.7, unit: "mm", category: "Plumbing" },
+  "Rotating Union, GAT, Rotodisk": { price: 30745, unit: "unit", category: "Plumbing" },
+  "Tubing, Steel": { price: 146.25, unit: "kg", category: "Plumbing" },
+  "Aluminum Metal Matrix Composite": { price: 2145, unit: "kg", category: "Raw Material" },
+  "Aluminum, Normal": { price: 273, unit: "kg", category: "Raw Material" },
+  "Aluminum, Premium": { price: 273, unit: "kg", category: "Raw Material" },
+  "Brass": { price: 143, unit: "kg", category: "Raw Material" },
+  "Bronze": { price: 143, unit: "kg", category: "Raw Material" },
+  "Copper": { price: 143, unit: "kg", category: "Raw Material" },
+  "Cork": { price: 0.33, unit: "cm^3", category: "Raw Material" },
+  "Foam, Expanding, Non-Structural": { price: 975, unit: "kg", category: "Raw Material" },
+  "Inconel": { price: 1430, unit: "kg", category: "Raw Material" },
+  "Iron": { price: 65, unit: "kg", category: "Raw Material" },
+  "Magnesium": { price: 390, unit: "kg", category: "Raw Material" },
+  "Magnet, ferrite": { price: 650, unit: "kg", category: "Raw Material" },
+  "Magnet, neodymium high strength": { price: 5200, unit: "kg", category: "Raw Material" },
+  "Nickel": { price: 143, unit: "kg", category: "Raw Material" },
+  "Plastic, ABS": { price: 214.5, unit: "kg", category: "Raw Material" },
+  "Plastic, Acetal": { price: 214.5, unit: "kg", category: "Raw Material" },
+  "Plastic, Acrylic": { price: 214.5, unit: "kg", category: "Raw Material" },
+  "Plastic, Flouropolymers": { price: 214.5, unit: "kg", category: "Raw Material" },
+  "Plastic, Garolite": { price: 214.5, unit: "kg", category: "Raw Material" },
+  "Plastic, Nylon": { price: 214.5, unit: "kg", category: "Raw Material" },
+  "Plastic, PEEK": { price: 214.5, unit: "kg", category: "Raw Material" },
+  "Plastic, Polycarbonate": { price: 214.5, unit: "kg", category: "Raw Material" },
+  "Plastic, Polyethelene": { price: 214.5, unit: "kg", category: "Raw Material" },
+  "Plastic, Polyoxymethylene (POM)": { price: 214.5, unit: "kg", category: "Raw Material" },
+  "Plastic, Polypropolene": { price: 214.5, unit: "kg", category: "Raw Material" },
+  "Plastic, PVC": { price: 214.5, unit: "kg", category: "Raw Material" },
+  "Rubber": { price: 214.5, unit: "kg", category: "Raw Material" },
+  "Silicon Carbide (or any ceramic)": { price: 0, unit: "kg", category: "Raw Material" },
+  "Steel, Alloy": { price: 146.25, unit: "kg", category: "Raw Material" },
+  "Steel, Mild": { price: 146.25, unit: "kg", category: "Raw Material" },
+  "Steel, Stainless": { price: 146.25, unit: "kg", category: "Raw Material" },
+  "Titanium": { price: 1430, unit: "kg", category: "Raw Material" },
+  "Wood, Hard": { price: 0.26, unit: "cm^3", category: "Raw Material" },
+  "Wood, Medium Density Fiberboard": { price: 0.13, unit: "cm^3", category: "Raw Material" },
+  "Wood, Soft": { price: 0.2, unit: "cm^3", category: "Raw Material" },
+  "Aluminum Metal Matrix Composite (per kg)": { price: 2145, unit: "kg", category: "Raw Material (per kg)" },
+  "Aluminum, Normal (per kg)": { price: 273, unit: "kg", category: "Raw Material (per kg)" },
+  "Aluminum, Premium (per kg)": { price: 273, unit: "kg", category: "Raw Material (per kg)" },
+  "Brass (per kg)": { price: 143, unit: "kg", category: "Raw Material (per kg)" },
+  "Bronze (per kg)": { price: 143, unit: "kg", category: "Raw Material (per kg)" },
+  "Copper (per kg)": { price: 143, unit: "kg", category: "Raw Material (per kg)" },
+  "Foam, Expanding, Non-Structural (per kg)": { price: 975, unit: "kg", category: "Raw Material (per kg)" },
+  "Iron (per kg)": { price: 65, unit: "kg", category: "Raw Material (per kg)" },
+  "Magnesium (per kg)": { price: 390, unit: "kg", category: "Raw Material (per kg)" },
+  "Nickel (per kg)": { price: 143, unit: "kg", category: "Raw Material (per kg)" },
+  "Plastic, ABS (per kg)": { price: 214.5, unit: "kg", category: "Raw Material (per kg)" },
+  "Plastic, Acetal (per kg)": { price: 214.5, unit: "kg", category: "Raw Material (per kg)" },
+  "Plastic, Acrylic (per kg)": { price: 214.5, unit: "kg", category: "Raw Material (per kg)" },
+  "Plastic, Flouropolymers (per kg)": { price: 214.5, unit: "kg", category: "Raw Material (per kg)" },
+  "Plastic, Garolite (per kg)": { price: 214.5, unit: "kg", category: "Raw Material (per kg)" },
+  "Plastic, Nylon (per kg)": { price: 214.5, unit: "kg", category: "Raw Material (per kg)" },
+  "Plastic, PEEK (per kg)": { price: 214.5, unit: "kg", category: "Raw Material (per kg)" },
+  "Plastic, Polycarbonate (per kg)": { price: 214.5, unit: "kg", category: "Raw Material (per kg)" },
+  "Plastic, Polyethelene (per kg)": { price: 214.5, unit: "kg", category: "Raw Material (per kg)" },
+  "Plastic, Polyoxymethylene (POM) (per kg)": { price: 214.5, unit: "kg", category: "Raw Material (per kg)" },
+  "Plastic, Polypropolene (per kg)": { price: 214.5, unit: "kg", category: "Raw Material (per kg)" },
+  "Plastic, PVC (per kg)": { price: 214.5, unit: "kg", category: "Raw Material (per kg)" },
+  "Rubber (per kg)": { price: 214.5, unit: "kg", category: "Raw Material (per kg)" },
+  "Steel, Alloy (per kg)": { price: 146.25, unit: "kg", category: "Raw Material (per kg)" },
+  "Steel, Mild (per kg)": { price: 146.25, unit: "kg", category: "Raw Material (per kg)" },
+  "Steel, Stainless (per kg)": { price: 146.25, unit: "kg", category: "Raw Material (per kg)" },
+  "Titanium (per kg)": { price: 1430, unit: "kg", category: "Raw Material (per kg)" },
+  "Harness, Driver": { price: 2925, unit: "unit", category: "Safety" },
+  "Seal, O-Ring, Elastomer": { price: 3.25, unit: "unit", category: "Seals" },
+  "Seal, Radial Lip Seal": { price: 65, unit: "unit", category: "Seals" },
+  "Sensor, Accelerometer, 1 Axis": { price: 260, unit: "unit", category: "Sensors" },
+  "Sensor, Accelerometer, 3 Axis": { price: 520, unit: "unit", category: "Sensors" },
+  "Sensor, Air Temperature": { price: 260, unit: "unit", category: "Sensors" },
+  "Sensor, Angular Position": { price: 260, unit: "unit", category: "Sensors" },
+  "Sensor, Fluid Pressure": { price: 260, unit: "unit", category: "Sensors" },
+  "Sensor, Fluid Pressure & Temperature": { price: 650, unit: "unit", category: "Sensors" },
+  "Sensor, Hall Effect": { price: 260, unit: "unit", category: "Sensors" },
+  "Sensor, LVDT": { price: 780, unit: "unit", category: "Sensors" },
+  "Sensor, Manifold Absolute Pressure (MAP)": { price: 260, unit: "unit", category: "Sensors" },
+  "Sensor, Mass Air Flow (MAF)": { price: 1625, unit: "unit", category: "Sensors" },
+  "Sensor, Switching Air Fuel Ratio": { price: 975, unit: "unit", category: "Sensors" },
+  "Sensor, Temperature": { price: 520, unit: "unit", category: "Sensors" },
+  "Sensor, Thermocouple": { price: 520, unit: "unit", category: "Sensors" },
+  "Sensor, Two State Position": { price: 260, unit: "unit", category: "Sensors" },
+  "Sensor, Wide Band Air Fuel Raito": { price: 2275, unit: "unit", category: "Sensors" },
+  "Fabric": { price: 162.5, unit: "m^2", category: "Sheet Material" },
+  "Glass": { price: 650, unit: "m^2", category: "Sheet Material" },
+  "Leather": { price: 6500, unit: "m^2", category: "Sheet Material" },
+  "Suede": { price: 6500, unit: "m^2", category: "Sheet Material" },
+  "Air Pressure Regulator": { price: 650, unit: "unit", category: "Shifter" },
+  "CO2 Regulator": { price: 3250, unit: "unit", category: "Shifter" },
+  "CO2 Tank, Composite": { formula: "[C1]*[Size1]+[C2]", c1: 3.25, c2: 55.25, unit: "cc", category: "Shifter" },
+  "CO2 Tank, Metallic": { formula: "[C1]*[Size1]+[C2]", c1: 2.86, c2: -353.6, unit: "cc", category: "Shifter" },
+  "N2 Regulator": { price: 3250, unit: "unit", category: "Shifter" },
+  "N2 Tank, Composite": { formula: "[C1]*[Size1]+[C2]", c1: 3.25, c2: 55.25, unit: "cc", category: "Shifter" },
+  "N2 Tank, Metallic": { formula: "[C1]*[Size1]+[C2]", c1: 2.86, c2: -353.6, unit: "cc", category: "Shifter" },
+  "Pneumatic Cylinder, Double Acting": { price: 1625, unit: "unit", category: "Shifter" },
+  "Pneumatic Cylinder, Single Acting": { price: 1300, unit: "unit", category: "Shifter" },
+  "Pneumatic fluidic muscle": { price: 3900, unit: "unit", category: "Shifter" },
+  "Pneumatic Valve, Two Position": { price: 1625, unit: "unit", category: "Shifter" },
+  "Shift Lever, Bicycle OEM": { price: 1300, unit: "unit", category: "Shifter" },
+  "Shift Lever, Honda, 0143719": { price: 1625, unit: "unit", category: "Shifter" },
+  "Shifter, Automatic, Flat Shifter Expert": { price: 28990, unit: "unit", category: "Shifter" },
+  "Shifter, Automatic, Flat Shifter Max": { price: 24050, unit: "unit", category: "Shifter" },
+  "Shifter, Automatic, Kartech, Me-Shifter F1": { price: 38350, unit: "unit", category: "Shifter" },
+  "Shifter, Automatic, Kliktronics": { price: 23400, unit: "unit", category: "Shifter" },
+  "Shifter, Automatic, Pingel Easy Shift Kit": { price: 24375, unit: "unit", category: "Shifter" },
+  "Shifter, Automatic, TransLogic TLS-PS1": { price: 26000, unit: "units", category: "Shifter" },
+  "Spring, Compression (General)": { price: 65, unit: "unit", category: "Springs" },
+  "Spring, Tension (General)": { price: 65, unit: "unit", category: "Springs" },
+  "Spring, Torsion (General)": { price: 65, unit: "unit", category: "Springs" },
+  "Suspension Springs, Coil Spring, Steel": { price: 1625, unit: "unit", category: "Springs" },
+  "Suspension Springs, Coil Spring, Titanium": { price: 7150, unit: "unit", category: "Springs" },
+  "Steering Column Universal Joint": { price: 1300, unit: "unit", category: "Steering" },
+  "Steering Column Universal Joint, Double": { price: 2502.5, unit: "unit", category: "Steering" },
+  "Steering Pinion (All Cost as Made)": { price: 0, unit: "unit", category: "Steering" },
+  "Steering Rack (All Cost as Made)": { price: 0, unit: "unit", category: "Steering" },
+  "Steering Rack Housing (All Cost as Made)": { price: 0, unit: "unit", category: "Steering" },
+  "Steering Wheel (All Cost as Made)": { price: 0, unit: "unit", category: "Steering" },
+  "Steering Wheel, Quick Release (All Cost as Made)": { price: 0, unit: "unit", category: "Steering" },
+  "A-Arms (All Cost as Made)": { price: 0, unit: "unit", category: "Suspension" },
+  "Wishbones (All Cost as Made)": { price: 0, unit: "unit", category: "Suspension" },
+  "Tire, American Racer, M32, 8-15.0 x7.0": { price: 4420, unit: "unit", category: "Tire" },
+  "Tire, American Racer, SD44, 8-15.0 x6.0": { price: 4420, unit: "unit", category: "Tire" },
+  "Tire, American Racer, SD44, 8-15.0 x8.0": { price: 4420, unit: "unit", category: "Tire" },
+  "Tire, American Racer,M32, 8-15.0 x7.0": { price: 4420, unit: "unit", category: "Tire" },
+  "Tire, American Racer,SD44, 8-15.0 x6.0": { price: 4420, unit: "unit", category: "Tire" },
+  "Tire, American Racer,SD44, 8-15.0 x8.0": { price: 4420, unit: "unit", category: "Tire" },
+  "Tire, Avon, A45, 13-20.0 x 6.2": { price: 6500, unit: "unit", category: "Tire" },
+  "Tire, Avon, A45, 13-20.0 x 7.2": { price: 6500, unit: "unit", category: "Tire" },
+  "Tire, Avon, A45, 13-20.0 x 8.2": { price: 6500, unit: "unit", category: "Tire" },
+  "Tire, Bridgestone, 13-180mm/510mm": { price: 6500, unit: "unit", category: "Tire" },
+  "Tire, Continental, 13": { price: 5200, unit: "unit", category: "Tire" },
+  "Tire, Dunlop Motorsport, 13, 175mm/505mm": { price: 5655, unit: "unit", category: "Tire" },
+  "Tire, Goodyear, D2692, 13-20.0 x 7.0": { price: 6500, unit: "unit", category: "Tire" },
+  "Tire, Goodyear, R065, 13-20.0 x 7.0": { price: 6500, unit: "unit", category: "Tire" },
+  "Tire, Goodyear, R075, 13-20.0 x 7.0": { price: 6500, unit: "unit", category: "Tire" },
+  "Tire, Hoosier, LC0, 10-18.0 x 6.0": { price: 5525, unit: "unit", category: "Tire" },
+  "Tire, Hoosier, LC0, 10-18.0 x 7.0": { price: 5525, unit: "unit", category: "Tire" },
+  "Tire, Hoosier, R25B, 10-18.0 x 6.0": { price: 5525, unit: "unit", category: "Tire" },
+  "Tire, Hoosier, R25B, 10-18.0 x 7.5": { price: 5525, unit: "unit", category: "Tire" },
+  "Tire, Hoosier, R25B, 10-19.5 x 6.5": { price: 5525, unit: "unit", category: "Tire" },
+  "Tire, Hoosier, R25B, 10-19.5 x 7.5": { price: 5525, unit: "unit", category: "Tire" },
+  "Tire, Hoosier, R25B, 13-20.0 x 7.5": { price: 5525, unit: "unit", category: "Tire" },
+  "Tire, Hoosier, R25B, 13-20.0 x 8.0": { price: 5525, unit: "unit", category: "Tire" },
+  "Tire, Hoosier, R25B, 13-20.0 x 9.0": { price: 5525, unit: "unit", category: "Tire" },
+  "Tire, Hoosier, R25B, 13-20.5 x 6.0": { price: 5525, unit: "unit", category: "Tire" },
+  "Tire, Hoosier, R25B, 13-20.5 x 7.0": { price: 5525, unit: "unit", category: "Tire" },
+  "Tire, Hoosier, Wet, 10-19.5 x 6.5": { price: 5200, unit: "unit", category: "Tire" },
+  "Tire, Hoosier, Wet, 13-20.0 x 7.5": { price: 6500, unit: "unit", category: "Tire" },
+  "Tire, Hoosier, Wet, 13-21.0 x 6.5": { price: 6500, unit: "unit", category: "Tire" },
+  "Tire, Kumho, ECSTA, 13-170mm/515mm": { price: 5200, unit: "unit", category: "Tire" },
+  "Tire, Michelin, P220, 13-20.9 x 6.3": { price: 6500, unit: "unit", category: "Tire" },
+  "Tire, Michelin, S6B, 13-20.9 x 6.3": { price: 6500, unit: "unit", category: "Tire" },
+  "Tire, Treaded Production Car Not Listed Above": { price: 2600, unit: "unit", category: "Tire" },
+  "Tire, Yokohoma, ADVAN Dry, 13 160-55": { price: 8775, unit: "unit", category: "Tire" },
+  "Tire, Yokohoma, ADVAN Wet, 13 160-55": { price: 10400, unit: "unit", category: "Tire" },
+  "Valve Stem (and Tire Inflation)": { price: 65, unit: "unit", category: "Tire" },
+  "Wheel Center, Any Size, Student Made": { price: 0, unit: "unit", category: "Wheel" },
+  "Wheel Shells, 10, 2 Piece, Keizer, Aluminum": { price: 85, unit: "unit", category: "Wheel" },
+  "Wheel Shells, 10, 3 Piece, Keizer, Aluminum": { price: 3737.5, unit: "unit", category: "Wheel" },
+  "Wheel Shells, 13 Inner, 4 Wide, Kodiak, Aluminum": { price: 6045, unit: "unit", category: "Wheel" },
+  "Wheel Shells, 13 Inner, 4.5 Wide, Kodiak, Alum.": { price: 6045, unit: "unit", category: "Wheel" },
+  "Wheel Shells, 13 Inner, 5 Wide, Kodiak, Alum.": { price: 6500, unit: "unit", category: "Wheel" },
+  "Wheel Shells, 13 Inner, 6 Wide, Kodiak, Alum.": { price: 6760, unit: "unit", category: "Wheel" },
+  "Wheel Shells, 13 Outer, 1 Wide, Kodiak, Alum.": { price: 5525, unit: "unit", category: "Wheel" },
+  "Wheel Shells, 13 Outer, 1.5 Wide, Kodiak, Alum.": { price: 5947.5, unit: "unit", category: "Wheel" },
+  "Wheel Shells, 13 Outer, 2 Wide, Kodiak, Alum.": { price: 5947.5, unit: "unit", category: "Wheel" },
+  "Wheel Shells, 13, 3 Piece, Jongbloed, Alum.": { price: 18687.5, unit: "unit", category: "Wheel" },
+  "Wheel Shells, 13, 3 Piece, Jongbloed, Magnesium": { price: 18687.5, unit: "unit", category: "Wheel" },
+  "Wheel Shells, 13, 3 Piece, Keizer, Aluminum": { price: 5362.5, unit: "unit", category: "Wheel" },
+  "Wheel Shells, 13, 3 Piece, Weld, Aluminum": { price: 7410, unit: "unit", category: "Wheel" },
+  "Wheel Weights (and Balancing)": { price: 260, unit: "unit", category: "Wheel" },
+  "Wheel, 10, 1 Piece OEM, Aluminum": { price: 5037.5, unit: "unit", category: "Wheel" },
+  "Wheel, 10, 1 Piece OEM, Magnesium": { price: 7020, unit: "unit", category: "Wheel" },
+  "Wheel, 10, 1 Piece OEM, Steel": { price: 2600, unit: "unit", category: "Wheel" },
+  "Wheel, 10, 1 Piece, Carbon Fiber, Purchased": { price: 0, unit: "unit", category: "Wheel" },
+  "Wheel, 10, 1 Piece, Carbon Fiber, Student Made": { price: 0, unit: "unit", category: "Wheel" },
+  "Wheel, 10, 1 Piece, DWT, Alumalite, Aluminum, Model 011-05": { price: 4095, unit: "unit", category: "Wheel" },
+  "Wheel, 10, 2 Piece, HiPer Racing, Carbon-plastic, CF1, Inner Half": { price: 2437.5, unit: "unit", category: "Wheel" },
+  "Wheel, 10, 2 Piece, HiPer Racing, Carbon-plastic, Tec 3, Inner Half": { price: 1462.5, unit: "unit", category: "Wheel" },
+  "Wheel, 10, 3 Piece, Keizer, Aluminum": { price: 5037.5, unit: "unit", category: "Wheel" },
+  "Wheel, 13, 1 Piece OEM, Aluminum": { price: 7475, unit: "unit", category: "Wheel" },
+  "Wheel, 13, 1 Piece OEM, Magnesium": { price: 10465, unit: "unit", category: "Wheel" },
+  "Wheel, 13, 1 Piece OEM, Steel": { price: 3250, unit: "unit", category: "Wheel" },
+  "Wheel, 13, 1 Piece OZ, Aluminum": { price: 5200, unit: "unit", category: "Wheel" },
+  "Wheel, 13, 1 Piece, Braid, Formrace, Aluminum, Model 16, 7 Wide": { price: 0, unit: "unit", category: "Wheel" },
+  "Wheel, 13, 1 Piece, Carbon Fiber, Purchased": { price: 0, unit: "unit", category: "Wheel" },
+  "Wheel, 13, 1 Piece, Carbon Fiber, Student Made": { price: 0, unit: "unit", category: "Wheel" },
+  "Wheel, 13, 1 Piece, Compomotive XR1380": { price: 6110, unit: "unit", category: "Wheel" },
+  "Wheel, 13, 1 Piece, Orbital 861, Aluminum": { price: 5200, unit: "unit", category: "Wheel" },
+  "Wheel, 13, 1 Piece, Volk  TE37, Aluminum": { price: 13000, unit: "unit", category: "Wheel" },
+  "Wheel, 13, 1 Piece, Watanabe, Magnesium, 6-Spoke, Widths 10-12": { price: 250, unit: "unit", category: "Wheel" },
+  "Wheel, 13, 1 Piece, Watanabe, Magnesium, 6-Spoke, Widths 8-9.5": { price: 235, unit: "unit", category: "Wheel" },
+  "Wheel, 13, 2 Piece, Braid, Formrace, Aluminum, Model 16, 6 Wide": { price: 6272.5, unit: "unit", category: "Wheel" },
+  "Wheel, 13, 3 Piece, Bogar RT-4, Aluminum": { price: 9750, unit: "unit", category: "Wheel" },
+  "Wheel, 13, 3 Piece, Jongbloed, Aluminum": { price: 18687.5, unit: "unit", category: "Wheel" },
+  "Wheel, 13, 3 Piece, Jongbloed, Magnesium": { price: 18687.5, unit: "unit", category: "Wheel" },
+  "Wheel, 13, 3 Piece, Keizer, Aluminum": { price: 7475, unit: "unit", category: "Wheel" },
+  "Wheel, 13, 3 Piece, Keizer, Magnesium": { price: 9100, unit: "unit", category: "Wheel" },
+  "Wheel, 13, 3 Piece, Weld, Aluminum": { price: 13097.5, unit: "unit", category: "Wheel" },
+  "Wheel, 13, BBS, Magnesium, Cast, R-RE-325": { price: 22100, unit: "unit", category: "Wheel" },
+  "Wheel, 13, Magnesium, BBS, Forged": { price: 0, unit: "unit", category: "Wheel" },
+  "Wheel, 15, 1 Piece OEM, Aluminum": { price: 9100, unit: "unit", category: "Wheel" },
+  "Wheel, 15, 1 Piece OEM, Magnesium": { price: 12740, unit: "unit", category: "Wheel" },
+  "Wheel, 15, 1 Piece OEM, Steel": { price: 3900, unit: "unit", category: "Wheel" },
+  "Wheel, 15, 1 Piece, Carbon Fiber, Purchased": { price: 0, unit: "unit", category: "Wheel" },
+  "Wheel, 15, 1 Piece, Carbon Fiber, Student Made": { price: 0, unit: "unit", category: "Wheel" },
+  "Wheel, 8, 1 Piece, DWT, Alumalite, Aluminum, 7-8": { price: 2535, unit: "unit", category: "Wheel" }
+};
+
+    // ============================================
+    // NEW MATERIALS SECTION FROM CSV
+    // ============================================
+    
+    // Clean implementation - replace all material dropdowns
+    (function initMaterialsFromCSV() {
+      
+      // Wait for React app to fully render
+      function waitAndReplace() {
+        const selects = document.querySelectorAll('select');
+        let foundMaterialsDropdown = false;
+        
+        selects.forEach(select => {
+          // Skip if already processed
+          if(select.dataset.csvLoaded) return;
+          
+          // Check if this is a materials dropdown by looking at existing options
+          const options = select.querySelectorAll('option');
+          let isMaterialsDropdown = false;
+          
+          options.forEach(opt => {
+            const text = opt.textContent || opt.innerText || '';
+            if(text.includes('Material') || 
+               text.includes('Steel') || 
+               text.includes('Tube') || 
+               text.includes('Sheet') ||
+               text.includes('Aluminium') ||
+               text.includes('Carbon')) {
+              isMaterialsDropdown = true;
+            }
+          });
+          
+          if(isMaterialsDropdown) {
+            foundMaterialsDropdown = true;
+            console.log('Found materials dropdown, replacing...');
+            
+            // Mark as processed
+            select.dataset.csvLoaded = 'true';
+            
+            // Build new options from completeMaterialDatabase
+            const db = window.completeMaterialDatabase;
+            if(!db) {
+              console.error('Database not found!');
+              return;
+            }
+            
+            // Clear existing
+            select.innerHTML = '';
+            
+            // Add header option
+            const header = document.createElement('option');
+            header.value = '';
+            header.textContent = '🔽 Select from 898 Materials';
+            select.appendChild(header);
+            
+            // Group by category
+            const byCategory = {};
+            Object.entries(db).forEach(([name, data]) => {
+              const cat = data.category || 'Other';
+              if(!byCategory[cat]) byCategory[cat] = [];
+              byCategory[cat].push({name, ...data});
+            });
+            
+            // Add sorted categories
+            Object.keys(byCategory).sort().forEach(cat => {
+              const group = document.createElement('optgroup');
+              group.label = '📁 ' + cat + ' (' + byCategory[cat].length + ')';
+              
+              // Sort items in category
+              byCategory[cat].sort((a,b) => a.name.localeCompare(b.name));
+              
+              byCategory[cat].forEach(item => {
+                const opt = document.createElement('option');
+                opt.value = item.name;
+                const price = typeof item.price === 'number' 
+                  ? '₹' + item.price.toLocaleString() 
+                  : (item.formula ? '[Formula]' : 'N/A');
+                opt.textContent = '  ' + item.name + ' - ' + price;
+                group.appendChild(opt);
+              });
+              
+              select.appendChild(group);
+            });
+            
+            console.log('✅ Loaded 898 materials into dropdown');
+          }
+        });
+        
+        // Continue trying if not found
+        if(!foundMaterialsDropdown) {
+          setTimeout(waitAndReplace, 1000);
+        }
+      }
+      
+      // Start after page loads
+      if(document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          setTimeout(waitAndReplace, 3000); // Wait 3s for React
+        });
+      } else {
+        setTimeout(waitAndReplace, 3000);
+      }
+      
+      // Also try on user interaction
+      document.addEventListener('click', () => {
+        setTimeout(waitAndReplace, 500);
+      }, {once: true});
+      
+    })();
+
+    // STATUS BUTTON
+    (function() {
+      function addStatusButton() {
+        if(document.getElementById('csvStatusBtn')) return;
+        
+        const btn = document.createElement('button');
+        btn.id = 'csvStatusBtn';
+        btn.textContent = '📦 Load CSV Materials';
+        btn.style.cssText = 'position:fixed;bottom:20px;left:20px;z-index:9999;background:#6c757d;color:white;border:none;padding:12px 20px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:bold;box-shadow:0 4px 12px rgba(0,0,0,0.3)';
+        
+        btn.onclick = function() {
+          // Trigger the CSV loader manually
+          const event = new CustomEvent('forceLoadCSV');
+          document.dispatchEvent(event);
+          
+          btn.textContent = '✅ Materials Loaded!';
+          btn.style.background = '#28a745';
+        };
+        
+        document.body.appendChild(btn);
+        console.log('📦 Status button added');
+      }
+      
+      setTimeout(addStatusButton, 2000);
+    })();
+
+  </body>
+</html>

@@ -1,0 +1,901 @@
+"Materials Table.  Posted Version 1.0, 19-May-2025",Unnamed: 1,Unnamed: 2,Unnamed: 3,Unnamed: 4,Unnamed: 5,Unnamed: 6,Unnamed: 7,Unnamed: 8,Added cost calculation,Unnamed: 10,Unnamed: 11,Unnamed: 12,Unnamed: 13
+Material ID,Material,Supplier,Category,Table Price,Unit 1,Unit 2,C1,C2,Size1,Size2,Calc Value,Modified,Comments
+,"Bearing Ball, Steel",Any,Bearings,[C1]*[Size1]+[C2],mm,,0.195,3.25,0,,3.25,2017-05-10 00:00:00,"[Size1]=Ball diameter (mm).  Any steel materiAluminum  This material is for a single steel sphere ball, not a complete bearing."
+,"Bearing, Ball, Angular Contact",Any,Bearings,[C1]*(([Size1]^2*[Size2]))^([C2]),mm,mm,6.5,32.5,0,0,0,2017-05-10 00:00:00,"[Size1]=Outer diameter (mm), [Size2]=Thickness (mm).  Not to be used for wheel bearings."
+,"Bearing, Ball, Deep Groove",Any,Bearings,[C1]*(([Size1]^2*[Size2]))^([C2]),mm,mm,6.5,32.5,0,0,0,2017-05-10 00:00:00,"[Size1]=Outer diameter (mm), [Size2]=Thickness (mm).  Not to be used for wheel bearings."
+,"Bearing, Ball, Radial",Any,Bearings,[C1]*(([Size1]^2*[Size2]))^([C2]),mm,mm,6.5,32.5,0,0,0,2017-05-10 00:00:00,"[Size1]=Outer diameter (mm), [Size2]=Thickness (mm).  Not to be used for wheel bearings."
+,"Bearing, Cylindrical Roller",Any,Bearings,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.2925,234,0,0,234,2017-05-10 00:00:00,[Size1]=Outer Diameter (mm).  [Size2]=Length of bearing (mm).  Not for wheel bearing use.
+,"Bearing, Double Row, Ball, Angular Contact",Any,Bearings,[C1]*(([Size1]^2*[Size2]))^([C2]),mm,mm,6.5,32.5,0,0,0,2017-05-10 00:00:00,"[Size1]=Outer diameter (mm), [Size2]=Thickness (mm).  Not to be used for wheel bearings."
+,"Bearing, Double Row, Ball, Deep Groove",Any,Bearings,[C1]*(([Size1]^2*[Size2]))^([C2]),mm,mm,6.5,32.5,0,0,0,2017-05-10 00:00:00,"[Size1]=Outer diameter (mm), [Size2]=Thickness (mm).  Not to be used for wheel bearings."
+,"Bearing, Double Row, Ball, Radial",Any,Bearings,[C1]*(([Size1]^2*[Size2]))^([C2]),mm,mm,6.5,32.5,0,0,0,2017-05-10 00:00:00,"[Size1]=Outer diameter (mm), [Size2]=Thickness (mm).  Not to be used for wheel bearings."
+,"Bearing, Linear, Closed",Any,Bearings,[C1]*[Size1]^2*[Size2]+[C2],mm,mm,0.0065,479.7,0,0,479.7,2017-05-10 00:00:00,"[Size1]=Outer diameter (mm), [Size2]=Length (mm).  Use with end-supported shafts."
+,"Bearing, Linear, Open",Any,Bearings,[C1]*[Size1]^2*[Size2]+[C2],mm,mm,0.0078,851.5,0,0,851.5,2017-05-10 00:00:00,"[Size1]=Outer diameter (mm), [Size2]=Length (mm).  Use with continuously supported shafts or where access to shaft ends is not possible."
+,"Bearing, Needle",Any,Bearings,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.2925,234,0,0,234,2017-05-10 00:00:00,[Size1]=Outer Diameter (mm).  [Size2]=Length of bearing (mm).  Any style of needle bearing.  Not for wheel bearing use.
+,"Bearing, Spherical",Any,Bearings,[C1]*[Size1]^2+[C2],mm,,1.95,325,0,,325,2017-05-10 00:00:00,[Size1]=bore size (diameter of hole in spherical bearing).
+,"Bearing, Tapered Needle",Any,Bearings,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.2925,679.25,0,0,679.25,2017-05-10 00:00:00,"[Size1]=Outer diameter (mm), [Size2]=Thickness (mm).  Cost includes outer ring, inner ring and roller assembly.   Not to be used for wheel bearings."
+,"Bearing, Tapered Roller",Any,Bearings,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.2925,679.25,0,0,679.25,2017-05-10 00:00:00,"[Size1]=Outer diameter (mm), [Size2]=Thickness (mm).  Cost includes outer ring, inner ring and roller assembly.   Not to be used for wheel bearings."
+,"Bearing, Thrust Needle Roller, Cage Assembly",Any,Bearings,[C1]*[Size1]*[Size2]+[C2],mm,mm,1.3,9.75,0,0,9.75,2017-05-10 00:00:00,"[Size1]=Outer diameter (mm), [Size2]=Thickness (mm).  Cost includes cage assembly but no washers.   Not to be used for wheel bearings."
+,"Bearing, Thrust Needle Roller, Washers",Any,Bearings,[C1]*[Size1]^2*[Size2]+[C2],mm,mm,0.0195,8.45,0,0,8.45,2017-05-10 00:00:00,"[Size1]=Outer diameter (mm), [Size2]=Thickness (mm).  For thrust bearings.   Not to be used for wheel bearings."
+,"Bushing, Student Built",Student Built,Bearings,0,unit,,,,,,,2017-05-10 00:00:00,"Solid material (metal, plastic, etc.).  No moving elements (ball, needle, etc.)"
+,"Rod End, Aluminum",Any,Bearings,[C1]*[Size1]^2+[C2],mm,,3.25,247,0,,247,2017-05-10 00:00:00,[Size1]=bore size (diameter of hole in spherical bearing).  Includes male/female and left/right threads.
+,"Rod End, Industrial",Any,Bearings,[C1]*[Size1]^2+[C2],mm,,1.3,79.04,0,,79.04,2017-05-10 00:00:00,[Size1]=bore size (diameter of hole in spherical bearing).  Includes male/female and left/right threads.
+,"Rod End, Precison (Aircraft)",Any,Bearings,[C1]*[Size1]^2+[C2],mm,,3.25,325,0,,325,2017-05-10 00:00:00,[Size1]=bore size (diameter of hole in spherical bearing).  Includes male/female and left/right threads.
+,"Wheel Bearing, Ball, Angular Contact",Any,Bearings,[C1]*(([Size1]^2*[Size2]))^([C2]),mm,mm,26,32.5,0,0,0,2017-05-10 00:00:00,"[Size1]=Outer diameter (mm), [Size2]=Thickness (mm).  Higher load capacity bearings intended for wheel/hub applications."
+,"Wheel Bearing, Ball, Deep Groove",Any,Bearings,[C1]*(([Size1]^2*[Size2]))^([C2]),mm,mm,26,32.5,0,0,,2017-05-10 00:00:00,"[Size1]=Outer diameter (mm), [Size2]=Thickness (mm).  Higher load capacity bearings intended for wheel/hub applications."
+,"Wheel Bearing, Ball, Radial",Any,Bearings,[C1]*(([Size1]^2*[Size2]))^([C2]),mm,mm,26,32.5,95,20,11046.17581,2017-05-10 00:00:00,"[Size1]=Outer diameter (mm), [Size2]=Thickness (mm).  Higher load capacity bearings intended for wheel/hub applications."
+,"Wheel Bearing, Double Row, Ball, Angular Contact",Any,Bearings,[C1]*(([Size1]^2*[Size2]))^([C2]),mm,mm,26,32.5,0,0,0,2017-05-10 00:00:00,"[Size1]=Outer diameter (mm), [Size2]=Thickness (mm).  Higher load capacity bearings intended for wheel/hub applications."
+,"Wheel Bearing, Double Row, Ball, Deep Groove",Any,Bearings,[C1]*(([Size1]^2*[Size2]))^([C2]),mm,mm,26,32.5,0,0,0,2017-05-10 00:00:00,"[Size1]=Outer diameter (mm), [Size2]=Thickness (mm).  Higher load capacity bearings intended for wheel/hub applications."
+,"Wheel Bearing, Double Row, Ball, Radial",Any,Bearings,[C1]*(([Size1]^2*[Size2]))^([C2]),mm,mm,26,32.5,0,0,0,2017-05-10 00:00:00,"[Size1]=Outer diameter (mm), [Size2]=Thickness (mm).  Higher load capacity bearings intended for wheel/hub applications."
+,"Wheel Bearing, Tapered Needle",Any,Bearings,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.585,1358.5,0,0,1358.5,2017-05-10 00:00:00,"[Size1]=Outer diameter (mm), [Size2]=Thickness (mm).  Higher load capacity bearings intended for wheel/hub applications."
+,"Wheel Bearing, Tapered Roller",Any,Bearings,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.585,1358.5,0,0,1358.5,2017-05-10 00:00:00,"[Size1]=Outer diameter (mm), [Size2]=Thickness (mm).  Higher load capacity bearings intended for wheel/hub applications."
+,"90-Degree Coupler, Tilton 72-560",Tilton,Brake System,2925,unit,,,,,,,2017-05-10 00:00:00,
+,"90-Degree Coupler, Tilton 72-561",Tilton,Brake System,3087.5,unit,,,,,,,2017-05-10 00:00:00,
+,"90-Degree Coupler, Tilton 72-562",Tilton,Brake System,3250,unit,,,,,,,2017-05-10 00:00:00,
+,"ABS Kit, Bosch, M4 Kit 1",Bosch,Brake System,229710,unit,,,,,,,2017-05-10 00:00:00,
+,"ABS Kit, Bosch, M4 Kit 2",Bosch,Brake System,270270,unit,,,,,,,2017-05-10 00:00:00,
+,"Balance Bar Cable Adjuster, Racetech, Any BBAxx series",Racetech,Brake System,2925,unit,,,,,,,2017-05-10 00:00:00,
+,"Balance Bar Cable Adjuster, Right Angle Drive, AP CP5500-10",AP,Brake System,6695,unit,,,,,,,2017-05-10 00:00:00,
+,"Balance Bar Cable Adjuster, Sandtler, 128154",Sandtler,Brake System,4745,unit,,,,,,,2017-05-10 00:00:00,
+,"Balance Bar, AP, CP5500-9",AP,Brake System,17550,unit,,,,,,,2017-05-10 00:00:00,
+,"Balance Bar, AP, CP5520-4",AP,Brake System,19500,unit,,,,,,,2017-05-10 00:00:00,
+,"Balance Bar, Brake, Student Built",Student Built,Brake System,0,unit,,,,,,,2017-05-10 00:00:00,
+,"Balance Bar, Sandtler, 128153",Sandtler,Brake System,4225,unit,,,,,,,2017-05-10 00:00:00,
+,"Balance Bar, Sandtler, 128154",Sandtler,Brake System,4745,unit,,,,,,,2017-05-10 00:00:00,
+,"Balance Bar, Tilton, 72-250 ",Tilton,Brake System,1950,unit,,,,,,,2017-05-10 00:00:00,
+,"Balance Bar, Tilton, 72-260",Tilton,Brake System,1950,unit,,,,,,,2017-05-10 00:00:00,
+,"Balance Bar, Tilton, 72-280",Tilton,Brake System,20312.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Balance Bar, Tilton, 72-281",Tilton,Brake System,21125,unit,,,,,,,2017-05-10 00:00:00,
+,"Balance Bar, Tilton, 72-300",Any,Brake System,2080,unit,,,,,,,2017-05-10 00:00:00,
+,"Balance Bar, Timms Autoteile, 013 901",Timms Autoteile,Brake System,1846,unit,,,,,,,2017-05-10 00:00:00,
+,"Balance Bar, Wilwood, 340-4745",Wilwood,Brake System,1950,unit,,,,,,,2017-05-10 00:00:00,
+,"Balance Bar, Wilwood, 340-4745",Wilwood,Brake System,1950,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper Piston, Student Built",Student Built,Brake System,325,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper,  Harrison, 121019P",Harrison,Brake System,10530,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, AP, CP2577",AP,Brake System,8125,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, AP, CP3696-6E0",AP,Brake System,5037.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, AP, CP4226",AP,Brake System,7312.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, AP, CP4227",AP,Brake System,13000,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, AP, CP4488",AP,Brake System,31850,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, AP, CP7003",AP,Brake System,6500,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, AP, CP7853",AP,Brake System,22132.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Beringer, 2D1",Beringer,Brake System,5395,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Beringer, 4H02",Beringer,Brake System,7150,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Beringer, 4H12",Beringer,Brake System,7150,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Brembo, 20.5161.46/P32F",Brembo,Brake System,3250,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Brembo, 20.6001/P2-24",Brembo,Brake System,22750,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Brembo, 20.6101/GP4-24",Brembo,Brake System,29250,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Brembo, 20.6950.10",Brembo,Brake System,4550,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Brembo, 20.6950.11/P32G",Brembo,Brake System,4550,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Brembo, 20.6950.21/P32G",Brembo,Brake System,4550,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Brembo, 20.6951.12/P34G",Brembo,Brake System,4550,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Brembo, 20.6951.50/P34C",Brembo,Brake System,4550,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Comet 650, Front",,Brake System,2795,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Harrison, 222004P",Harrison,Brake System,6110,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Harrison, 222005P",Harrison,Brake System,6110,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Honda,  45150-HP1-006",Honda/Nissin,Brake System,3575,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Honda, 45150-HN6-006",Honda/Nissin,Brake System,1950,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, ISR, 22-028",ISR,Brake System,4225,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, ISR, 22-034",ISR,Brake System,15600,unit,,,,,,,2017-05-10 00:00:00,Same cost left and right calipers
+,"Brake Caliper, ISR, 22-036",ISR,Brake System,5037.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, ISR, 22-048",ISR,Brake System,6240,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, ISR, 22-049",ISR,Brake System,6305,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Magura, 908.1",Magura,Brake System,14690,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Motorcycle, OEM (Any)",Any,Brake System,AIR,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, NISSIN, 08-1CP-32-15",Nissin,Brake System,5330,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, NISSIN, 08-2CP-25-08",Nissin,Brake System,6240,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, NISSIN, 08-2CT-25-06",Nissin,Brake System,7085,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, NISSIN, 08-2CT-38-07",Nissin,Brake System,7085,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Polaris, 1910825/1910826",Polaris,Brake System,4290,unit,,,,,,,2017-05-10 00:00:00,Cost applies to either part number (similar part one left hand one right hand)
+,"Brake Caliper, PVM, 2-Piston Monoblock Radial Mount",PVM,Brake System,14625,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, PVM, 6-piston Monoblock Radial Mount",PVM,Brake System,39000,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, PVM, Front 4-Piston Monoblock Radial Mount",PVM,Brake System,25025,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, PVM, Rear 4-Piston Monoblock Radial Mount",PVM,Brake System,14625,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Red Devil,240 Sprint",Red Devil,Brake System,9587.5,unit,,,,,,,2017-05-10 00:00:00,Same price for left and right calipers.
+,"Brake Caliper, Spiegler, S070",Spiegler,Brake System,13455,unit,,,,,,,2017-05-10 00:00:00,Same price for left and right calipers.
+,"Brake Caliper, Spiegler, S108",Spiegler,Brake System,16705,unit,,,,,,,2017-05-10 00:00:00,Same price for left and right calipers.
+,"Brake Caliper, Student Built",Student Built,Brake System,0,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Tokico, 45150-MEL-023",Tokico,Brake System,4875,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Wilwood, Billet Dynalite Single",Wilwood,Brake System,3250,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Wilwood, Billet NDL",Wilwood,Brake System,5070,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Wilwood, Dynalite Single Floater",Wilwood,Brake System,3250,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Wilwood, DynaPro Radial",Wilwood,Brake System,7150,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Wilwood, DynaPro Single",Wilwood,Brake System,3445,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Wilwood, Forged Dynalite",Wilwood,Brake System,4420,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Wilwood, GP200",Wilwood,Brake System,3217.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Wilwood, GP310",Wilwood,Brake System,6825,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Wilwood, GP320",Wilwood,Brake System,6370,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Wilwood, Kart",Wilwood,Brake System,3770,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Wilwood, NDL",Wilwood,Brake System,4550,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Wilwood, PS-1",Wilwood,Brake System,2990,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Caliper, Yamaha (YZF 450), 5TG-2580T-00-00",Yamaha,Brake System,5915,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Hard Line, Any Material (All Cost as Made)",Any,Brake System,0,unit,,,,,,,2017-05-10 00:00:00,
+,Brake Light Pressure Switch Banjo Bolt,Any,Brake System,520,unit,,,,,,,2017-05-10 00:00:00,
+,"Brake Pad, Aluminum or MMC Rotor",Any,Brake System,0.03,mm^3,,,,,,,2017-05-10 00:00:00,Volume of pad and backing plate to be included in calculation
+,"Brake Pad, Carbon Rotor",Any,Brake System,0.08,mm^3,,,,,,,2017-05-10 00:00:00,Please submit Add Item Request
+,"Brake Pad, Iron or Steel Rotor",Any,Brake System,0.01,mm^3,,,,,,,2017-05-10 00:00:00,Volume of pad and backing plate to be included in calculation.
+,Brake Rotor (All Cost as Made),Any,Brake System,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,"Hydraulic Fluid Reservoir, Remote (Plastic)",Any,Brake System,325,unit,,,,,,,2017-05-10 00:00:00,Includes lid
+,"Master Cyilnder, ISR, 21-010-OE",ISR,Brake System,5265,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, AP, CP2623",AP,Brake System,5297.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, AP, CP3756",AP,Brake System,6305,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, AP, CP4400",AP,Brake System,7637.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, AP, CP4623",AP,Brake System,4452.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, AP, CP5854",AP,Brake System,13227.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, AP, CP5855",AP,Brake System,16900,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, AP, CP6465",AP,Brake System,13227.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, AP, CP7855",AP,Brake System,11342.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Beck Arnley, 072-9455",Beck Arnley,Brake System,2925,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Brembo, 10.4776.10",Brembo,Brake System,1690,Unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Brembo, 10.4776.20",Brembo,Brake System,1690,Unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Brembo, 10.4776.65",Brembo,Brake System,3022.5,Unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Brembo, XA3.G1.A2/L2",Brembo,Brake System,20605,unit,,,,,,,2017-05-10 00:00:00,Front Pivot Fixing with Vertical Bearing
+,"Master Cylinder, Brembo, XA6.C2.3",Brembo,Brake System,13325,Unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Bremob, 10.6815.16/97",Brembo,Brake System,12545,unit,,,,,,,2017-05-10 00:00:00,Single Nut Fixing
+,"Master Cylinder, Bremob, 10.9243.54/96",Brembo,Brake System,10887.5,unit,,,,,,,2017-05-10 00:00:00,Two Bolt Fixing
+,"Master Cylinder, Centric Parts, CE130.51017",Centric,Brake System,3315,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Girling",Girling,Brake System,2860,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Honda CBR600F4i, 43510MBW006",Honda,Brake System,8268,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Hyundai Mobis, 41610-2D100",Hyundai Mobis,Brake System,1820,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Magura, 10.5mm",Magura,Brake System,3575,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Magura, 770.1",Magura,Brake System,14462.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Magura, 770.50",Magura,Brake System,14462.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, New Concept Products, G3",New Concept Products,Brake System,2112.5,,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, NISSIN, 08-2RM-14-02",Nissin,Brake System,3575,,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, NISSIN, 08-4RM-15-05",Nissin,Brake System,3705,,,,,,,,2017-05-10 00:00:00,
+,"Master cylinder, Nissin, 153-M00-125B",Nissin,Brake System,3575,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Student Made",Student Built,Brake System,0,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Suzuki OEM 69600-16G00",Suzuki,Brake System,4225,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Tilton, Model 73",Tilton,Brake System,1787.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Tilton, Model 74",Tilton,Brake System,2567.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Tilton, Model 75",Tilton,Brake System,3217.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Tilton, Model 76",Tilton,Brake System,4062.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Tilton, Model 77",Tilton,Brake System,12837.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Tripmatic & Speed 18771",Tripmatic,Brake System,1982.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Wilwood, 260-10371",Wilwood,Brake System,2795,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Wilwood, 260-1304",Wilwood,Brake System,1755,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Wilwood, 260-2636",Wilwood,Brake System,1755,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Wilwood, 260-5520",Wilwood,Brake System,2561,unit,,,,,,,2017-05-10 00:00:00,
+,"Master Cylinder, Wilwood, 260-6087",Wilwood,Brake System,1690,unit,,,,,,,2017-05-10 00:00:00,
+,"Proportioning Valve, Hydraulic",Any,Brake System,2275,unit,,,,,,,2017-05-10 00:00:00,
+,"Proportioning Valve, Tilton, 90-1000",Tilton,Brake System,3217.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Proportioning Valve, Tilton, 90-1003",Tilton,Brake System,3217.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Proportioning Valve, Tilton, 90-2000",Tilton,Brake System,3217.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Proportioning Valve, Tilton, 90-2003",Tilton,Brake System,3217.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Remote Brake Bias Adjuster, AP Racing, CP2905-8",AP,Brake System,45.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Remote Brake Bias Adjuster, Tilton 72-408 ",Tilton,Brake System,6337.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Remote Brake Bias Adjuster, Tilton 72-501",Tilton,Brake System,2161.25,unit,,,,,,,2017-05-10 00:00:00,
+,"Remote Brake Bias Adjuster, Wilwood, 340-4990",Wilwood,Brake System,1690,unit,,,,,,,2017-05-10 00:00:00,
+,"Remote Brake Bias Adjuster, Wilwood, 340-4990",Wilwood,Brake System,1690,unit,,,,,,,2017-05-10 00:00:00,
+,"Slave Cylinder, CNC, SERIES 305",CNC,Brake System,2275,unit,,,,,,,2017-05-10 00:00:00,
+,Chassis (All Cost as Made),Any,Chassis,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,Hubs (All Cost as Made),Any,Chassis,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,Monocoque (All Cost as Made),Any,Chassis,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,Rockers (All Cost as Made),Any,Chassis,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,Upright (All Cost as Made),Any,Chassis,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,Adhesive Film,Any,Composite,0,m^2,,,,,,,2017-05-10 00:00:00,Included in composite cost
+,"Aramid (Kevlar) Fiber, 1 Ply",Any,Composite,9750,kg,,,,,,,2017-05-10 00:00:00,Dry or Pre-Preg.  Both include resin.  Hand trimming allowed.
+,"Basalt Fiber, 1 Ply",Any,Composite,7150,kg,,,,,,,2017-05-10 00:00:00,Dry or Pre-Preg.  Both include resin.  Hand trimming allowed.
+,Carbon Fiber Reinf Carbon,Any,Composite,0.6,mm^3,,,,,,,2017-05-10 00:00:00,
+,"Carbon Fiber Reinf Silicon Carbide, Brake Pads",Any,Composite,0.08,mm^3,,,,,,,2017-05-10 00:00:00,
+,"Carbon Fiber Reinf Silicon Carbide, Brake Rotors",Any,Composite,0.6,mm^3,,,,,,,2017-05-10 00:00:00,
+,"Carbon Fiber, 1 Ply",Any,Composite,13000,kg,,,,,,,2017-05-10 00:00:00,Dry or Pre-Preg.  Both include resin.  Hand trimming allowed.
+,"Ceramic Matrix Composite, 1 Ply",Any,Composite,32500,kg,,,,,,,2017-05-10 00:00:00,Includes resin(matrix).  Hand trimming allowed.
+,"Flax Fiber, 1 Ply",Any,Composite,7150,kg,,,,,,,2017-05-10 00:00:00,Dry or Pre-Preg.  Both include resin.  Hand trimming allowed.
+,"Glass Fiber, 1 Ply",Any,Composite,6500,kg,,,,,,,2017-05-10 00:00:00,e.g. S-Glass.  Dry or Pre-preg.  Both include resin.  Hand trimming allowed.
+,"Honeycomb, Aluminum",Any,Composite,3250,kg,,,,,,,2017-05-10 00:00:00,Any cell size and density.  Hand trimming allowed.
+,"Honeycomb, Cardboard",Any,Composite,650,kg,,,,,,,2017-05-10 00:00:00,Any cell size and density.  Hand trimming allowed.
+,"Honeycomb, Nomex",Any,Composite,8125,kg,,,,,,,2017-05-10 00:00:00,Any cell size and density.  Hand trimming allowed.
+,"Honeycomb, Plastic",Any,Composite,1300,kg,,,,,,,2017-05-10 00:00:00,
+,"Polypropylene, High Modulus",Any,Composite,2275,kg,,,,,,,2017-05-10 00:00:00,Includes 'Tegris' and 'Innegra' fibers
+,Structural Foam,Any,Composite,8125,kg,,,,,,,2017-05-10 00:00:00,Any cell size and density.  Hand trimming allowed.
+,"Carbon Fiber Tubes, Purchased (All Cost as Made)",Any,Composites,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,"Composite Panel Insert, Potted-in (NAS) Style, Torlon",Torlon,Composites,130,unit,,,,,,,2017-05-10 00:00:00,Any Size
+,"Composite Panel Insert, Press Fit, Torlon",Torlon,Composites,130,unit,,,,,,,2017-05-10 00:00:00,Any Size
+,"Composite Tubes, Purchased (All Cost as Made)",Any,Composites,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,Aim Evo 3 Pista Car,AIM,Control Module,61100,,,,,,,,2017-05-10 00:00:00,
+,Aim Evo 3 Pro Car,AIM,Control Module,78000,,,,,,,,2017-05-10 00:00:00,
+,Aim Evo 4 DataLogger Car,AIM,Control Module,37375,,,,,,,,2017-05-10 00:00:00,
+,Aim MXL Pista Race Graphic Car,AIM,Control Module,61100,,,,,,,,2017-05-10 00:00:00,
+,Aim MXL Pista Road Graphic Car,AIM,Control Module,61100,,,,,,,,2017-05-10 00:00:00,
+,Aim MXL Pro05 Car,AIM,Control Module,78000,,,,,,,,2017-05-10 00:00:00,
+,Aim MXL Strada Race Graphic Car,AIM,Control Module,34125,,,,,,,,2017-05-10 00:00:00,
+,Aim MXL Strada Road Graphic Car,AIM,Control Module,34125,,,,,,,,2017-05-10 00:00:00,
+,Aim SmartyCam GPS Standard,AIM,Control Module,32500,,,,,,,,2017-05-10 00:00:00,
+,Aim SmartyCamGP Complete Car,AIM,Control Module,32500,,,,,,,,2017-05-10 00:00:00,
+,Aim Solo DL GPS LapTimer For Car,AIM,Control Module,19500,,,,,,,,2017-05-10 00:00:00,
+,Aim Solo GPS Lap Timer Kit 1 Car,AIM,Control Module,11700,,,,,,,,2017-05-10 00:00:00,
+,Aim TG Lap Timer External Power,AIM,Control Module,10725,,,,,,,,2017-05-10 00:00:00,
+,Aim TG Lap Timer Internal Power,AIM,Control Module,10725,,,,,,,,2017-05-10 00:00:00,
+,"Chassis Cntrl Module, +Active Differential",Student Built,Control Module,8125,unit,,,,,,,2017-05-10 00:00:00,"Includes circuit board and circuitry for processing necessary inputs (wheel speed, axle speed, etc) and differential control outputs.  Required Chassis Control Module, Baseline Enclosure.    Sensors and wiring harness not included."
+,"Chassis Control Module, +Active Suspension",Student Built,Control Module,8125,unit,,,,,,,2017-05-10 00:00:00,"Includes circuit board and circuitry necessary inputs (damper position, velocity, etc) and damper control outputs.  Required Chassis Control Module, Baseline Enclosure.  Sensors and wiring harness not included."
+,"Chassis Control Module, +Automatic Shifter",Student Built,Control Module,325,unit,,,,,,,2017-05-10 00:00:00,"Includes circuit board and circuitry for processing sensor input from engine, output to shifter.  Required Chassis Control Module, Baseline Enclosure.  Sensors and wiring harness not included."
+,"Chassis Control Module, +Battery Charger",Student Built,Control Module,650,unit,,,,,,,2017-05-10 00:00:00,"Includes circuit board and circuitry for processing battery health input from pack and charging outputs.  Required Chassis Control Module, Baseline Enclosure.  Sensors and wiring harness not included."
+,"Chassis Control Module, +Dashboard",Student Built,Control Module,1300,unit,,,,,,,2017-05-10 00:00:00,"Includes circuit board and circuitry for processing sensor inputs and dashbboard outputs.  Required Chassis Control Module, Baseline.  Sensors and wiring harness not included."
+,"Chassis Control Module, +Dashboard",Student Built,Control Module,325,unit,,,,,,,2017-05-10 00:00:00,"Includes circuit board and circuitry for processing sensor input and output to one (1) engine actuator device.  Include once per actuator in the chassis control module.  Required Chassis Control Module, Baseline.  Sensors and wiring harness not included."
+,"Chassis Control Module, +Electronic Brake Bias",Student Built,Control Module,1625,unit,,,,,,,2017-05-10 00:00:00,
+,"Chassis Control Module, +Traction Control",Student Built,Control Module,9750,unit,,,,,,,2017-05-10 00:00:00,"Includes circuit board and circuitry for processing sensor input from engine, output to shifter.  Required Chassis Control Module, Baseline Enclosure.  Sensors and wiring harness not included."
+,"Chassis Control Module, Baseline Enclosure",Student Built,Control Module,1625,unit,,,,,,,2017-05-10 00:00:00,Includes enclosure.  This item must be included for all chassis control modules.  Add functionality by adding additional line items.
+,"Controller, Active Differential",Any,Control Module,13000,unit,,,,,,,2017-05-10 00:00:00,
+,"Controller, Active Suspension",Any,Control Module,13000,unit,,,,,,,2017-05-10 00:00:00,
+,"Datalogger, 2D, Formula Student Data Logger",2D,Control Module,66300,unit,,,,,,,2017-05-10 00:00:00,2D Debus & Diebold Meßsysteme GmbH 
+,"Datalogger, Aim EVO4",AIM,Control Module,45500,unt,,,,,,,2017-05-10 00:00:00,No screen data logger
+,"Datalogger, Aim MXL Pista",AIM,Control Module,65000,unt,,,,,,,2017-05-10 00:00:00,Dash display data logger
+,"Datalogger, Aim MXL Pista",AIM,Control Module,65000,unt,,,,,,,2017-05-10 00:00:00,Dash display data logger
+,"Datalogger, Motec, ADL",MoTeC,Control Module,240500,unit,,,,,,,2017-05-10 00:00:00,
+,"Datalogger, Motec, ADL2",MoTeC,Control Module,253500,unit,,,,,,,2017-05-10 00:00:00,
+,"Datalogger, Motec, CDL3",MoTeC,Control Module,78000,unit,,,,,,,2017-05-10 00:00:00,Dash display
+,"Datalogger, Motec, CDL3",MoTeC,Control Module,78000,unit,,,,,,,2017-05-10 00:00:00,Dash display
+,"Dashboard, Translogic Systems, Micro Dash",Tanslogic Systems,Control Module,20410,unit,,,,,,,2017-05-10 00:00:00,Dash display
+,"ECU, AEM, Coil driver 30-2840",AEM,Control Module,6093.75,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, AEM Plug & Play, AVM-30-1052U",AEM,Control Module,47125,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, AEM Plug & Play, Infinity-8, 30-7101 ",AEM,Control Module,84857.5,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, AEM Plug & Play, Infinity-10, 30-7100 ",AEM,Control Module,97500,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, AEM Plug & Play, Infinity-12, 30-7102 ",AEM,Control Module,115553.75,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, AEM Wire & Play",AEM,Control Module,48875.13,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Aeromotive, Fuel Pump Controller, 16306",Aeromotive,Control Module,11375,unit,,,,,,,2017-05-10 00:00:00,Only controls fuel pump pressure
+,"ECU, Autronic, SM4",Autronic,Control Module,74750,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Bosch Motorsport, HPI Box 1.1",Bosch,Control Module,78000,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Bosch Motorsport, MS3 Sport",Bosch,Control Module,61880,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Bosch Motorsport, MS4.0 Sport",Bosch,Control Module,71500,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Bosch Motorsport, MS4.4 Sport, F01TA20068",Bosch,Control Module,91000,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, DTA, S100 Pro",DTA,Control Module,61750,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, DTA, S40 Pro",DTA,Control Module,32175,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, DTA, S60 Pro",DTA,Control Module,48750,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, DTA, S80 Pro",DTA,Control Module,55250,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Dynojet, Autotune (single channel), AT-200",Dynojet,Control Module,9100,unit,,,,,,,2017-05-10 00:00:00,Requires Dynojet Powercommander
+,"ECU, Dynojet, Autotune (single channel), AT-200",Dynojet,Control Module,9100,unit,,,,,,,2017-05-10 00:00:00,Requires Dynojet Powercommander
+,"ECU, Dynojet, LCD unit, LCD-100 &200",Dynojet,Control Module,9750,unit,,,,,,,2017-05-10 00:00:00,"Dash display, Requires Dynojet Powercommander"
+,"ECU, Dynojet, LCD unit, LCD-100 &200",Dynojet,Control Module,9750,unit,,,,,,,2017-05-10 00:00:00,"Dash display, Requires Dynojet Powercommander"
+,"ECU, Dynojet, Power Commander V USB",Dynojet,Control Module,13000,unit,,,,,,,2017-05-10 00:00:00,Requires OEM ECU to also be included in cost
+,"ECU, Dynojet, Power Commander V USB",Dynojet,Control Module,13000,unit,,,,,,,2017-05-10 00:00:00,Requires OEM ECU to also be included in cost
+,"ECU, Dynojet, Power Commander V-PTi USB",Dynojet,Control Module,14625,unit,,,,,,,2017-05-10 00:00:00,Requires OEM ECU to also be included in cost.  Pti version is for turbo applications
+,"ECU, Dynojet, Power Commander V-PTi USB",Dynojet,Control Module,14625,unit,,,,,,,2017-05-10 00:00:00,Requires OEM ECU to also be included in cost.  Pti version is for turbo applications
+,"ECU, Dynojet, Power Commender III USB",Dynojet,Control Module,11375,unit,,,,,,,2017-05-10 00:00:00,Requires OEM ECU to also be included in cost
+,"ECU, Electromotive, TEC-GT",Electromotive,Control Module,65000,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, EngineLab, EL1140L",EngineLab,Control Module,81250,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Haltech, E11v2",Haltech,Control Module,62790,unit,,,,,,,2017-05-10 00:00:00,"6,8 c seq"
+,"ECU, Haltech, E6x",Haltech,Control Module,38350,unit,,,,,,,2017-05-10 00:00:00,"4,6,8 c"
+,"ECU, Haltech, E8",Haltech,Control Module,49530,unit,,,,,,,2017-05-10 00:00:00,4 c seq
+,"ECU, Haltech, Platinum Sport 2000 Long Flying Lead Kit",Haltech,Control Module,55250,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Haltech, PS1000",Haltech,Control Module,34840,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Life Racing, F88R",Life Racing,Control Module,56550,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Link, G4 Storm",Link,Control Module,42087.5,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Magneti Marelli, SRA-E",Magneti Marelli,Control Module,56550,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Magneti Marelli, SRA-EDL 4",Magneti Marelli,Control Module,82875,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Magneti Marelli, SRA-EDL 8",Magneti Marelli,Control Module,82875,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Magneti Marelli, SRT-E",Magneti Marelli,Control Module,126425,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Magneti Marelli, SRT-EDL 16",Magneti Marelli,Control Module,152425,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Magneti Marelli, SRT-EDL 32",Magneti Marelli,Control Module,178425,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, McLaren MESL TAG-400",McLaren Electronic Systems,Control Module,162500,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Megasquirt",Megasquirt,Control Module,26000,unit,,,,,,,2017-05-10 00:00:00,Assembled with case
+,"ECU, Microsquirt",Megasquirt,Control Module,26000,unit,,,,,,,2017-05-10 00:00:00,Assembled with case
+,"ECU, MoTeC, IEX - Ignition Expander",MoTeC,Control Module,9750,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, MoTeC, M130",MoTeC,Control Module,71500,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, MoTeC, M150",MoTeC,Control Module,123500,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, MoTeC, M170",MoTeC,Control Module,130000,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, MoTeC, M190",MoTeC,Control Module,185575,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, MoTeC, M4",MoTeC,Control Module,68250,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, MoTeC, M400",MoTeC,Control Module,91000,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, MoTeC, M48",MoTeC,Control Module,80340,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, MoTeC, M600",MoTeC,Control Module,102700,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, MoTeC, M800",MoTeC,Control Module,107250,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, MoTeC, M84",MoTeC,Control Module,61750,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, MoTeC, SDL3, Backlighting",MoTeC,Control Module,91000,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, MoTeC, SDL3, No Backlighting",MoTeC,Control Module,70850,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, MoTeC, TCMUX - Traction Control Multiplexer",MoTeC,Control Module,9750,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Nira, i3+",Nira,Control Module,51090,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, OEM Spark & Fuel",Any OEM,Control Module,32500,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, OEM Spark Only",Any OEM,Control Module,16250,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, OEM Spark, Fuel & Traction Control",Any OEM,Control Module,48750,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Ole Buhl Racing, EFI Euro4",Ole Buhl Racing,Control Module,108485,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Pectel, SQ-6 ECU",,Control Module,129350,,,,,,,,2017-05-10 00:00:00,
+,"ECU, Performance Electronics, PE-ECU-1",Performance Electronics,Control Module,32500,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Performance Electronics, PE-ECU-3",Performance Electronics,Control Module,34775,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Simple Digital Systems, EM-4 D ",Simple Digital Systems,Control Module,31622.5,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Simple Digital Systems, EM-4 E/MSD ",Simple Digital Systems,Control Module,37862.5,unit,,,,,,,2017-05-10 00:00:00,"e.g. 1010, 1025 etc."
+,"ECU, Simple Digital Systems, EM-4 F ",Simple Digital Systems,Control Module,37212.5,unit,,,,,,,2017-05-10 00:00:00,"e.g. 4130, Chrome Moly, etc."
+,"ECU, Sodemo Moteurs, EV11/4",Sodemo Moteurs,Control Module,45045,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, SPDi, programmable spark module 910001",SPDi,Control Module,15600,unit,,,,,,,2017-05-10 00:00:00,Controls ignition only
+,"ECU, SPDi, programmable spark module 910001",SPDi,Control Module,15600,unit,,,,,,,2017-05-10 00:00:00,Controls ignition only
+,"ECU, Student Built, +Active Diff",Student Built,Control Module,8125,unit,,,,,,,2017-05-10 00:00:00,In addition to cost of base student built ECU
+,"ECU, Student Built, +Traction Control",Student Built,Control Module,9750,unit,,,,,,,2017-05-10 00:00:00,In addition to cost of base student built ECU
+,"ECU, Student Built, Spark & Fuel",Student Built,Control Module,24375,unit,,,,,,,2017-05-10 00:00:00,"Housing, connector included"
+,"ECU, Student Built, Spark Only",Student Built,Control Module,12350,unit,,,,,,,2017-05-10 00:00:00,"Housing, connector included"
+,"ECU, Trecs, Model II",Trecs,Control Module,52195,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, Trikejt Plus",Trijekt,Control Module,49400,unit,,,,,,,2017-05-10 00:00:00,
+,"ECU, VEMS, v3",Versatile Engine Management System,Control Module,26000,unit,,,,,,,2017-05-10 00:00:00,
+,M3 XG LOG Datalogger  ,AIM,Control Module,38350,,,,,,,,2017-05-10 00:00:00,
+,Mychron 3 Basic,AIM,Control Module,9100,,,,,,,,2017-05-10 00:00:00,
+,Mychron 4 Basic,AIM,Control Module,9100,,,,,,,,2017-05-10 00:00:00,
+,"Cable, Pull",Any,Controls,975,m,,,,,,,2017-05-10 00:00:00,Includes cable and housing and integral moutnings at both ends.  Mounting hardware not included
+,"Cable, Push/Pull",Any,Controls,1950,m,,,,,,,2017-05-10 00:00:00,Includes cable and housing and integral moutnings at both ends.  Mounting hardware not included
+,"Damper, AVO, 1.9"" Alum Dbl Adj (DAAWA100/75)",AVO,Damper,9425,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Cane Creek Double Barrel",Cane Creek,Damper,19500,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Cane Creek Double Barrel Air (DBAir)",Cane Creek,Damper,20150,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Cane Creek Double Barrel Air (DBAir)",Cane Creek,Damper,20150,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, DNM Burner RCP",DNM,Damper,190,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Elka Stage-5 MTB",Elka,Damper,14625,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Fox DHX 5.0",Fox,Damper,13650,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Fox Van R",Fox,Damper,8125,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Fox Vanilla R",Fox,Damper,12350,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Hotbits 4WD DT1",Hotbits,Damper,16900,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Kind Shock, KS-504",Kind Shock,Damper,5070,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Koni 3012",Koni,Damper,16250,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Koni, Trax Spax DA, Double Adjustable",Koni,Damper,11765,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Koni, Trax Spax DA, Single Adjustable",Koni,Damper,9425,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, KW GFw 3-Way Adjustable",KW,Damper,24375,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Manitou, Swinger 4 Way",Manitou,Damper,6500,unit,,,,,,,2017-05-10 00:00:00,Damper cost without spring
+,"Damper, Marzocchi, Roco TST R",Marzocchi,Damper,8775,unit,,,,,,,2017-05-10 00:00:00,Damper cost without spring
+,"Damper, Ohlins SD115",Ohlins,Damper,12285,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Ohlins ST44",Ohlins,Damper,21125,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Ohlins TTX 25",Ohlins,Damper,19825,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Ohlins TTX 36",Ohlins,Damper,32500,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Penske 7800-Non-Adjustable Quarter Midget",Penske,Damper,7637.5,unit,,,,,,,2017-05-10 00:00:00,Non-adjustable Quarter Midget
+,"Damper, Penske 7800-Piggyback Dbl. Adj. (Kaz Tech.)",Penske/Kaz Tech,Damper,21937.5,unit,,,,,,,2017-05-10 00:00:00,"Piggyback, Double Adjustable"
+,"Damper, Penske 7800-Piggyback Non-Adj.(Kaz Tech.)",Penske/Kaz Tech,Damper,16575,unit,,,,,,,2017-05-10 00:00:00,"Piggyback, Non-adjustable"
+,"Damper, Penske 8100",Penske,Damper,26000,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Penske 8300",Penske,Damper,26812.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Penske 8760",Penske,Damper,42900,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Risse Jupiter 5",Risse Racing,Damper,11375,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Risse Jupiter 5R",Risse Racing,Damper,13000,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Risse Jupiter 7R",Risse Racing,Damper,19500,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, SRAM, Rock Shox, Vivid R2C",SRAM,Damper,13975,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, SRAM, Rock Shox, Vivid R2C",SRAM,Damper,13975,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Tanner",Tanner,Damper,5525,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Team Built",Team,Damper,0,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, Team Built, Reservoir Bladder",Any,Damper,325,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, X-Fusion Vektor DH 1.0",X-Fusion,Damper,11050,unt,,,,,,,2017-05-10 00:00:00,
+,"Damper, ZF Sachs, ETX36/15x",ZF Sachs,Damper,23400,unit,,,,,,,2017-05-10 00:00:00,
+,"Damper, ZF Sachs, RD 36-2",ZF Sachs,Damper,24050,unit,,,,,,,2017-05-10 00:00:00,
+,Axle (All Cost as Made),Any,Drivetrain,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,Axle Snubber,Any,Drivetrain,162.5,unit,,,,,,,2017-05-10 00:00:00,For example Taylor Race Engineering  plastic snubber
+,Belt,Any,Drivetrain,3.25,mm,,,,,,,2017-05-10 00:00:00,
+,Chain,Any,Drivetrain,3.25,mm,,,,,,,2017-05-10 00:00:00,Master link included in price of chain.
+,Chain Guard (All Cost as Made),Any,Drivetrain,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,"Constant Velocity Joint, Boot",Any,Drivetrain,325,unit,,,,,,,2017-05-10 00:00:00,
+,"Constant Velocity Joint, Housing (All Cost as Made)",Any,Drivetrain,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,"Constant Velocity Joint, Plug, Axial Locating",Any,Drivetrain,162.5,unit,,,,,,,2017-05-10 00:00:00,For example Taylor Race Engineering  plastic snubber
+,"Constant Velocity Joint, Rzepa Plunging",Any,Drivetrain,1300,unit,,,,,,,2017-05-10 00:00:00,"6-Ball plunging, includes grease, does not inlucde housing which is cost as made"
+,"Constant Velocity Joint, Rzeppa Fixed",Any,Drivetrain,1300,unit,,,,,,,2017-05-10 00:00:00,"6-Ball Non-plunging, includeas grease, does not inlucde housing which is cost as made"
+,"Constant Velocity Joint, Stub-shaft (All Cost as Made)",Any,Drivetrain,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,"Constant Velocity Joint, Tripod",Any,Drivetrain,2925,unit,,,,,,,2017-05-10 00:00:00,"3-Needle bearing plunging, includes grease, does not inlucde housing which is cost as made"
+,Differential Housing (All Cost as Made),Any,Drivetrain,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,"Differential Internals, Limited Slip, Cam & Pawl",Any,Drivetrain,7150,unit,,,,,,,2017-05-10 00:00:00,
+,"Differential Internals, Limited Slip, Quaife",Quaife,Drivetrain,10725,unit,,,,,,,2017-05-10 00:00:00,
+,"Differential Internals, Limited Slip, Salisbury or Powerflow or Clutch Style",Any,Drivetrain,7150,unit,,,,,,,2017-05-10 00:00:00,
+,"Differential Internals, Limited Slip, Torsen T1",Torsen,Drivetrain,10725,unit,,,,,,,2017-05-10 00:00:00,
+,"Differential Internals, Limited Slip, Torsen T2",Torsen,Drivetrain,10725,unit,,,,,,,2017-05-10 00:00:00,
+,"Differential Internals, Open Gearset (Any)",Any,Drivetrain,3900,unit,,,,,,,2017-05-10 00:00:00,
+,Half Shaft (All Cost as Made),Any,Drivetrain,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,Pulley (All Cost as Made),Any,Drivetrain,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,Sprocket (All Cost as Made),Any,Drivetrain,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,Universal Joint,Any,Drivetrain,1300,unit,,,,,,,2017-05-10 00:00:00,
+,Aim Evo 3 Pista Car,Aim,Electronics,61100,unit,,,,,,,2017-05-10 00:00:00,
+,Aim Evo 3 Pro Car,Aim,Electronics,78000,unit,,,,,,,2017-05-10 00:00:00,
+,Aim Evo 4 DataLogger Car,Aim,Electronics,37375,unit,,,,,,,2017-05-10 00:00:00,
+,Aim M3 XG LOG Datalogger  ,Aim,Electronics,38350,unit,,,,,,,2017-05-10 00:00:00,
+,Aim MXL Pista Race Graphic Car,Aim,Electronics,61100,unit,,,,,,,2017-05-10 00:00:00,
+,Aim MXL Pista Road Graphic Car,Aim,Electronics,61100,unit,,,,,,,2017-05-10 00:00:00,
+,Aim MXL Pro05 Car,Aim,Electronics,78000,unit,,,,,,,2017-05-10 00:00:00,
+,Aim MXL Strada Race Graphic Car,Aim,Electronics,34125,unit,,,,,,,2017-05-10 00:00:00,
+,Aim MXL Strada Road Graphic Car,Aim,Electronics,34125,unit,,,,,,,2017-05-10 00:00:00,
+,Aim SmartyCam GPS Standard,Aim,Electronics,32500,unit,,,,,,,2017-05-10 00:00:00,
+,Aim SmartyCamGP Complete Car,Aim,Electronics,32500,unit,,,,,,,2017-05-10 00:00:00,
+,Aim Solo DL GPS LapTimer For Car,Aim,Electronics,19500,unit,,,,,,,2017-05-10 00:00:00,
+,Aim Solo GPS Lap Timer Kit 1 Car,Aim,Electronics,11700,unit,,,,,,,2017-05-10 00:00:00,
+,Aim TG Lap Timer External Power,Aim,Electronics,10725,unit,,,,,,,2017-05-10 00:00:00,
+,Aim TG Lap Timer Internal Power,Aim,Electronics,10725,unit,,,,,,,2017-05-10 00:00:00,
+,"Battery, Advanced Chemistry (NiMH, Li-Ion, etc.)",Any,Electronics,4225,kg,,,,,,,2017-05-10 00:00:00,
+,"Battery, Lead Acid",Any,Electronics,195,kg,,,,,,,2017-05-10 00:00:00,
+,"Circuit Breaker, Thermal, Klixon 7277-2-20",Klixon,Electronics,572,unit,,,,,,,2017-05-10 00:00:00,
+,"Connector, Aerospace Quality",Any,Electronics,65,pin(s),,,,,,,2017-05-10 00:00:00,
+,"Connector, Computer  Type",Any,Electronics,65,pin(s),,,,,,,2017-05-10 00:00:00,"Seriel, Parallel, USB, Firewire, etc."
+,"Connector, High Power, > 2 Amps",Any,Electronics,130,pin(s),,,,,,,2017-05-10 00:00:00,"Vehicle power, starter, alternator, etc."
+,"Connector, OEM Quality",Any,Electronics,32.5,pin(s),,,,,,,2017-05-10 00:00:00,
+,"Connector, Single Wire",Any,Electronics,3.25,wire,,,,,,,2017-05-10 00:00:00,"Any style, any size, per wire end.  Includes, ring, spade, bullet, etc."
+,"Dashpanel, Haltech, Racepak IQ3 Display",Haltech,Electronics,24895,unit,,,,,,,2017-05-10 00:00:00,
+,"Display, 7 Segment",Any,Electronics,65,digit,,,,,,,2017-05-10 00:00:00,Each digit can represent a single character alpha or numeric
+,"Display, LCD (for Student Built Elect. Only), Area",Any,Electronics,[C1]*[Size1]+[C2],cm^2,,81.25,0,0,,0,2017-05-10 00:00:00,"[Size1]=Display surface area (cm^2).  LCD Display when incorporated into or driven off student built electroincs.  Not to be used in place of purchased displays that are part of data acquisition systems, engine controllers, etc."
+,"Display, LCD (for Student Built Elect. Only), Rect",Any,Electronics,[C1]*[Size1]*[Size2]+[C2],cm,cm,81.25,0,0,0,0,2017-05-10 00:00:00,"LCD Display when incorporated into or driven off student built electroincs.  Not to be used in place of purchased displays that are part of data acquisition systems, engine controllers, etc."
+,"Display, Matrix",Any,Electronics,130,digit,,,,,,,2017-05-10 00:00:00,Each digit can represent a single character alpha or numeric
+,Fuse Box,Any,Electronics,16.25,pin(s),,,,,,,2017-05-10 00:00:00,Use 2 x Number of Fuses and relays to calculate number of pins
+,"Fuse, Control",Any,Electronics,32.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Fuse, Power",Any,Electronics,65,unit,,,,,,,2017-05-10 00:00:00,
+,"Fuse, Signal",Any,Electronics,32.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Gauge, Analog",Any,Electronics,325,unit,,,,,,,2017-05-10 00:00:00,"Any use such as RPM, pressure, temperature, etc.  Includes driver (motor, etc) and needle."
+,"Gauge, Analog Housing",Any,Electronics,520,unit,,,,,,,2017-05-10 00:00:00,"Used with Gauge, Analog when mounted not integrated into the instrument panel."
+,"Gauge, Digital Pro Shifter System, 6187",Autometer,Electronics,5525,unit,,,,,,,2017-05-10 00:00:00,
+,Heat Shrink Tubing,Any,Electronics,32.5,m,,,,,,,2017-05-10 00:00:00,
+,"Lamp, Brake with Housing",Any,Electronics,260,unit,,,,,,,2017-05-10 00:00:00,
+,"Lamp, Incandescent",Any,Electronics,130,unit,,,,,,,2017-05-10 00:00:00,
+,"Lamp, LED",Any,Electronics,32.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Motor, 12 Volt, DC Brush",Any,Electronics,1300,unit,,,,,,,2017-05-10 00:00:00,Used for general actuation.  For more specefic motors please submit an Add Item RequeSteel
+,"Motor, 12 Volt, DC Brushless Servo",Any,Electronics,2600,unit,,,,,,,2017-05-10 00:00:00,Used for general actuation.  For more specefic motors please submit an Add Item RequeSteel
+,"Relay, Control",Any,Electronics,130,unit,,,,,,,2017-05-10 00:00:00,
+,"Relay, Power",Any,Electronics,260,unit,,,,,,,2017-05-10 00:00:00,
+,"Relay, Signal",Any,Electronics,130,unit,,,,,,,2017-05-10 00:00:00,
+,Sensor to CAN Converter,Any,Electronics,1625,unit,,,,,,,2017-05-10 00:00:00,Converts analog or digital sensor input to CAN output
+,"Servo, 12V",Any,Electronics,1625,unit,,,,,,,2017-05-10 00:00:00,Radio Controlled Hobby style servo with built in gear reduction.
+,"Solenoid, 12 Volt",Any,Electronics,487.5,unit,,,,,,,2017-05-10 00:00:00,
+,Speaker,Any,Electronics,162.5,unit,,,,,,,2017-05-10 00:00:00,Can be used for 'ready to drive sound' for electric
+,"Switch, Kill",Any,Electronics,195,unit,,,,,,,2017-05-10 00:00:00,
+,"Switch, Pushbutton",Any,Electronics,65,unit,,,,,,,2017-05-10 00:00:00,
+,"Switch, Rotary Multi-position Selector",Any,Electronics,195,,,,,,,,2017-05-10 00:00:00,
+,"Switch, Toggle",Any,Electronics,65,unit,,,,,,,2017-05-10 00:00:00,
+,"Terminal Block, Wiring",Any,Electronics,16.25,pin(s),,,,,,,2017-05-10 00:00:00,
+,"Wire Sleeving, Expandable",Any,Electronics,65,m,,,,,,,2017-05-10 00:00:00,
+,"Wire Sleeving, Split",Any,Electronics,32.5,m,,,,,,,2017-05-10 00:00:00,
+,"Wire, Control",Any,Electronics,65,m,,,,,,,2017-05-10 00:00:00,
+,"Wire, Power",Any,Electronics,195,m,,,,,,,2017-05-10 00:00:00,
+,"Wire, Signal",Any,Electronics,65,m,,,,,,,2017-05-10 00:00:00,
+,Accusump,Canton Racing Products,Engine,([C1]*[Size1]+[C2]),L,,929.5,5330,,,,2017-05-10 00:00:00,"Gage not included, include as separate material line item if used on vehicle."
+,Air Filter,Any,Engine,9.75,cm^2,,,,,,,2017-05-10 00:00:00,"Paper,  foam and cotton (K&N type) elements"
+,"Boost Control Solenoid Valve, MR561312",Mitsubishi Motors,Engine,910,unit,,,,,,,2017-05-10 00:00:00,
+,Carburetor,Any,Engine,3250,unit,,,,,,,2017-05-10 00:00:00,
+,"Coolant Pump, External Electric",Any,Engine,1300,,,,,,,,2017-05-10 00:00:00,
+,Cooling System Air Bleed Valve,Any,Engine,422.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Dry Sump Pump, Aviad, 003-32000",Aviad,Engine,16250,unit,,,,,,,2017-05-10 00:00:00,"2 stage, non regulating"
+,"Dry Sump Pump, Dailey Engineering, 04-00-2162",Dailey Engineering,Engine,47190,unit,,,,,,,2017-05-10 00:00:00,
+,"Dry Sump Pump, Dailey Engineering, 04-99-2162",Dailey Engineering,Engine,47190,,,,,,,,2017-05-10 00:00:00,
+,"Dry Sump Pump, Dailey Engineering, 04-99-2162-2",Dailey Engineering,Engine,47190,,,,,,,,2017-05-10 00:00:00,
+,"Dry Sump Pump, Dailey Engineering, 04-99-2186",Dailey Engineering,Engine,17160,,,,,,,,2017-05-10 00:00:00,
+,"Dry Sump Pump, Dailey Engineering, 04-99-2204 ",Dailey Engineering,Engine,27885,,,,,,,,2017-05-10 00:00:00,
+,"Dry Sump Pump, Dailey Engineering, 04-99-2204-2",Dailey Engineering,Engine,27885,,,,,,,,2017-05-10 00:00:00,
+,"Dry Sump Pump, Dailey Engineering, 04-99-2264-2",Dailey Engineering,Engine,47190,,,,,,,,2017-05-10 00:00:00,
+,"Dry Sump Pump, Pace, 2 Stage",Pace,Engine,20475,unit,,,,,,,2017-05-10 00:00:00,Any 2 stage Pace pump
+,"Dry Sump Pump, Pace, 3 Stage",Pace,Engine,24700,unit,,,,,,,2017-05-10 00:00:00,Any 3 stage Pace pump
+,"Dry Sump Pump, Pace, Single Stage",Pace,Engine,13975,unit,,,,,,,2017-05-10 00:00:00,Any single stage Pace pump
+,"Dry Sump Pump, Student Made",Student Built,Engine,0,unit,,,,,,,2017-05-10 00:00:00,
+,"Engine and Transmission, High Performance (5-10 HP/100 cc)",Any,Engine,130,cc,,,,,,,2017-05-10 00:00:00,"Normal motorcycle engines with 2 valves per cylinder, etc.  Engine cost includes tranmission (whether integral or not by design) and all components necessary to run including spark plugs, coils, wires, oil filter, etc. with the exception of the air induction and fuel system components.  Cost includes engine as received by manufacturer but not custom parts such as dry sump pans, PCV changes, etc.  Fully Internal engine changes are free.  If covers or other parts are removed disassembly labor must be included in labor coSteel"
+,"Engine and Transmission, Low Performance (<5 HP/100 cc)",Any,Engine,78,cc,,,,,,,2017-05-10 00:00:00,"Industrial engines, etc.  Engine cost includes tranmission (whether integral or not by design) and  all components necessary to run including spark plugs, coils, wires, oil filter, etc.  with the exception of the air induction and fuel system components.  Cost includes engine as received by manufacturer but not custom parts such as dry sump pans, PCV changes, etc.  Fully Internal engine changes are free.  If covers or other parts are removed disassembly labor must be included in labor coSteel"
+,"Engine and Transmission, Ultra High Performance (>10 HP/100 cc)",Any,Engine,162.5,cc,,,,,,,2017-05-10 00:00:00,"New high tech engines, 3-5 valves per cylinder, etc.  Engine cost includes tranmission (whether integral or not by design) and  all components necessary to run including spark plugs, coils, wires, oil filter, etc.  with the exception of the air induction and fuel system components.  Cost includes engine as received by manufacturer but not custom parts such as dry sump pans, PCV changes, etc.  Fully Internal engine changes are free.  If covers or other parts are removed disassembly labor must be included in labor coSteel"
+,Exhaust Manifold (All Cost as Made),Any,Engine,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,"Exhaust Pipe, Flexible",Any,Engine,([C1]*[Size1]*[Size2]+[C2]),,,0.065,0,,,,2017-05-10 00:00:00,Flexible tubing used for exhaust systems.  Also called convoluted or flex piping.
+,Fuel Check Valve,Any,Engine,520,unit,,,,,,,2017-05-10 00:00:00,
+,Fuel Filter,Any,Engine,520,unit,,,,,,,2017-05-10 00:00:00,
+,"Fuel Injector, Direct Injection",Any,Engine,1950,unit,,,,,,,2017-05-10 00:00:00,"Either fuel, gasoline or E85"
+,"Fuel Injector, E85",Any,Engine,845,unit,,,,,,,2017-05-10 00:00:00,
+,"Fuel Injector, Gasoline",Any,Engine,650,unit,,,,,,,2017-05-10 00:00:00,
+,"Fuel Pressure Regulator, E85",Any,Engine,1267.5,unit,,,23075,,,,2017-05-10 00:00:00,
+,"Fuel Pressure Regulator, Gasoline",Any,Engine,975,unit,,,30550,,,,2017-05-10 00:00:00,
+,"Fuel Pump, Carburetor, Gasoline or E85",Any,Engine,1300,unit,,,,,,,2017-05-10 00:00:00,
+,"Fuel Pump, Direct Injection",Any,Engine,7800,unit,,,,,,,2017-05-10 00:00:00,"Either fuel, gasoline or E85"
+,"Fuel Pump, Fuel Injected, E85",Any,Engine,2957.5,unit,,,,,,,2017-05-10 00:00:00,"Port fuel injection, not for direct injection use"
+,"Fuel Pump, Fuel Injected, Gasoline",Any,Engine,2275,unit,,,,,,,2017-05-10 00:00:00,"Port fuel injection, not for direct injection use"
+,Fuel Rail (All Cost as Made),Any,Engine,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,Fuel Tank (All Cost as Made),Any,Engine,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,Header Wrap,Any,Engine,1950,m^2,,,,,,,2017-05-10 00:00:00,
+,Heat Exchanger Fan,Any,Engine,1950,unit,,,,,,,2017-05-10 00:00:00,Includes motor and blades
+,"Heat Exchanger Fan, small <120mm diameter",Any,Engine,650,unit,,,,,,,2017-05-10 00:00:00,Includes motor and blades
+,Heat Exchanger Fan Shroud (All Cost as Made),Any,Engine,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,"Heat Exchanger, Air-to-Air",Any,Engine,0.23,cm^3,,,,,,,2017-05-10 00:00:00,"Includes radiator, oil cooler and others.  Volume based on length * width * height of core.  Cost as made the end caps, filler knecks, etc."
+,"Heat Exchanger, Air-to-Liquid",Any,Engine,0.23,cm^3,,,,,,,2017-05-10 00:00:00,"Includes radiator, oil cooler and others.  Volume based on length * width * height of core.  Cost as made the end caps, filler knecks, etc."
+,"Heat Exchanger, Liquid-to-Liquid",Any,Engine,0.23,cm^3,,,,,,,2017-05-10 00:00:00,"Includes radiator, oil cooler and others.  Volume based on length * width * height of core.  Cost as made the end caps, filler knecks, etc."
+,Intake (All Cost as Made),Any,Engine,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,Muffler (All Cost as Made),Any,Engine,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,Muffler Batting,Any,Engine,0.2,cm^3,,,,,,,2017-05-10 00:00:00,Cost based on total volume of muffler
+,Oil Filter,Any,Engine,0,unit,,,,,,,2017-05-10 00:00:00,Included in engine cost - Shown only for reference
+,"Overflow Bottle, Aluminum Drinking Bottle",Any,Engine,650,unit,,,,,,,2017-05-10 00:00:00,
+,"Overflow Bottle, JAX 1 Qt. Oil Breather Tank",Jax,Engine,1852.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Overflow Bottle, JAX, 1 Qt. Recirc. Catch Can",Jax,Engine,780,unit,,,,,,,2017-05-10 00:00:00,
+,"Overflow Bottle, Nalgene Bottle",Any,Engine,325,unit,,,,,,,2017-05-10 00:00:00,
+,"Overflow Bottle, Plastic Bottle",Any,Engine,325,unit,,,,,,,2017-05-10 00:00:00,
+,"Overflow Bottle, Plastic Drinking Bottle",Any,Engine,325,unit,,,,,,,2017-05-10 00:00:00,
+,"Overflow Bottle, Steel Oil Can",Any,Engine,65,unit,,,,,,,2017-05-10 00:00:00,
+,"Overflow Bottle, Student Built",Student Built,Engine,0,unit,,,,,,,2017-05-10 00:00:00,
+,"Pump, Transmission Oil, Hope Technik, 006",Hope Technik,Engine,6825,unit,,,,,,,2017-05-10 00:00:00,
+,Spark Plug Coil,Any,Engine,0,unit,,,,,,,2017-05-10 00:00:00,Included in engine cost - Shown only for reference
+,Spark Plug Wire,Any,Engine,0,unit,,,,,,,2017-05-10 00:00:00,Included in engine cost - Shown only for reference
+,Supercharger,Any,Engine,19500,unit,,,,,,,2017-05-10 00:00:00,Includes pulley and bypass valve (if fitted) but no plumbing.
+,Throttle Body (All Cost as Made),Any,Engine,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,Turbocharger,Any,Engine,19500,unit,,,,,,,2017-05-10 00:00:00,Includes waste gate but no plumbing
+,"Chassis Control Module, + Battery Charger HV",Any,EV - Control Module,39000,kW,,,,,,,2017-05-10 00:00:00,"See tab ""EV"" for more information"
+,"Chassis Control Module, + Battery Charger LV",Any,EV - Control Module,6500,pack,,,,,,,2017-05-10 00:00:00,"See tab ""EV"" for more information"
+,"Chassis Control Module, + Battery Management System",Any,EV - Control Module,1300,channel,,,,,,,2017-05-10 00:00:00,"See tab ""EV"" for more information"
+,"Chassis Control Module, + DCDC-Power (>1A) HV->LV",Any,EV - Control Module,4550,unit,,,,,,,2017-05-10 00:00:00,"See tab ""EV"" for more information"
+,"Chassis Control Module, + HC-HV Fuse incl. Box",Any,EV - Control Module,6500,unit,,,,,,,2017-05-10 00:00:00,"See tab ""EV"" for more information"
+,"Chassis Control Module, + HV Housing",Any,EV - Control Module,1625,unit,,,,,,,2017-05-10 00:00:00,"See tab ""EV"" for more information"
+,"Chassis Control Module, + HV Insulation Relay",Any,EV - Control Module,7800,unit,,,,,,,2017-05-10 00:00:00,"See tab ""EV"" for more information"
+,"Chassis Control Module, + HV Precharge",Any,EV - Control Module,3250,unit,,,,,,,2017-05-10 00:00:00,"See tab ""EV"" for more information"
+,"Chassis Control Module, + Isolation Monitoring Device",Any,EV - Control Module,19500,unit,,,,,,,2017-05-10 00:00:00,"e.g. Bender ISO F1.  See tab ""EV"" for more information"
+,"Chassis Control Module, + Motor Controller AC",Any,EV - Control Module,2925,kW,,,,,,,2017-05-10 00:00:00,"See tab ""EV"" for more information"
+,"Chassis Control Module, + Motor Controller DC",Any,EV - Control Module,1462.5,kW,,,,,,,2017-05-10 00:00:00,"See tab ""EV"" for more information"
+,"Chassis Control Module, + Power Distribution Module",Any,EV - Control Module,455,channel,,,,,,,2017-05-10 00:00:00,"See tab ""EV"" for more information"
+,"Chassis Control Module, + TSAL",Any,EV - Control Module,650,unit,,,,,,,2017-05-10 00:00:00,"See tab ""EV"" for more information"
+,"Chassis Control Module, + TSAS, buzzer",Any,EV - Control Module,325,unit,,,,,,,2017-05-10 00:00:00,"See tab ""EV"" for more information"
+,"Chassis Control Module, + TSAS, melody",Any,EV - Control Module,975,unit,,,,,,,2017-05-10 00:00:00,"See tab ""EV"" for more information"
+,"ECU, Automotive",Any,EV - Control Module,130000,unit,,,,,,,2017-05-10 00:00:00,"i.e. TTC.  See tab ""EV"" for more information"
+,"ECU, Industrial",Any,EV - Control Module,195000,unit,,,,,,,2017-05-10 00:00:00,"i.e. Siemens, B&R.  See tab ""EV"" for more information"
+,"ECU, Rapid Prototyping",Any,EV - Control Module,325000,unit,,,,,,,2017-05-10 00:00:00,"i.e. dSpace, ETAS.  See tab ""EV"" for more information"
+,"ECU, student built",Student built,EV - Control Module,32500,unit,,,,,,,2017-05-10 00:00:00,"See tab ""EV"" for more information"
+,"Battery, Tractive Lithium",Any,EV - Electronics,39000,kWh,,,,,,,2017-05-10 00:00:00,"See tab ""EV"" for more information"
+,"Conduit incl. Nuts, Elbows etc.",Any,EV - Electronics,65,m,,,,,,,2017-05-10 00:00:00,"See tab ""EV"" for more information"
+,"Connector, HC-HV incl. Interlock",Any,EV - Electronics,1950,pin,,,,,,,2017-05-10 00:00:00,"See tab ""EV"" for more information"
+,"Connector, HC-HV Lug Type",Any,EV - Electronics,65,pin,,,,,,,2017-05-10 00:00:00,"See tab ""EV"" for more information"
+,Wiring HV (> 12 mm²),Any,EV - Electronics,975,m,,,,,,,2017-05-10 00:00:00,"See tab ""EV"" for more information"
+,"Motor, Tractive AC",Any,EV - Tractive Drive,6500,kW,,,,,,,2017-05-10 00:00:00,"See tab ""EV"" for more information"
+,"Motor, Tractive DC",Any,EV - Tractive Drive,3250,kW,,,,,,,2017-05-10 00:00:00,"See tab ""EV"" for more information"
+,"Fluid, Coolant",Any,Fluid,0.01,liter,,,,,,,2017-05-10 00:00:00,Water or water wetter mixture.  Free.
+,"Fluid, Oil",Any,Fluid,48.75,liter,,,,,,,2017-05-10 00:00:00,"Engine oil, differential, hydraulic (brake/clutch), etc."
+,"Foam, Fuel Anti-Surge",Any,Fuel System,65,liter,,,,,,,2017-05-10 00:00:00,
+,"Fuel Check Valve, In-line, Aluminum Rollover",Any,Fuel System,975,unit,,,,,,,2017-05-10 00:00:00,
+,"Fuel Check Valve, In-line, Plastic Rollover",Any,Fuel System,455,unit,,,,,,,2017-05-10 00:00:00,
+,"Cable Tie Mount, Adhesive Backed",Any,Hardware,9.75,unit,,,,,,,2017-05-10 00:00:00,"Adhesive mount for connecting cable ties, zip ties, etc.  Normally is injection molded with a single loop for tie wrap connection."
+,"Coupling, Shaft, Helical Beam",Any,Hardware,([C1]*[Size1]+[C2]),mm,,8.125,520,0,,520,2017-05-10 00:00:00,[Size1]=Coupling Outer Diameter (mm).
+,Drawbolt Catch & Hook,Any,Hardware,81.25,unit,,,,,,,2017-05-10 00:00:00,
+,"Grommet, Elastomer",Any,Hardware,3.25,unit,,,,,,,2017-05-10 00:00:00,"Any size, any material"
+,"Locating Pin, Bullet-Nose Dowel, Steel",Any,Hardware,[C1]*[Size1]+[C2],mm,,2.08,72.8,0,,72.8,2017-05-10 00:00:00,[Size1]=Dowel diameter (mm)
+,"Locating Pin, Liner, Steel",Any,Hardware,[C1]*[Size1]+[C2],mm,,3.25,152.1,0,,152.1,2017-05-10 00:00:00,[Size1]=Hole diameter for dowel (mm)
+,"Mount, Vibration-Damping Sandwich
+",Any,Hardware,[C1]*[Size1]+[C2],mm,,17.55,0,0,,0,2017-05-10 00:00:00,[Size1]=Mount Outer Diameter (mm).
+,"Piano Hinge, Aluminum",Any,Hardware,[C1]*[Size1]*[Size2]+[C2],mm,mm,2.6,75.4,0,0,75.4,2017-05-10 00:00:00,"[Size1]=Hing pin diameter (mm), [Size2]=Open width (mm).  Hinge cost does not include any holes."
+,Woodruff Key,Any,Hardware,6.5,unit,,,,,,,2017-05-10 00:00:00,Any size up to 6.35mm width
+,Adhesive,Any,Misc.,0,unit,,,,,,,2017-05-10 00:00:00,"Included in process cost (brush apply, aerosol apply, etc.).  Includes glue, thread locker, etc."
+,"Balance Bar Cable Adjuster, AP CP2905-8",AP,Misc.,5200,,,,,,,,2017-05-10 00:00:00,
+,"Balance Bar Cable Adjuster, Optimum Balance Prod",Optimum Balance Products,Misc.,1430,unit,,,,,,,2017-05-10 00:00:00,
+,Cable Adjuster,Any,Misc.,65,unit,,,,,,,2017-05-10 00:00:00,
+,Clevis,Any,Misc.,[C1]*[Size1]^2+[C2],mm,,0.65,39.65,0,,39.65,2017-05-10 00:00:00,[Size1]=bore size (diameter of hole).  Includes male/female and left/right threads.
+,Filler Cap,Any,Misc.,195,unit,,,,,,,2017-05-10 00:00:00,"Fuel, cooling system, etc."
+,"Gearbox Oil Temp. Control Valve, GearZmo",GearZmo,Misc.,15080,unit,,,,,,,2017-05-10 00:00:00,
+,Head Rest Padding,Any,Misc.,0.33,cm^3,,,,,,,2017-05-10 00:00:00,
+,Heat Barrier,Any,Misc.,3250,m^2,,,,,,,2017-05-10 00:00:00,Adhesive film (foil) or matting for reflecting head.
+,Mirror Lens,Any,Misc.,9.75,cm^2,,,,,,,2017-05-10 00:00:00,
+,"Mirror, Rear View, Housing (All Cost as Made)",Any,Misc.,0,in^2,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,Paint,Any,Misc.,650,m^2,,,,,,,2017-05-10 00:00:00,
+,Roll Hoop Padding,Any,Misc.,3.25,cm,,,,,,,2017-05-10 00:00:00,
+,Seat (All Cost as Made),Any,Misc.,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,Tape,Any,Misc.,0,unit,,,,,,,2017-05-10 00:00:00,Included in process cost
+,"Throttle Linkage, Tilton, 72-790",Tilton,Misc.,5525,unit,,,,,,,2017-05-10 00:00:00,
+,"Pedal Assembly, Optimum Balance Products OBP0181",Optimum Balance Products,Pedals,7150,unit,,,,,,,2017-05-10 00:00:00,With bias bar adjustment
+,"Pedal Assembly, Tilton, 72-680",Tilton,Pedals,23400,unit,,,,,,,2017-05-10 00:00:00,
+,"Pedal, Wilwood, 340-1285",Wilwood,Pedals,3965,unit,,,,,,,2017-05-10 00:00:00,
+,"Adapter, Hex Nipple, Brass",Any,Plumbing,[C1]*[Size1]+[C2],mm,,71.5,14.3,0,,14.3,2017-05-10 00:00:00,[Size1]=Pipe Size (mm)
+,"Adapter, Hex Nipple, Reducing, Brass",Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,,1.3,144.95,0,0,144.95,2017-05-10 00:00:00,[Size1]=Inlet Pipe Size (mm).  [Size2]=Outlet Pipe Size (mm)
+,Adapter/L.P.///Aluminum/Anodized,Any,Plumbing,[C1]*[Size1]+[C2],mm,,11.44,3.64,0,,3.64,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Barb to Male Pipe/90 Deg./Aluminum/Anodized,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,3.12,129.675,0,0,129.675,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Pipe Size (mm).  Low Pressure."
+,Adapter/L.P./Barb to Male Pipe/Elbow/Plastic,Any,Plumbing,32.5,,,,,,,,2017-05-10 00:00:00,Up to 25.4mm diameter inlet and outlet size.  Low Pressure.
+,Adapter/L.P./Barb to Male Pipe/Straight/Aluminum/Anodized,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,2.08,86.45,0,0,86.45,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Pipe Size (mm).  Low Pressure."
+,Adapter/L.P./Barb to Male Pipe/Straight/Plastic,Any,Plumbing,32.5,,,,,,,,2017-05-10 00:00:00,Up to 25.4mm diameter inlet and outlet size.  Low Pressure.
+,Adapter/L.P./Bulkhead Male Connector//Steel/,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,1.0075,378.3,0,0,378.3,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Bulkhead Run Tee//Aluminum/Anodized,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,1.235,693.55,0,0,693.55,2017-05-10 00:00:00,"[Size1]=Largest Hose Size (mm), [Size2]=2nd Largest Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm (use two largest sizes and ignore 3rd outlet).  Low Pressure."
+,Adapter/L.P./Bulkhead Run Tee//Steel/,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,1.0075,990.6,0,0,990.6,2017-05-10 00:00:00,"[Size1]=Largest Hose Size (mm), [Size2]=2nd Largest Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm (use two largest sizes and ignore 3rd outlet).  Low Pressure."
+,Adapter/L.P./Bulkhead Tee//Aluminum/Anodized,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.91,685.1,0,0,685.1,2017-05-10 00:00:00,"[Size1]=Largest Hose Size (mm), [Size2]=2nd Largest Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm (use two largest sizes and ignore 3rd outlet).  Low Pressure."
+,Adapter/L.P./Bulkhead Tee//Steel/,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.975,839.15,0,0,839.15,2017-05-10 00:00:00,"[Size1]=Largest Hose Size (mm), [Size2]=2nd Largest Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm (use two largest sizes and ignore 3rd outlet).  Low Pressure."
+,Adapter/L.P./Bulkhead Union//Aluminum/Anodized,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.52,214.5,0,0,214.5,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Bulkhead Union//Steel/,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.468,355.55,0,0,355.55,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Bulkhead Union/45 deg./Aluminum/Anodized,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,1.56,153.4,0,0,153.4,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Bulkhead Union/45 deg./Steel/,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,1.56,153.4,0,0,153.4,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Bulkhead Union/90 deg./Aluminum/Anodized,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.845,420.55,0,0,420.55,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Bulkhead Union/90 deg./Steel/,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.65,789.75,0,0,789.75,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Elbow/FeMale to Male Pipe/90 deg./Aluminum/Anodized,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,9.36,560.95,0,0,560.95,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Female Flare Tee//Aluminum/Anodized,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,1.56,490.75,0,0,490.75,2017-05-10 00:00:00,"[Size1]=Largest Hose Size (mm), [Size2]=2nd Largest Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm (use two largest sizes and ignore 3rd outlet).  Low Pressure."
+,Adapter/L.P./Female Flare Tee//Brass,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.65,196.3,0,0,196.3,2017-05-10 00:00:00,"[Size1]=Largest Hose Size (mm), [Size2]=2nd Largest Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm (use two largest sizes and ignore 3rd outlet).  Low Pressure."
+,Adapter/L.P./Female Pipe Tee//Aluminum/Anodized,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,4.55,851.5,0,0,851.5,2017-05-10 00:00:00,"[Size1]=Largest Hose Size (mm), [Size2]=2nd Largest Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm (use two largest sizes and ignore 3rd outlet).  Low Pressure."
+,Adapter/L.P./FemAle Pipe to Male Flare//Steel/,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,1.17,419.25,0,0,419.25,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Male Branch Tee//Aluminum/Anodized,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,5.2,579.8,0,0,579.8,2017-05-10 00:00:00,"[Size1]=Largest Hose Size (mm), [Size2]=2nd Largest Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm (use two largest sizes and ignore 3rd outlet).  Low Pressure."
+,Adapter/L.P./Male Flare to Pipe//Aluminum/Nickel-Plated,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.26,282.1,0,0,282.1,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Male Flare to Pipe//Brass/,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.104,113.1,0,0,113.1,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Male Flare to Pipe//Steel/,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.039,95.55,0,0,95.55,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Male Flare to Pipe/45 deg./Aluminum/Anodized,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.013,750.75,0,0,750.75,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Male Flare to Pipe/45 deg./Aluminum/Nickel-Plated,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.026,1208.35,0,0,1208.35,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Male Flare to Pipe/45 deg./Steel/,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.039,440.7,0,0,440.7,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Male Flare to Pipe/90 deg./Aluminum/Anodized,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.026,343.2,0,0,343.2,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Male Flare to Pipe/90 deg./Aluminum/Nickel-Plated,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.039,585,0,0,585,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Male Flare to Pipe/90 deg./Brass/,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.013,137.15,0,0,137.15,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Male Flare to Pipe/90 deg./Steel/,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.0195,122.2,0,0,122.2,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Male Pip Nipple//Aluminum/Anodized,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,2.275,227.5,0,0,227.5,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Male Run Tee//Aluminum/Anodized,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,4.29,636.35,0,0,636.35,2017-05-10 00:00:00,"[Size1]=Largest Hose Size (mm), [Size2]=2nd Largest Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm (use two largest sizes and ignore 3rd outlet).  Low Pressure."
+,Adapter/L.P./Male Run Tee//Steel/,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,4.485,713.7,0,0,713.7,2017-05-10 00:00:00,"[Size1]=Largest Hose Size (mm), [Size2]=2nd Largest Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm (use two largest sizes and ignore 3rd outlet).  Low Pressure."
+,Adapter/L.P./Pipe Coupling//Aluminum/Anodized,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,4.355,255.45,0,0,255.45,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Pipe to Pipe//Aluminum/Anodized,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,1.04,468,0,0,468,2017-05-10 00:00:00,"[Size1]=Inlet Pipe Size (mm), [Size2]=Outlet Pipe Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure"
+,Adapter/L.P./Union Reducer//Aluminum/Anodized,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.4095,113.75,0,0,113.75,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Union Reducer//Brass,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.1625,45.5,0,0,45.5,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Union Tee//Aluminum/Anodized,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.78,463.45,0,0,463.45,2017-05-10 00:00:00,"[Size1]=Largest Hose Size (mm), [Size2]=2nd Largest Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm (use two largest sizes and ignore 3rd outlet).  Low Pressure."
+,Adapter/L.P./Union Tee//Brass/,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.325,185.25,0,0,185.25,2017-05-10 00:00:00,"[Size1]=Largest Hose Size (mm), [Size2]=2nd Largest Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm (use two largest sizes and ignore 3rd outlet).  Low Pressure."
+,Adapter/L.P./Union//Aluminum/Anodized,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.4095,113.75,0,0,113.75,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Union/90 deg./Aluminum/Anodized,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.806,606.45,0,0,606.45,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Union/90 deg./Brass,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.325,242.45,0,0,242.45,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Adapter/L.P./Union/FeMale Flare//Aluminum/Anodized,Any,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,0.5785,273,0,0,273,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,"Banjo Bolt, Aluminum",Any,Plumbing,[C1]*[Size1]+[C2],mm,,44.2,0,0,,0,2017-05-10 00:00:00,[Size1]=Thread Size (mm).
+,"Banjo Bolt, Steel",Any,Plumbing,[C1]*[Size1]+[C2],mm,,44.2,0,0,,0,2017-05-10 00:00:00,[Size1]=Thread Size (mm).
+,"Banjo Fitting, 45 Deg., Aluminum",Any,Plumbing,[C1]*[Size1]+[C2],mm,,81.25,121.875,0,,121.875,2017-05-10 00:00:00,[Size1]=Inlet Fitting Size (mm).
+,"Banjo Fitting, 45 Deg., Steel",Any,Plumbing,[C1]*[Size1]+[C2],mm,,170.625,0,0,,0,2017-05-10 00:00:00,[Size1]=Inlet Fitting Size (mm).
+,"Banjo Fitting, 90 Deg., Aluminum",Any,Plumbing,[C1]*[Size1]+[C2],mm,,97.5,146.25,0,,146.25,2017-05-10 00:00:00,[Size1]=Inlet Fitting Size (mm).
+,"Banjo Fitting, 90 Deg., Steel",Any,Plumbing,[C1]*[Size1]+[C2],mm,,204.75,0,0,,0,2017-05-10 00:00:00,[Size1]=Inlet Fitting Size (mm).
+,"Banjo Fitting, Aluminum",Any,Plumbing,[C1]*[Size1]+[C2],mm,,65,97.5,0,,97.5,2017-05-10 00:00:00,[Size1]=Inlet Fitting Size (mm).
+,"Banjo Fitting, Double, Aluminum",Any,Plumbing,[C1]*[Size1]+[C2],mm,,97.5,146.25,0,,146.25,2017-05-10 00:00:00,[Size1]=Largest Inlet Fitting Size (mm).
+,"Banjo Fitting, Double, Steel",Any,Plumbing,[C1]*[Size1]+[C2],mm,,204.75,0,0,,0,2017-05-10 00:00:00,[Size1]=Largest Inlet Fitting Size (mm).
+,"Banjo Fitting, Steel",Any,Plumbing,[C1]*[Size1]+[C2],mm,,136.5,0,0,,0,2017-05-10 00:00:00,[Size1]=Inlet Fitting Size (mm).
+,"Bleedscrew, Hydraulic (Brake, clutch, etc.)",Any,Plumbing,65,unt,,,,,,,2017-05-10 00:00:00,"Any size, materiAluminum"
+,"Break Coupling, Dry, Female, KC Engineering",KC Engineering,Plumbing,5525,unit,,,,,,,2017-05-10 00:00:00,Sizes up to 8mm
+,"Break Coupling, Dry, Female, Staubli",Staubli,Plumbing,5525,unit,,,,,,,2017-05-10 00:00:00,Sizes up to 8mm
+,"Break Coupling, Dry, Male, KC Engineering",KC Engineering,Plumbing,4777.5,unit,,,,,,,2017-05-10 00:00:00,Sizes up to 8mm
+,"Break Coupling, Dry, Male, Staubli",Staubli,Plumbing,4777.5,unit,,,,,,,2017-05-10 00:00:00,Sizes up to 8mm
+,"Check Valve, High Press, Adj, In-Line, Generant",Generant,Plumbing,650,unit,,,,,,,2017-05-10 00:00:00,
+,Crush Washer,Any,Plumbing,[C1]*[Size1]+[C2],mm,,1.755,7.8,0,,7.8,2017-05-10 00:00:00,"[Size1]=Inner Diameter (mm).  Any material (steel, aluminum, copper, etc.)"
+,"Drain Plug, Hex Head, Magnetic",Any,Plumbing,[C1]*[Size1]+[C2],mm,,6.045,3.25,0,,3.25,2017-05-10 00:00:00,[Size1]=Threaded Diameter (mm)
+,"Drain Plug, Square Head, Magnetic",Any,Plumbing,[C1]*[Size1]+[C2],mm,,6.045,3.25,0,,3.25,2017-05-10 00:00:00,[Size1]=Threaded Diameter (mm)
+,"Fitting, Fuel Pressure Gauge",Any,Plumbing,195,unit,,,,,,,2017-05-10 00:00:00,"12.7mm Barb End (x2), 3.175mm NPT Female"
+,"Fitting, JT2000, Quick Con. Plug to Flare, 45 Deg.",Jiffy-Tite,Plumbing,942.5,unit,,,,,,,2017-05-10 00:00:00,Jiffy-Tite 2000 Series.  Sizes up to 12.7mm Flare
+,"Fitting, JT2000, Quick Con. Plug to Flare, 90 Deg.",Jiffy-Tite,Plumbing,942.5,unit,,,,,,,2017-05-10 00:00:00,Jiffy-Tite 2000 Series.  Sizes up to 12.7mm Flare
+,"Fitting, JT2000, Quick Con. Plug to Flare, Str.",Jiffy-Tite,Plumbing,747.5,unit,,,,,,,2017-05-10 00:00:00,Jiffy-Tite 2000 Series.  Sizes up to 12.7mm Flare
+,"Fitting, JT2000, Quick Con. Socket to Flare, 45 Deg.",Jiffy-Tite,Plumbing,1040,unit,,,,,,,2017-05-10 00:00:00,Jiffy-Tite 2000 Series.  Sizes up to 12.7mm Flare
+,"Fitting, JT2000, Quick Con. Socket to Flare, 90 Deg.",Jiffy-Tite,Plumbing,1202.5,unit,,,,,,,2017-05-10 00:00:00,Jiffy-Tite 2000 Series.  Sizes up to 12.7mm Flare
+,"Fitting, JT2000, Quick Con. Socket to Flare, Straight",Jiffy-Tite,Plumbing,1137.5,unit,,,,,,,2017-05-10 00:00:00,Jiffy-Tite 2000 Series.  Sizes up to 12.7mm Flare
+,"Fitting, Push-to-Connect, Plastic, Elbow 90°",Any,Plumbing,[C1]*[Size1]+[C2],mm,,16.25,26,0,,26,2017-05-10 00:00:00,"[Size1]=Tube Outer Diameter, Largest end (mm)."
+,"Fitting, Push-to-Connect, Plastic, Straight",Any,Plumbing,[C1]*[Size1]+[C2],mm,,16.25,26,0,,26,2017-05-10 00:00:00,"[Size1]=Tube Outer Diameter, Largest end (mm)."
+,"Fitting, Push-to-Connect, Plastic, Tee",Any,Plumbing,[C1]*[Size1]+[C2],mm,,13,61.75,0,,61.75,2017-05-10 00:00:00,[Size1]=Tube Outer Diameter (mm)
+,"Fitting, Push-to-Connect, Plastic, Wye",Any,Plumbing,[C1]*[Size1]+[C2],mm,,13,61.75,0,,61.75,2017-05-10 00:00:00,[Size1]=Tube Outer Diameter (mm)
+,"Fitting, Weld-in, Male, Aluminum",,Plumbing,[C1]*EXP([C2]*[Size1]),mm,,84.5,2.86,0,,84.5,2017-05-10 00:00:00,"[Size1]=Flare Size (mm).  For cost as made oil reservoir tanks, etc."
+,"Fitting, Wiggins, Clamshell Assembly",Any,Plumbing,[C1]*[Size1]+[C2],mm,,32.5,1040,0,,1040,2017-05-10 00:00:00,[Size1]=Tube Outer Diameter (mm)
+,"Fitting, Wiggins, Coupling Assembly",Any,Plumbing,[C1]*[Size1]+[C2],mm,,104,520,0,,520,2017-05-10 00:00:00,[Size1]=Tube Outer Diameter (mm)
+,"Fitting, Wiggins, Weld Ferrule",Any,Plumbing,[C1]*[Size1]+[C2],mm,,20.8,292.5,0,,292.5,2017-05-10 00:00:00,[Size1]=Tube Outer Diameter (mm)
+,Fitting/H.P./Elbow/45 deg./Steel/,,Plumbing,[C1]*[Size1]+[C2],mm,,58.5,474.5,0,,474.5,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  High Pressure."
+,Fitting/H.P./Elbow/90 deg./Steel/,,Plumbing,[C1]*[Size1]+[C2],mm,,39,617.5,0,,617.5,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  High Pressure."
+,Fitting/H.P./MAluminume Flare//Brass/,,Plumbing,[C1]*[Size1]+[C2],mm,,0,715,0,,715,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  High Pressure."
+,Fitting/H.P./MAluminume Inverted Flare//Brass/,,Plumbing,[C1]*[Size1]+[C2],mm,,67.6,-26.65,0,,-26.65,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  High Pressure."
+,Fitting/H.P./MAluminume Inverted Flare//Steel/,,Plumbing,[C1]*[Size1]+[C2],mm,,27.95,442,0,,442,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  High Pressure."
+,Fitting/H.P./MAluminume Inverted Flare/45 deg./Steel/,,Plumbing,[C1]*[Size1]+[C2],mm,,0,780,0,,780,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  High Pressure."
+,Fitting/H.P./MAluminume Inverted Flare/90 deg./Steel/,,Plumbing,[C1]*[Size1]+[C2],mm,,0,975,0,,975,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  High Pressure."
+,Fitting/H.P./MAluminume Pipe//Brass/,,Plumbing,[C1]*[Size1]+[C2],mm,,43.55,-136.5,0,,-136.5,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  High Pressure."
+,Fitting/H.P./MAluminume Pipe//Steel/,,Plumbing,[C1]*[Size1]+[C2],mm,,0,520,0,,520,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  High Pressure."
+,Fitting/H.P./Straight//Brass/,,Plumbing,[C1]*[Size1]+[C2],mm,,56.55,-236.6,0,,-236.6,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  High Pressure."
+,Fitting/H.P./Straight//Steel/,,Plumbing,[C1]*[Size1]+[C2],mm,,34.45,222.95,0,,222.95,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  High Pressure."
+,Fitting/L.P./Cap//Aluminum/Anodized,,Plumbing,[C1]*[Size1]+[C2],mm,,42.9,-139.1,0,,-139.1,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Cap//Steel/,,Plumbing,[C1]*[Size1]+[C2],mm,,20.8,0,0,,0,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Elbow/120 deg./Aluminum/Anodized,,Plumbing,[C1]*[Size1]+[C2],mm,,22.75,2236,0,,2236,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Elbow/120 deg./Aluminum/Crimp,,Plumbing,[C1]*[Size1]+[C2],mm,,144.95,852.15,0,,852.15,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Elbow/150 deg./Aluminum/Anodized,,Plumbing,[C1]*[Size1]+[C2],mm,,87.1,1647.1,0,,1647.1,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Elbow/150 deg./Aluminum/Crimp,,Plumbing,[C1]*[Size1]+[C2],mm,,163.8,663,0,,663,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Elbow/180 deg./Aluminum/Anodized,,Plumbing,[C1]*[Size1]+[C2],mm,,115.05,1283.75,0,,1283.75,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Elbow/180 deg./Aluminum/Crimp,,Plumbing,[C1]*[Size1]+[C2],mm,,287.3,-1248.65,0,,-1248.65,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Elbow/30 deg./Aluminum/Anodized,,Plumbing,[C1]*[Size1]+[C2],mm,,136.5,298.35,0,,298.35,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Elbow/30 deg./Aluminum/Crimp,,Plumbing,[C1]*[Size1]+[C2],mm,,103.35,1235,0,,1235,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Elbow/45 deg./Aluminum/Anodized,,Plumbing,[C1]*[Size1]+[C2],mm,,137.15,-174.2,0,,-174.2,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Elbow/45 deg./Aluminum/Crimp,,Plumbing,[C1]*[Size1]+[C2],mm,,145.6,250.9,0,,250.9,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Elbow/45 deg./Aluminum/Nickel-Plated,,Plumbing,[C1]*[Size1]+[C2],mm,,104,871,0,,871,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Elbow/45 deg./Steel/,,Plumbing,[C1]*[Size1]+[C2],mm,,306.8,-522.6,0,,-522.6,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Elbow/60 deg./Aluminum/Anodized,,Plumbing,[C1]*[Size1]+[C2],mm,,136.5,298.35,0,,298.35,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Elbow/60 deg./Aluminum/Crimp,,Plumbing,[C1]*[Size1]+[C2],mm,,68.9,1919.45,0,,1919.45,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Elbow/90 deg./Aluminum/Anodized,,Plumbing,[C1]*[Size1]+[C2],mm,,94.9,380.25,0,,380.25,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Elbow/90 deg./Aluminum/Crimp,,Plumbing,[C1]*[Size1]+[C2],mm,,154.05,79.3,0,,79.3,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Elbow/90 deg./Aluminum/Nickel-Plated,,Plumbing,[C1]*[Size1]+[C2],mm,,104,884,0,,884,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Elbow/90 deg./Steel/,,Plumbing,[C1]*[Size1]+[C2],mm,,310.7,-814.45,0,,-814.45,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Male Flare to Pipe//Aluminum/Anodized,,Plumbing,[C1]*[Size1]*[Size2]+[C2],mm,mm,2.08,86.45,0,0,86.45,2017-05-10 00:00:00,"[Size1]=Inlet Hose Size (mm), [Size2]=Outlet Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Male Pipe//Aluminum/,,Plumbing,[C1]*[Size1]+[C2],mm,,177.45,435.5,0,,435.5,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Orb/45 deg./Aluminum/,,Plumbing,[C1]*[Size1]+[C2],mm,,143,1560,0,,1560,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Orb/90 deg./Aluminum/,,Plumbing,[C1]*[Size1]+[C2],mm,,0,4225,0,,4225,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Straight/Aluminum/Anodized,,Plumbing,[C1]*[Size1]+[C2],mm,,85.8,-395.2,0,,-395.2,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Straight/Aluminum/Crimp,,Plumbing,[C1]*[Size1]+[C2],mm,,106.6,-204.75,0,,-204.75,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Straight/Aluminum/Nickel-Plated,,Plumbing,[C1]*[Size1]+[C2],mm,,117,-419.25,0,,-419.25,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Straight/Steel/,,Plumbing,[C1]*[Size1]+[C2],mm,,423.8,-1766.7,0,,-1766.7,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Tee/Flare-Flare-Pipe/Steel/,,Plumbing,[C1]*[Size1]+[C2],mm,,13,578.5,0,,578.5,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Tube Nut//Aluminum/Anodized,,Plumbing,[C1]*[Size1]+[C2],mm,,23.92,-87.1,0,,-87.1,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Tube Nut//Steel/,,Plumbing,[C1]*[Size1]+[C2],mm,,7.15,111.15,0,,111.15,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Tube Sleeve//Aluminum/Anodized,,Plumbing,[C1]*[Size1]+[C2],mm,,11.7,0,0,,0,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Tube Sleeve/Brass,,Plumbing,[C1]*[Size1]+[C2],mm,,4.55,0,0,,0,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Fitting/L.P./Tube Sleeve/Steel/,,Plumbing,[C1]*[Size1]+[C2],mm,,14.95,0,0,,0,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,"Grease Nipple, 45 Deg.",,Plumbing,32.5,unit,,,,,,,2017-05-10 00:00:00,Any size up to 6.35mm
+,"Grease Nipple, 90 Deg.",,Plumbing,32.5,unit,,,,,,,2017-05-10 00:00:00,Any size up to 6.35mm
+,"Grease Nipple, Straight",,Plumbing,32.5,unit,,,,,,,2017-05-10 00:00:00,Any size up to 6.35mm
+,"Hose, High Pressure, Stainless Steel Braided Outer",,Plumbing,[C1]*[Size1]+[C2],mm,,160.55,-176.15,0,,-176.15,2017-05-10 00:00:00,"[Size1]=Hose Size (mm).  Cost is per meter of hose.  Hydraulic, CO2, etc. up to 20.7 Mpa."
+,"Hose, Low Pressure, Fabric Outer",,Plumbing,[C1]*[Size1]+[C2],mm,,210.6,631.8,0,,631.8,2017-05-10 00:00:00,"[Size1]=Hose Size (mm).  Cost is per meter of hose.  Fuel, oil, coolant, air, etc. up to 7 Mpa.  "
+,"Hose, Low Pressure, Stainless Steel Braided Outer",,Plumbing,[C1]*[Size1]+[C2],mm,,144.95,228.8,0,,228.8,2017-05-10 00:00:00,"[Size1]=Hose Size (mm).  Cost is per meter of hose.  Fuel, oil, coolant, air, etc. up to 7 Mpa.  "
+,"Hose, Low Presure, Fabric Outer, Socketless",,Plumbing,[C1]*[Size1]+[C2],mm,,64.35,292.5,0,,292.5,2017-05-10 00:00:00,"[Size1]=Hose Size (mm).  Cost is per meter of hose.   Fuel, oil, coolant, air, etc. up to 1.7 Mpa."
+,"Hose, Polyurethane",Any,Plumbing,[C1]*[Size1]+[C2],mm,m,4.55,0,0,0,0,2017-05-10 00:00:00,[Size1]=Outer Diameter (mm).  Price per meter of hose (m).   Same cost with and without fiber reinforcement.  For very low pressure applications such as pneumatic shfiters after regulator.
+,"Hose, Rubber",Any,Plumbing,[C1]*[Size1]+[C2],mm,m,11.7,0,0,0,0,2017-05-10 00:00:00,"[Size1]=Outer Diameter (mm).  Price per meter of hose (m).   Same cost with and without fiber reinforcement.  For very low pressure applications (cooling system, vacuum, carbereutered fuel systems, etc.)"
+,"Hose, Rubber",,Plumbing,[C1]*[Size1]+[C2],mm,,11.7,0,0,,0,2017-05-10 00:00:00,"[Size1]=Outer Diameter (mm).  Price per meter of hose (m).  Same cost with and without fiber reinforcement.  For very low pressure applications (cooling system, vacuum, carbereutered fuel systems, etc.)"
+,"Hose, Silicone",Any,Plumbing,[C1]*[Size1]+[C2],mm,m,30.55,0,0,0,0,2017-05-10 00:00:00,"[Size1]=Outer Diameter (mm).  Price per meter of hose (m).   Same cost with and without fiber reinforcement.  For very low pressure applications (cooling system, vacuum, carbereutered fuel systems, etc.)"
+,Locknut/L.P.///Steel/,0.126,Plumbing,[C1]*[Size1]+[C2],mm,,8.19,102.05,0,,102.05,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Locknut/L.P./Flare//Aluminum/Anodized,0.385,Plumbing,[C1]*[Size1]+[C2],mm,,25.025,52,0,,52,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Plug/L.P./Flare//Steel/,0.312,Plumbing,[C1]*[Size1]+[C2],mm,,20.28,58.825,0,,58.825,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Plug/L.P./O-Ring Boss//Aluminum/Anodized,0.38,Plumbing,[C1]*[Size1]+[C2],mm,,24.7,352.17,0,,352.17,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,Plug/L.P./Pipe/Allen Head/Aluminum/Anodized,0.36,Plumbing,[C1]*[Size1]+[C2],mm,,23.4,115.7,0,,115.7,2017-05-10 00:00:00,"[Size1]=Hose Size (mm), e.g. AN4 = 4/16 inch = 6.35mm.  Low Pressure."
+,"Rotating Union, GAT, Rotodisk",GAT,Plumbing,30745,unit,,,,,,,2017-05-10 00:00:00,
+,"Tubing, Steel",,Plumbing,146.25,kg,,,,,,,2017-05-10 00:00:00,"Cost using area, length and density and include process cost for flaring of tube ends, etc.  Can also cost off steel or stainless steel raw material (same cost)."
+,Aluminum Metal Matrix Composite,Any,Raw Material,2145,kg,,,,,,,2017-05-10 00:00:00,
+,"Aluminum, Normal",Any,Raw Material,273,kg,,,,,,,2017-05-10 00:00:00,"e.g. 2024, 6061, A356, A380"
+,"Aluminum, Premium",Any,Raw Material,273,kg,,,,,,,2017-05-10 00:00:00,e.g. 7075
+,Brass,Any,Raw Material,143,kg,,,,,,,2017-05-10 00:00:00,
+,Bronze,Any,Raw Material,143,kg,,,,,,,2017-05-10 00:00:00,
+,Copper,Any,Raw Material,143,kg,,,,,,,2017-05-10 00:00:00,
+,Cork,Any,Raw Material,0.33,cm^3,,,,,,,2017-05-10 00:00:00,
+,"Foam, Expanding, Non-Structural",Any,Raw Material,975,kg,,,,,,,2017-05-10 00:00:00,Expanding foam such as is used for seats.  Not to be used as core in a composite sandwhich panel.
+,Inconel,Any,Raw Material,1430,kg,,,,,,,2017-05-10 00:00:00,Please submit an Add Item Request
+,Iron,Any,Raw Material,65,kg,,,,,,,2017-05-10 00:00:00,
+,Magnesium,Any,Raw Material,390,kg,,,,,,,2017-05-10 00:00:00,
+,"Magnet, ferrite",Any,Raw Material,650,kg,,,,,,,2017-05-10 00:00:00,
+,"Magnet, neodymium high strength",Any,Raw Material,5200,kg,,,,,,,2017-05-10 00:00:00,
+,Nickel,Any,Raw Material,143,kg,,,,,,,2017-05-10 00:00:00,
+,"Plastic, ABS",Any,Raw Material,214.5,kg,,,,,,,2017-05-10 00:00:00,"PVC, Thermoplastic"
+,"Plastic, Acetal",Any,Raw Material,214.5,kg,,,,,,,2017-05-10 00:00:00,"Delrin, Turcite, Acetal Copolymer"
+,"Plastic, Acrylic",Any,Raw Material,214.5,kg,,,,,,,2017-05-10 00:00:00,"Extruded, Cast"
+,"Plastic, Flouropolymers",Any,Raw Material,214.5,kg,,,,,,,2017-05-10 00:00:00,"Teflon® PTFE, PTFE (polytetrafluoroethylene), ETFE (ethylene tetrafluoroethylene), PFA (perfluoroalkoxy fluorocarbon), CTFE (chlorotrifluoroethylene), PVDF (Kynar), ECTFE (Halar), FEP (fluorinated ethylene-propylene), Rulon®"
+,"Plastic, Garolite",Any,Raw Material,214.5,kg,,,,,,,2017-05-10 00:00:00,"Industrial Laminates, Phenolics, Thermosets"
+,"Plastic, Nylon",Any,Raw Material,214.5,kg,,,,,,,2017-05-10 00:00:00,"Nylon 6/6, Nylon 6/12"
+,"Plastic, PEEK",Any,Raw Material,214.5,kg,,,,,,,2017-05-10 00:00:00,
+,"Plastic, Polycarbonate",Any,Raw Material,214.5,kg,,,,,,,2017-05-10 00:00:00,
+,"Plastic, Polyethelene",Any,Raw Material,214.5,kg,,,,,,,2017-05-10 00:00:00,"LDPE (low density polyethylene), UHMW (ultra high molecular weight), HDPE (high density polyethylene), VHMW (very high molecular weight)"
+,"Plastic, Polyoxymethylene (POM)",Any,Raw Material,214.5,kg,,,,,,,2017-05-10 00:00:00,Delrin
+,"Plastic, Polypropolene",Any,Raw Material,214.5,kg,,,,,,,2017-05-10 00:00:00,
+,"Plastic, PVC",Any,Raw Material,214.5,kg,,,,,,,2017-05-10 00:00:00,"Type I, Type II, CPVC, Expanded Rigid PVC"
+,Rubber,Any,Raw Material,214.5,kg,,,,,,,2017-05-10 00:00:00,
+,Silicon Carbide (or any ceramic),Any,Raw Material,0,kg,,,,,,,2017-05-10 00:00:00,Please submit an Add Item Request
+,"Steel, Alloy",Any,Raw Material,146.25,kg,,,,,,,2017-05-10 00:00:00,"e.g. 4130, Chrome Moly, etc."
+,"Steel, Mild",Any,Raw Material,146.25,kg,,,,,,,2017-05-10 00:00:00,"e.g. 1010, 1025 etc."
+,"Steel, Stainless",Any,Raw Material,146.25,kg,,,,,,,2017-05-10 00:00:00,
+,Titanium,Any,Raw Material,1430,kg,,,,,,,2017-05-10 00:00:00,e.g. Ti6Al4V
+,"Wood, Hard",Any,Raw Material,0.26,cm^3,,,,,,,2017-05-10 00:00:00,"Oak, Maple, Birch"
+,"Wood, Medium Density Fiberboard",Any,Raw Material,0.13,cm^3,,,,,,,2017-05-10 00:00:00,MDF
+,"Wood, Soft",Any,Raw Material,0.2,cm^3,,,,,,,2017-05-10 00:00:00,"Balsa, Bass"
+,Aluminum Metal Matrix Composite (per kg),Any,Raw Material (per kg),2145,kg,,,,,,,2017-05-10 00:00:00,
+,"Aluminum, Normal (per kg)",Any,Raw Material (per kg),273,kg,,,,,,,2017-05-10 00:00:00,"e.g. 2024, 6061, A356, A380"
+,"Aluminum, Premium (per kg)",Any,Raw Material (per kg),273,kg,,,,,,,2017-05-10 00:00:00,e.g. 7075
+,Brass (per kg),Any,Raw Material (per kg),143,kg,,,,,,,2017-05-10 00:00:00,
+,Bronze (per kg),Any,Raw Material (per kg),143,kg,,,,,,,2017-05-10 00:00:00,
+,Copper (per kg),Any,Raw Material (per kg),143,kg,,,,,,,2017-05-10 00:00:00,
+,"Foam, Expanding, Non-Structural (per kg)",Any,Raw Material (per kg),975,kg,,,,,,,2017-05-10 00:00:00,Expanding foam such as is used for seats.  Not to be used as core in a composite sandwhich panel.
+,Iron (per kg),Any,Raw Material (per kg),65,kg,,,,,,,2017-05-10 00:00:00,
+,Magnesium (per kg),Any,Raw Material (per kg),390,kg,,,,,,,2017-05-10 00:00:00,
+,Nickel (per kg),Any,Raw Material (per kg),143,kg,,,,,,,2017-05-10 00:00:00,
+,"Plastic, ABS (per kg)",Any,Raw Material (per kg),214.5,kg,,,,,,,2017-05-10 00:00:00,"PVC, Thermoplastic"
+,"Plastic, Acetal (per kg)",Any,Raw Material (per kg),214.5,kg,,,,,,,2017-05-10 00:00:00,"Delrin, Turcite, Acetal Copolymer"
+,"Plastic, Acrylic (per kg)",Any,Raw Material (per kg),214.5,kg,,,,,,,2017-05-10 00:00:00,"Extruded, Cast"
+,"Plastic, Flouropolymers (per kg)",Any,Raw Material (per kg),214.5,kg,,,,,,,2017-05-10 00:00:00,"Teflon® PTFE, PTFE (polytetrafluoroethylene), ETFE (ethylene tetrafluoroethylene), PFA (perfluoroalkoxy fluorocarbon), CTFE (chlorotrifluoroethylene), PVDF (Kynar), ECTFE (Halar), FEP (fluorinated ethylene-propylene), Rulon®"
+,"Plastic, Garolite (per kg)",Any,Raw Material (per kg),214.5,kg,,,,,,,2017-05-10 00:00:00,"Industrial Laminates, Phenolics, Thermosets"
+,"Plastic, Nylon (per kg)",Any,Raw Material (per kg),214.5,kg,,,,,,,2017-05-10 00:00:00,"Nylon 6/6, Nylon 6/12"
+,"Plastic, PEEK (per kg)",Any,Raw Material (per kg),214.5,kg,,,,,,,2017-05-10 00:00:00,
+,"Plastic, Polycarbonate (per kg)",Any,Raw Material (per kg),214.5,kg,,,,,,,2017-05-10 00:00:00,
+,"Plastic, Polyethelene (per kg)",Any,Raw Material (per kg),214.5,kg,,,,,,,2017-05-10 00:00:00,"LDPE (low density polyethylene), UHMW (ultra high molecular weight), HDPE (high density polyethylene), VHMW (very high molecular weight)"
+,"Plastic, Polyoxymethylene (POM) (per kg)",Any,Raw Material (per kg),214.5,kg,,,,,,,2017-05-10 00:00:00,Delrin
+,"Plastic, Polypropolene (per kg)",Any,Raw Material (per kg),214.5,kg,,,,,,,2017-05-10 00:00:00,
+,"Plastic, PVC (per kg)",Any,Raw Material (per kg),214.5,kg,,,,,,,2017-05-10 00:00:00,"Type I, Type II, CPVC, Expanded Rigid PVC"
+,Rubber (per kg),Any,Raw Material (per kg),214.5,kg,,,,,,,2017-05-10 00:00:00,
+,"Steel, Alloy (per kg)",Any,Raw Material (per kg),146.25,kg,,,,,,,2017-05-10 00:00:00,"e.g. 4130, Chrome Moly, etc."
+,"Steel, Mild (per kg)",Any,Raw Material (per kg),146.25,kg,,,,,,,2017-05-10 00:00:00,"e.g. 1010, 1025 etc."
+,"Steel, Stainless (per kg)",Any,Raw Material (per kg),146.25,kg,,,,,,,2017-05-10 00:00:00,
+,Titanium (per kg),Any,Raw Material (per kg),1430,kg,,,,,,,2017-05-10 00:00:00,e.g. Ti6Al4V
+,"Harness, Driver",Any,Safety,2925,unit,,,,,,,2017-05-10 00:00:00,"Any harness, any latch style, any number of belts.  Includes harness with built in attachment points but no hardware."
+,"Seal, O-Ring, Elastomer",Any,Seals,3.25,unit,,,,,,,2017-05-10 00:00:00,"Any size, any material"
+,"Seal, Radial Lip Seal",Any,Seals,65,unit,,,,,,,2017-05-10 00:00:00,"Any Size, any style"
+,"Sensor, Accelerometer, 1 Axis",Any,Sensors,260,unit,,,,,,,2017-05-10 00:00:00,
+,"Sensor, Accelerometer, 3 Axis",Any,Sensors,520,unit,,,,,,,2017-05-10 00:00:00,
+,"Sensor, Air Temperature",Any,Sensors,260,unit,,,,,,,2017-05-10 00:00:00,OEM quality sensor
+,"Sensor, Angular Position",Any,Sensors,260,unit,,,,,,,2017-05-10 00:00:00,e.g. Throttle Position Sensor (TPS)
+,"Sensor, Fluid Pressure",Any,Sensors,260,unit,,,,,,,2017-05-10 00:00:00,
+,"Sensor, Fluid Pressure & Temperature",Any,Sensors,650,unit,,,,,,,2017-05-10 00:00:00,
+,"Sensor, Hall Effect",Any,Sensors,260,unit,,,,,,,2017-05-10 00:00:00,e.g. Wheel Speed Sensor
+,"Sensor, LVDT",Any,Sensors,780,unit,,,,,,,2017-05-10 00:00:00,
+,"Sensor, Manifold Absolute Pressure (MAP)",Any,Sensors,260,unit,,,,,,,2017-05-10 00:00:00,OEM quality sensor
+,"Sensor, Mass Air Flow (MAF)",Any,Sensors,1625,unit,,,,,,,2017-05-10 00:00:00,OEM quality sensor
+,"Sensor, Switching Air Fuel Ratio",Any,Sensors,975,unit,,,,,,,2017-05-10 00:00:00,Switches output (high/low) when transition from rich to lean detected
+,"Sensor, Temperature",Any,Sensors,520,unit,,,,,,,2017-05-10 00:00:00,
+,"Sensor, Thermocouple",Any,Sensors,520,unit,,,,,,,2017-05-10 00:00:00,
+,"Sensor, Two State Position",Any,Sensors,260,unit,,,,,,,2017-05-10 00:00:00,
+,"Sensor, Wide Band Air Fuel Raito",Any,Sensors,2275,unit,,,,,,,2017-05-10 00:00:00,Output proportional to air fuel ratio
+,Fabric,Any,Sheet Material,162.5,m^2,,,,,,,2017-05-10 00:00:00,"Any fabric including dacron for body covering, seats, etc."
+,Glass,Any,Sheet Material,650,m^2,,,,,,,2017-05-10 00:00:00,
+,Leather,Any,Sheet Material,6500,m^2,,,,,,,2017-05-10 00:00:00,
+,Suede,Any,Sheet Material,6500,m^2,,,,,,,2017-05-10 00:00:00,
+,Air Pressure Regulator,Any,Shifter,650,unit,,,,,,,2017-05-10 00:00:00,
+,CO2 Regulator,Any,Shifter,3250,unit,,,,,,,2017-05-10 00:00:00,
+,"CO2 Tank, Composite",Any,Shifter,[C1]*[Size1]+[C2],cc,,3.25,55.25,0,,55.25,2017-05-10 00:00:00,
+,"CO2 Tank, Metallic",Any,Shifter,[C1]*[Size1]+[C2],cc,,2.86,-353.6,0,,-353.6,2017-05-10 00:00:00,
+,N2 Regulator,Any,Shifter,3250,unit,,,,,,,2017-05-10 00:00:00,
+,"N2 Tank, Composite",Any,Shifter,[C1]*[Size1]+[C2],cc,,3.25,55.25,0,,55.25,2017-05-10 00:00:00,
+,"N2 Tank, Metallic",Any,Shifter,[C1]*[Size1]+[C2],cc,,2.86,-353.6,0,,-353.6,2017-05-10 00:00:00,
+,"Pneumatic Cylinder, Double Acting",Any,Shifter,1625,unit,,,,,,,2017-05-10 00:00:00,
+,"Pneumatic Cylinder, Single Acting",Any,Shifter,1300,unit,,,,,,,2017-05-10 00:00:00,
+,Pneumatic fluidic muscle,Festo,Shifter,3900,unit,,,,,,,2017-05-10 00:00:00,Any size
+,"Pneumatic Valve, Two Position",Any,Shifter,1625,unit,,,,,,,2017-05-10 00:00:00,Two position valve (open/closed).
+,"Shift Lever, Bicycle OEM",Any,Shifter,1300,unit,,,,,,,2017-05-10 00:00:00,Any make/model of bicycle (push bike) handle bar lever.  Includes lever only.
+,"Shift Lever, Honda, 0143719",Honda,Shifter,1625,unit,,,,,,,2017-05-10 00:00:00,
+,"Shifter, Automatic, Flat Shifter Expert",Flat Shifter,Shifter,28990,unit,,,,,,,2017-05-10 00:00:00,
+,"Shifter, Automatic, Flat Shifter Max",Flat Shifter,Shifter,24050,unit,,,,,,,2017-05-10 00:00:00,
+,"Shifter, Automatic, Kartech, Me-Shifter F1",Kartech,Shifter,38350,unit,,,,,,,2017-05-10 00:00:00,
+,"Shifter, Automatic, Kliktronics",Kliktronics,Shifter,23400,unit,,,,,,,2017-05-10 00:00:00,
+,"Shifter, Automatic, Pingel Easy Shift Kit",Pingel,Shifter,24375,unit,,,,,,,2017-05-10 00:00:00,
+,"Shifter, Automatic, TransLogic TLS-PS1",TransLogic,Shifter,26000,units,,,,,,,2017-05-10 00:00:00,"Includes actuator, wiring and 2 buttons."
+,"Spring, Compression (General)",Any,Springs,65,unit,,,,,,,2017-05-10 00:00:00,For all uses requiring forces < 100 N.  Not for suspensions.
+,"Spring, Tension (General)",Any,Springs,65,unit,,,,,,,2017-05-10 00:00:00,For all uses requiring forces < 100 N.  Not for suspensions.
+,"Spring, Torsion (General)",,Springs,65,unit,,,,,,,2017-05-10 00:00:00,For all uses requiring forces < 100 N.  Not for suspensions.
+,"Suspension Springs, Coil Spring, Steel",Any,Springs,1625,unit,,,,,,,2017-05-10 00:00:00,Any Steel coil compression spring
+,"Suspension Springs, Coil Spring, Titanium",Any,Springs,7150,unit,,,,,,,2017-05-10 00:00:00,Titanium Spring
+,Steering Column Universal Joint,Any,Steering,1300,unit,,,,,,,2017-05-10 00:00:00,
+,"Steering Column Universal Joint, Double",Any,Steering,2502.5,unit,,,,,,,2017-05-10 00:00:00,
+,Steering Pinion (All Cost as Made),Any,Steering,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,Steering Rack (All Cost as Made),Any,Steering,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,Steering Rack Housing (All Cost as Made),Any,Steering,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,Steering Wheel (All Cost as Made),Any,Steering,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,"Steering Wheel, Quick Release (All Cost as Made)",Any,Steering,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,A-Arms (All Cost as Made),Any,Suspension,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,Wishbones (All Cost as Made),Any,Suspension,0,unit,,,,,,,2017-05-10 00:00:00,This item should be cost as made whether the team made it or bought it.  Please see Rule C3.12 for more information.
+,"Tire, American Racer, M32, 8""-15.0 x7.0",American Racer,Tire,4420,unit,,,,,,,2017-05-10 00:00:00,8 inch rim diameter
+,"Tire, American Racer, SD44, 8""-15.0 x6.0",American Racer,Tire,4420,unit,,,,,,,2017-05-10 00:00:00,8 inch rim diameter
+,"Tire, American Racer, SD44, 8""-15.0 x8.0",American Racer,Tire,4420,unit,,,,,,,2017-05-10 00:00:00,8 inch rim diameter
+,"Tire, American Racer,M32, 8""-15.0 x7.0",American Racer,Tire,4420,unit,,,,,,,2017-05-10 00:00:00,8 inch rim diameter
+,"Tire, American Racer,SD44, 8""-15.0 x6.0",American Racer,Tire,4420,unit,,,,,,,2017-05-10 00:00:00,8 inch rim diameter
+,"Tire, American Racer,SD44, 8""-15.0 x8.0",American Racer,Tire,4420,unit,,,,,,,2017-05-10 00:00:00,8 inch rim diameter
+,"Tire, Avon, A45, 13""-20.0 x 6.2",Avon,Tire,6500,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Avon, A45, 13""-20.0 x 7.2",Avon,Tire,6500,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Avon, A45, 13""-20.0 x 8.2",Avon,Tire,6500,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Bridgestone, 13""-180mm/510mm",Bridgestone,Tire,6500,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Continental, 13""",Continental,Tire,5200,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Dunlop Motorsport, 13"", 175mm/505mm",Dunlop,Tire,5655,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Goodyear, D2692, 13""-20.0 x 7.0",Goodyear,Tire,6500,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Goodyear, R065, 13""-20.0 x 7.0",Goodyear,Tire,6500,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Goodyear, R075, 13""-20.0 x 7.0",Goodyear,Tire,6500,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Hoosier, LC0, 10""-18.0 x 6.0",Hoosier,Tire,5525,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Hoosier, LC0, 10""-18.0 x 7.0",Hoosier,Tire,5525,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Hoosier, R25B, 10""-18.0 x 6.0",Hoosier,Tire,5525,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Hoosier, R25B, 10""-18.0 x 7.5",Hoosier,Tire,5525,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Hoosier, R25B, 10""-19.5 x 6.5",Hoosier,Tire,5525,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Hoosier, R25B, 10""-19.5 x 7.5",Hoosier,Tire,5525,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Hoosier, R25B, 13""-20.0 x 7.5",Hoosier,Tire,5525,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Hoosier, R25B, 13""-20.0 x 8.0",Hoosier,Tire,5525,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Hoosier, R25B, 13""-20.0 x 9.0",Hoosier,Tire,5525,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Hoosier, R25B, 13""-20.5 x 6.0",Hoosier,Tire,5525,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Hoosier, R25B, 13""-20.5 x 7.0",Hoosier,Tire,5525,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Hoosier, Wet, 10""-19.5 x 6.5",Hoosier,Tire,5200,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Hoosier, Wet, 13""-20.0 x 7.5",Hoosier,Tire,6500,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Hoosier, Wet, 13""-21.0 x 6.5",Hoosier,Tire,6500,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Kumho, ECSTA, 13""-170mm/515mm",Kumoh,Tire,5200,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Michelin, P220, 13""-20.9 x 6.3",Michelin,Tire,6500,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Michelin, S6B, 13""-20.9 x 6.3",Michelin,Tire,6500,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Treaded Production Car Not Listed Above",Any,Tire,2600,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Yokohoma, ADVAN Dry, 13"" 160-55",Yokohoma,Tire,8775,unit,,,,,,,2017-05-10 00:00:00,
+,"Tire, Yokohoma, ADVAN Wet, 13"" 160-55",Yokohoma,Tire,10400,unit,,,,,,,2017-05-10 00:00:00,
+,Valve Stem (and Tire Inflation),Any,Tire,65,unit,,,,,,,2017-05-10 00:00:00,Includes tire inflation
+,"Wheel Center, Any Size, Student Made",Student Built,Wheel,0,unit,,,,,,,2017-05-10 00:00:00,
+,"Wheel Shells, 10"", 2 Piece, Keizer, Aluminum",Keizer,Wheel,85,unit,,,,,,,2017-05-10 00:00:00,
+,"Wheel Shells, 10"", 3 Piece, Keizer, Aluminum",Keizer,Wheel,3737.5,unit,,,,,,,2017-05-10 00:00:00,Wheel shells include outer rim but no center
+,"Wheel Shells, 13"" Inner, 4"" Wide, Kodiak, Aluminum",Kodiak,Wheel,6045,unit,,,,,,,2017-05-10 00:00:00,Kodiak Part Number I13406
+,"Wheel Shells, 13"" Inner, 4.5"" Wide, Kodiak, Alum.",Kodiak,Wheel,6045,unit,,,,,,,2017-05-10 00:00:00,Aluminum.  Kodiak Part Number I134506
+,"Wheel Shells, 13"" Inner, 5"" Wide, Kodiak, Alum.",Kodiak,Wheel,6500,unit,,,,,,,2017-05-10 00:00:00,Aluminum.  Kodiak Part Number I113506
+,"Wheel Shells, 13"" Inner, 6"" Wide, Kodiak, Alum.",Kodiak,Wheel,6760,unit,,,,,,,2017-05-10 00:00:00,Aluminum.  Kodiak Part Number I13606
+,"Wheel Shells, 13"" Outer, 1"" Wide, Kodiak, Alum.",Kodiak,Wheel,5525,unit,,,,,,,2017-05-10 00:00:00,Aluminum.  Kodiak Part Number O13106
+,"Wheel Shells, 13"" Outer, 1.5"" Wide, Kodiak, Alum.",Kodiak,Wheel,5947.5,unit,,,,,,,2017-05-10 00:00:00,Aluminum.  Kodiak Part Number O131506
+,"Wheel Shells, 13"" Outer, 2"" Wide, Kodiak, Alum.",Kodiak,Wheel,5947.5,unit,,,,,,,2017-05-10 00:00:00,Aluminum.  Kodiak Part Number O13206
+,"Wheel Shells, 13"", 3 Piece, Jongbloed, Alum.",Jongbloed,Wheel,18687.5,unit,,,,,,,2017-05-10 00:00:00,"Wheel comes with solid center,  no machining for hub attachment"
+,"Wheel Shells, 13"", 3 Piece, Jongbloed, Magnesium",Jongbloed,Wheel,18687.5,unit,,,,,,,2017-05-10 00:00:00,"Wheel comes with solid center,  no machining for hub attachment"
+,"Wheel Shells, 13"", 3 Piece, Keizer, Aluminum",Keizer,Wheel,5362.5,unit,,,,,,,2017-05-10 00:00:00,Wheel shells include inner & outer rim but no center
+,"Wheel Shells, 13"", 3 Piece, Weld, Aluminum",Weld,Wheel,7410,unit,,,,,,,2017-05-10 00:00:00,Includes  Inner (P850-3478) and Outer (P851-3318)
+,Wheel Weights (and Balancing),Any,Wheel,260,unit,,,,,,,2017-05-10 00:00:00,"Includes weights, balancing and installation labor for wheel weight"
+,"Wheel, 10"", 1 Piece OEM, Aluminum",Any,Wheel,5037.5,unit,,,,,,,2017-05-10 00:00:00,"Wheel comes with solid center,  no machining for hub attachment"
+,"Wheel, 10"", 1 Piece OEM, Magnesium",Any,Wheel,7020,unit,,,,,,,2017-05-10 00:00:00,"Wheel comes with solid center,  no machining for hub attachment"
+,"Wheel, 10"", 1 Piece OEM, Steel",Any,Wheel,2600,unit,,,,,,,2017-05-10 00:00:00,"Wheel comes with solid center,  no machining for hub attachment"
+,"Wheel, 10"", 1 Piece, Carbon Fiber, Purchased",Any,Wheel,0,unit,,,,,,,2017-05-10 00:00:00,Please submit Add Item Request
+,"Wheel, 10"", 1 Piece, Carbon Fiber, Student Made",Student Built,Wheel,0,unit,,,,,,,2017-05-10 00:00:00,
+,"Wheel, 10"", 1 Piece, DWT, Alumalite, Aluminum, Model 011-05",DWT,Wheel,4095,unit,,,,,,,2017-05-10 00:00:00,"sport blue label 0.125"" thickness"
+,"Wheel, 10"", 1 Piece, DWT, Alumalite, Aluminum, Model 011-05",DWT,Wheel,4095,unit,,,,,,,2017-05-10 00:00:00,"sport blue label 0.125"" thickness"
+,"Wheel, 10"", 2 Piece, HiPer Racing, Carbon-plastic, CF1, Inner Half",HiPer Racing,Wheel,2437.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Wheel, 10"", 2 Piece, HiPer Racing, Carbon-plastic, Tec 3, Inner Half",HiPer Racing,Wheel,1462.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Wheel, 10"", 3 Piece, Keizer, Aluminum",Keizer,Wheel,5037.5,unit,,,,,,,2017-05-10 00:00:00,"Wheel comes with solid center,  no machining for hub attachment"
+,"Wheel, 13"", 1 Piece OEM, Aluminum",Any,Wheel,7475,unit,,,,,,,2017-05-10 00:00:00,"Wheel comes with solid center,  no machining for hub attachment"
+,"Wheel, 13"", 1 Piece OEM, Magnesium",Any,Wheel,10465,unit,,,,,,,2017-05-10 00:00:00,"Wheel comes with solid center,  no machining for hub attachment"
+,"Wheel, 13"", 1 Piece OEM, Steel",Any,Wheel,3250,unit,,,,,,,2017-05-10 00:00:00,"Wheel comes with solid center,  no machining for hub attachment"
+,"Wheel, 13"", 1 Piece OZ, Aluminum",OZ Racing,Wheel,5200,unit,,,,,,,2017-05-10 00:00:00,
+,"Wheel, 13"", 1 Piece, Braid, Formrace, Aluminum, Model 16, 7"" Wide",Braid,Wheel,0,unit,,,,,,,2017-05-10 00:00:00,
+,"Wheel, 13"", 1 Piece, Carbon Fiber, Purchased",Any,Wheel,0,unit,,,,,,,2017-05-10 00:00:00,Please submit Add Item Request
+,"Wheel, 13"", 1 Piece, Carbon Fiber, Student Made",Student Built,Wheel,0,unit,,,,,,,2017-05-10 00:00:00,
+,"Wheel, 13"", 1 Piece, Compomotive XR1380",Compomotive,Wheel,6110,unit,,,,,,,2017-05-10 00:00:00,
+,"Wheel, 13"", 1 Piece, Orbital 861, Aluminum",Orbital,Wheel,5200,unit,,,,,,,2017-05-10 00:00:00,
+,"Wheel, 13"", 1 Piece, Volk  TE37, Aluminum",Volk,Wheel,13000,unit,,,,,,,2017-05-10 00:00:00,
+,"Wheel, 13"", 1 Piece, Watanabe, Magnesium, 6-Spoke, Widths 10-12",Watanabe,Wheel,250,unit,,,,,,,2017-05-10 00:00:00,
+,"Wheel, 13"", 1 Piece, Watanabe, Magnesium, 6-Spoke, Widths 8-9.5",Watanabe,Wheel,235,unit,,,,,,,2017-05-10 00:00:00,
+,"Wheel, 13"", 2 Piece, Braid, Formrace, Aluminum, Model 16, 6"" Wide",Braid,Wheel,6272.5,unit,,,,,,,2017-05-10 00:00:00,
+,"Wheel, 13"", 3 Piece, Bogar RT-4, Aluminum",Bogar,Wheel,9750,unit,,,,,,,2017-05-10 00:00:00,
+,"Wheel, 13"", 3 Piece, Jongbloed, Aluminum",Jongbloed,Wheel,18687.5,unit,,,,,,,2017-05-10 00:00:00,"Wheel comes with solid center,  no machining for hub attachment"
+,"Wheel, 13"", 3 Piece, Jongbloed, Magnesium",Jongbloed,Wheel,18687.5,unit,,,,,,,2017-05-10 00:00:00,"Wheel comes with solid center,  no machining for hub attachment"
+,"Wheel, 13"", 3 Piece, Keizer, Aluminum",Keizer,Wheel,7475,unit,,,,,,,2017-05-10 00:00:00,"Wheel comes with solid center,  no machining for hub attachment"
+,"Wheel, 13"", 3 Piece, Keizer, Magnesium",Keizer,Wheel,9100,unit,,,,,,,2017-05-10 00:00:00,"Wheel comes with solid center,  no machining for hub attachment"
+,"Wheel, 13"", 3 Piece, Weld, Aluminum",Weld,Wheel,13097.5,unit,,,,,,,2017-05-10 00:00:00,"Includes center (P613-7096), Inner (P850-3478) and Outer (P851-3318)"
+,"Wheel, 13"", BBS, Magnesium, Cast, R-RE-325",BBS,Wheel,22100,unit,,,,,,,2017-05-10 00:00:00,
+,"Wheel, 13"", Magnesium, BBS, Forged",BBS,Wheel,0,unit,,,,,,,2017-05-10 00:00:00,Please submit Add Item Request
+,"Wheel, 15"", 1 Piece OEM, Aluminum",Any,Wheel,9100,unit,,,,,,,2017-05-10 00:00:00,
+,"Wheel, 15"", 1 Piece OEM, Magnesium",Any,Wheel,12740,unit,,,,,,,2017-05-10 00:00:00,
+,"Wheel, 15"", 1 Piece OEM, Steel",Any,Wheel,3900,unit,,,,,,,2017-05-10 00:00:00,
+,"Wheel, 15"", 1 Piece, Carbon Fiber, Purchased",,Wheel,0,unit,,,,,,,2017-05-10 00:00:00,
+,"Wheel, 15"", 1 Piece, Carbon Fiber, Student Made",Student Built,Wheel,0,unit,,,,,,,2017-05-10 00:00:00,
+,"Wheel, 8"", 1 Piece, DWT, Alumalite, Aluminum, 7-8""",DWT,Wheel,2535,unit,,,,,,,2017-05-10 00:00:00,"sport blue label 0.125"" thickness"
+,"Wheel, 8"", 1 Piece, DWT, Alumalite, Aluminum, 7-8""",DWT,Wheel,2535,unit,,,,,,,2017-05-10 00:00:00,"sport blue label 0.125"" thickness"

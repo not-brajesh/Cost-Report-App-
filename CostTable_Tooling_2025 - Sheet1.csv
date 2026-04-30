@@ -1,0 +1,12 @@
+"Tooling Table.  Posted Version 1, 19-May-2025",,,,,
+ID,Process,Tool,Cost,Unit,Comments
+1,All,None, ₹  -   ,,
+2,Die Casting,Die Casting - Die," ₹  650,000.00 ",die,Per die not die set.  Minimum number of dies is 2 per die set.
+3,Lamination,Lamination - Flat Panel Tool," ₹  19,500.00 ",m^2,Use surface area of tool that is used to form part geometry.  To use this tooling type composite part must have geometry that is possible to obtain from sheet metal tool with no complex curvature or shape.  For example flat panel parts are allowed or parts with curvature in only one axis.
+4,Plastic injection molding,Plastic injection molding - Die," ₹  130,000.00 ",die,Per die not die set. 
+5,Powder Metal Forming,Powder Metal Forming - Die," ₹  130,000.00 ",die,Per die not die set. 
+6,Sand Casting,Sand Casting - Die," ₹  130,000.00 ",die,Per die not die set. 
+7,Sand Casting,Sand Casting - Sand Core Package," ₹  65,000.00 ",core,Per core not core package.
+8,Welds,Welds - Welding Fixture," ₹  6,500.00 ",point,Each point is a pickup or support point.
+9,Braze,Brazing Fixture," ₹  6,500.00 ",point,Each point is a pickup or support point.
+10,Liquid Apply - Pour Expanding Foam,Pouring Fixture," ₹  130,000.00 ",m^2,"Use surface area of tool that is used to form part geometry, e.g. fully expanded final volume."
