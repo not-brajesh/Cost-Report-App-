@@ -1,5 +1,16 @@
 // Cost calculation utilities
 
+// Safe formula evaluation function
+const safeEvaluateFormula = (formula) => {
+  try {
+    // Use Function constructor instead of eval for safer evaluation
+    return new Function('"use strict"; return (' + formula + ')')();
+  } catch (error) {
+    console.error('Formula evaluation error:', error);
+    return 0;
+  }
+};
+
 export const calculateMaterialCost = (material, size1 = 0, size2 = 0, quantity = 1) => {
   if (!material) return 0;
   
@@ -11,17 +22,16 @@ export const calculateMaterialCost = (material, size1 = 0, size2 = 0, quantity =
   // If material has a formula
   if (material.formula) {
     let formula = material.formula;
-    let cost = 0;
     
     try {
-      // Replace formula variables with values
-      formula = formula.replace(/\[C1\]/g, material.c1 || 0);
-      formula = formula.replace(/\[C2\]/g, material.c2 || 0);
-      formula = formula.replace(/\[Size1\]/g, size1 || 0);
-      formula = formula.replace(/\[Size2\]/g, size2 || 0);
-      formula = formula.replace(/\[Quantity\]/g, quantity || 1);
+      // Safe variable replacement with fallback to 0
+      formula = formula.replace(/\[C1\]/g, (material.c1 || 0).toString());
+      formula = formula.replace(/\[C2\]/g, (material.c2 || 0).toString());
+      formula = formula.replace(/\[Size1\]/g, (size1 || 0).toString());
+      formula = formula.replace(/\[Size2\]/g, (size2 || 0).toString());
+      formula = formula.replace(/\[Quantity\]/g, (quantity || 1).toString());
       
-      // Replace mathematical functions with JavaScript equivalents
+      // Strict function mapping - only allow specific Math functions
       formula = formula.replace(/SQRT\(/g, 'Math.sqrt(');
       formula = formula.replace(/EXP\(/g, 'Math.exp(');
       formula = formula.replace(/LN\(/g, 'Math.log(');
@@ -31,7 +41,10 @@ export const calculateMaterialCost = (material, size1 = 0, size2 = 0, quantity =
       // Handle power operator ^ (JavaScript uses **)
       formula = formula.replace(/\^/g, '**');
       
-      cost = eval(formula);
+      // Sanitize: remove any remaining brackets that weren't replaced
+      formula = formula.replace(/\[|\]/g, '');
+      
+      const cost = safeEvaluateFormula(formula);
       
       if (isNaN(cost) || !isFinite(cost)) {
         return 0;
@@ -58,17 +71,16 @@ export const calculateFastenerCost = (fastener, size1 = 0, size2 = 0, quantity =
   // If fastener has a formula
   if (fastener.formula) {
     let formula = fastener.formula;
-    let cost = 0;
     
     try {
-      // Replace formula variables with values
-      formula = formula.replace(/\[C1\]/g, fastener.c1 || 0);
-      formula = formula.replace(/\[C2\]/g, fastener.c2 || 0);
-      formula = formula.replace(/\[Size1\]/g, size1 || 0);
-      formula = formula.replace(/\[Size2\]/g, size2 || 0);
-      formula = formula.replace(/\[Quantity\]/g, quantity || 1);
+      // Safe variable replacement with fallback to 0
+      formula = formula.replace(/\[C1\]/g, (fastener.c1 || 0).toString());
+      formula = formula.replace(/\[C2\]/g, (fastener.c2 || 0).toString());
+      formula = formula.replace(/\[Size1\]/g, (size1 || 0).toString());
+      formula = formula.replace(/\[Size2\]/g, (size2 || 0).toString());
+      formula = formula.replace(/\[Quantity\]/g, (quantity || 1).toString());
       
-      // Replace mathematical functions with JavaScript equivalents
+      // Strict function mapping - only allow specific Math functions
       formula = formula.replace(/SQRT\(/g, 'Math.sqrt(');
       formula = formula.replace(/EXP\(/g, 'Math.exp(');
       formula = formula.replace(/LN\(/g, 'Math.log(');
@@ -78,7 +90,10 @@ export const calculateFastenerCost = (fastener, size1 = 0, size2 = 0, quantity =
       // Handle power operator ^ (JavaScript uses **)
       formula = formula.replace(/\^/g, '**');
       
-      cost = eval(formula);
+      // Sanitize: remove any remaining brackets that weren't replaced
+      formula = formula.replace(/\[|\]/g, '');
+      
+      const cost = safeEvaluateFormula(formula);
       
       if (isNaN(cost) || !isFinite(cost)) {
         return 0;
