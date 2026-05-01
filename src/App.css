@@ -6,37 +6,26 @@
 }
 
 :root {
-  /* Apple Color System - Dark Mode */
-  --ios-bg: #000000;
-  --ios-bg-secondary: #1c1c1e;
-  --ios-text: #f5f5f7;
-  --ios-text-secondary: #98989d;
-  --ios-tertiary: #8e8e93;
-  --ios-separator: rgba(255, 255, 255, 0.1);
-  --ios-accent: #ff375f;
-  --ios-accent-secondary: #ff2d55;
-  --ios-success: #34c759;
-  --ios-warning: #ff9500;
-  --ios-error: #ff3b30;
-  --ios-blue: #007aff;
-  --ios-gray: #8e8e93;
-  --ios-gray2: #aeaeb2;
-  --ios-gray3: #c7c7cc;
-  --ios-gray4: #d1d1d6;
-  --ios-gray5: #e5e5ea;
-  --ios-gray6: #f2f2f7;
+  /* Neumorphism Color System */
+  --bg-primary: #e6edf3;
+  --bg-secondary: #eef3f7;
+  --bg-dark: #0b0f14;
+  --text-primary: #1d1d1f;
+  --text-secondary: #6e6e73;
+  --text-light: #ffffff;
   
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.08);
-  --shadow-xl: 0 8px 32px rgba(0, 0, 0, 0.12);
+  /* Neumorphism Shadows */
+  --shadow-out: 10px 10px 20px #c8d0d6, -10px -10px 20px #ffffff;
+  --shadow-in: inset 5px 5px 10px #c8d0d6, inset -5px -5px 10px #ffffff;
+  --shadow-dark-in: inset 5px 5px 10px rgba(0,0,0,0.8), inset -5px -5px 10px rgba(255,255,255,0.05);
+  --shadow-btn: 5px 5px 10px #c8d0d6, -5px -5px 10px #ffffff;
+  --shadow-glow: 0 5px 15px rgba(255, 60, 0, 0.6), inset 0 -2px 5px rgba(0,0,0,0.3);
   
   /* Radius */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
+  --radius-sm: 15px;
+  --radius-md: 20px;
+  --radius-lg: 25px;
+  --radius-xl: 30px;
   --radius-full: 9999px;
 }
 
@@ -46,31 +35,26 @@ html {
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-  background: var(--ios-bg);
+  background: linear-gradient(135deg, #cfd9df, #e2ebf0);
   min-height: 100vh;
-  color: var(--ios-text);
+  color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.47059;
   font-weight: 400;
   letter-spacing: -0.022em;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .app {
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
   flex-direction: column;
-}
-
-/* Dark Mode */
-.app.dark-mode {
-  background: #000000;
-  color: #f5f5f7;
-}
-
-.app.dark-mode body {
-  background: #000000;
-  color: #f5f5f7;
+  width: 100%;
+  max-width: 400px;
 }
 
 .app.dark-mode .app-header {
@@ -1379,4 +1363,298 @@ table {
   .action-card:active {
     transform: scale(0.98);
   }
+}
+
+/* ============================================
+   NEUMORPHISM + iOS GLASS DESIGN 🔥
+   ============================================ */
+
+/* Main Card Container */
+.main-card {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  padding: 25px;
+  border-radius: var(--radius-xl);
+  background: var(--bg-primary);
+  box-shadow: var(--shadow-out);
+  position: relative;
+}
+
+/* Header Section */
+.app-header-neu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 5px;
+}
+
+.header-title {
+  font-size: 16px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Add Button (Blue Circle) */
+.add-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #007aff;
+  border: none;
+  color: white;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.4);
+  transition: all 0.2s ease;
+}
+
+.add-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 122, 255, 0.5);
+}
+
+/* Dark SOS Box (Main Display) */
+.sos-box {
+  background: var(--bg-dark);
+  border-radius: var(--radius-lg);
+  padding: 25px;
+  box-shadow: var(--shadow-dark-in);
+  margin-bottom: 20px;
+}
+
+/* Total Cost Display */
+.cost-display-box {
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  padding: 20px;
+  text-align: center;
+  box-shadow: inset 2px 2px 5px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
+}
+
+.cost-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cost-value {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: 'SF Mono', monospace;
+  letter-spacing: -1px;
+}
+
+/* Action Button (SOS Style) */
+.action-btn {
+  margin-top: 15px;
+  padding: 18px;
+  border-radius: var(--radius-md);
+  text-align: center;
+  font-size: 18px;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: linear-gradient(180deg, #ff5a3c, #d81e00);
+  box-shadow: var(--shadow-glow);
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 60, 0, 0.7);
+}
+
+.action-btn:active {
+  transform: translateY(0);
+}
+
+/* Small Cards Row */
+.row {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* Small Neumorphism Cards */
+.small-card {
+  flex: 1;
+  padding: 20px 15px;
+  border-radius: var(--radius-md);
+  text-align: center;
+  background: var(--bg-primary);
+  box-shadow: var(--shadow-btn);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.small-card:hover {
+  box-shadow: var(--shadow-in);
+  transform: translateY(-2px);
+}
+
+.small-card-icon {
+  width: 32px;
+  height: 32px;
+  margin: 0 auto 10px;
+  color: var(--text-secondary);
+}
+
+.small-card-text {
+  font-size: 13px;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Dots Indicator */
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  opacity: 0.3;
+}
+
+.dot.active {
+  opacity: 1;
+  background: var(--text-primary);
+}
+
+/* Section Headers */
+.section-title-neu {
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.stat-card {
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
+  padding: 15px;
+  box-shadow: var(--shadow-btn);
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Form Elements Neumorphism */
+.input-neu {
+  width: 100%;
+  padding: 15px 20px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: var(--bg-primary);
+  box-shadow: var(--shadow-in);
+  font-size: 16px;
+  color: var(--text-primary);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.input-neu:focus {
+  box-shadow: var(--shadow-out);
+}
+
+/* Button Row */
+.btn-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* Export/Clear Buttons */
+.btn-neu {
+  padding: 15px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: var(--bg-primary);
+  box-shadow: var(--shadow-btn);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-neu:hover {
+  box-shadow: var(--shadow-in);
+}
+
+.btn-neu.danger {
+  color: #ff3b30;
+}
+
+/* Scrollable List */
+.list-container-neu {
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
+  padding: 15px;
+  box-shadow: var(--shadow-in);
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 15px;
+}
+
+.list-item-neu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.list-item-neu:last-child {
+  border-bottom: none;
+}
+
+/* Hide scrollbar but keep functionality */
+.list-container-neu::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
 }
