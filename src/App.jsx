@@ -777,122 +777,44 @@ function App() {
   };
 
   return (
-    <div className="app">
-      {/* Main Neumorphism Card */}
-      <div className="main-card">
-        {/* Header */}
-        <div className="app-header-neu">
-          <span className="header-title">SUPRA SAEINDIA</span>
-          <button className="add-btn" onClick={addPart}>+</button>
-        </div>
-
-        {/* Dark SOS Box - Total Cost Display */}
-        <div className="sos-box">
-          <div className="cost-display-box">
-            <div className="cost-label">Total Cost</div>
-            <div className="cost-value">₹{totalCost.toLocaleString()}</div>
+    <div className={`app ${darkMode ? 'dark-mode' : ''}`}>
+      <header className="app-header">
+        <div className="header-content">
+          <div className="logo">
+            <Calculator className="logo-icon" size={32} strokeWidth={2} />
+            <h1>SUPRA SAEINDIA Cost Report</h1>
           </div>
-          <div className="action-btn" onClick={() => { addPart(); addAssembly(); }}>
-            ADD ITEMS
-          </div>
-        </div>
-
-        {/* Dots Indicator */}
-        <div className="dots">
-          <div className="dot active"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-        </div>
-
-        {/* Stats Grid */}
-        <div className="stats-grid">
-          <div className="stat-card">
-            <div className="stat-value">{parts.length}</div>
-            <div className="stat-label">Parts</div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-value">{assemblies.length}</div>
-            <div className="stat-label">Assemblies</div>
-          </div>
-        </div>
-
-        {/* Small Cards Row */}
-        <div className="row">
-          <div className="small-card" onClick={exportData}>
-            <FileSpreadsheet className="small-card-icon" />
-            <div className="small-card-text">Export</div>
-          </div>
-          <div className="small-card" onClick={clearAll}>
-            <Trash2 className="small-card-icon" />
-            <div className="small-card-text">Clear</div>
-          </div>
-        </div>
-
-        {/* Parts List Preview */}
-        {parts.length > 0 && (
-          <>
-            <div className="section-title-neu" style={{marginTop: '25px'}}>Recent Parts</div>
-            <div className="list-container-neu">
-              {parts.slice(0, 3).map(part => (
-                <div key={part.id} className="list-item-neu">
-                  <span>{part.name || 'Unnamed'}</span>
-                  <span>₹{part.items.reduce((sum, i) => sum + (i.totalItemCost || 0), 0).toLocaleString()}</span>
-                </div>
-              ))}
+          <div className="header-actions">
+            <button 
+              onClick={() => setDarkMode(!darkMode)} 
+              className="btn btn-icon"
+              title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            >
+              {darkMode ? <Sun size={22} strokeWidth={2} className="icon-accent" /> : <Moon size={22} strokeWidth={2} className="icon-accent" />}
+            </button>
+            <div className="action-grid">
+              <div className="action-card" onClick={addPart}>
+                <Plus size={28} strokeWidth={2} />
+                <p>Add Part</p>
+              </div>
+              <div className="action-card" onClick={addAssembly}>
+                <Plus size={28} strokeWidth={2} />
+                <p>Add Assembly</p>
+              </div>
+              <div className="action-card" onClick={exportData}>
+                <FileSpreadsheet size={28} strokeWidth={2} />
+                <p>Export Excel</p>
+              </div>
+              <div className="action-card danger" onClick={clearAll}>
+                <Trash2 size={28} strokeWidth={2} />
+                <p>Clear</p>
+              </div>
             </div>
-          </>
-        )}
-
-        {/* Team Info */}
-        <div className="section-title-neu" style={{marginTop: '20px'}}>Team Info</div>
-        <input 
-          className="input-neu" 
-          placeholder="University"
-          value={headerData.university}
-          onChange={(e) => setHeaderData({...headerData, university: e.target.value})}
-        />
-        <div className="btn-row" style={{marginTop: '15px'}}>
-          <input 
-            className="input-neu" 
-            placeholder="Team Name"
-            value={headerData.teamName}
-            onChange={(e) => setHeaderData({...headerData, teamName: e.target.value})}
-          />
-          <input 
-            className="input-neu" 
-            placeholder="Car #"
-            value={headerData.carNumber}
-            onChange={(e) => setHeaderData({...headerData, carNumber: e.target.value})}
-          />
+          </div>
         </div>
+      </header>
 
-        {/* Action Buttons */}
-        <div className="btn-row">
-          <button className="btn-neu" onClick={addPart}>
-            <Plus size={18} />
-            Add Part
-          </button>
-          <button className="btn-neu" onClick={addAssembly}>
-            <Plus size={18} />
-            Add Assembly
-          </button>
-        </div>
-        <div className="btn-row">
-          <button className="btn-neu" onClick={exportData}>
-            <Download size={18} />
-            Export
-          </button>
-          <button className="btn-neu danger" onClick={clearAll}>
-            <Trash2 size={18} />
-            Clear
-          </button>
-        </div>
-      </div>
-
-      {/* Full App Content (Hidden Behind Card for Logic) */}
-      <main className="app-main" style={{display: 'none'}}>
+      <main className="app-main">
         <div className="header-section">
           <h3>Report Header</h3>
           <div className="header-form">
@@ -1753,9 +1675,10 @@ function App() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="app-footer" style={{display: 'none'}}>
+      <footer className="app-footer">
         <p>SUPRA SAEINDIA Cost Report Application - Javitron</p>
+        <p>Version 1.4 | 2026 Cost Tables</p>
+        <p>developed by <a href="https://www.linkedin.com/in/not-brajesh" target="_blank" rel="noopener noreferrer" style={{ color: '#ff375f', textDecoration: 'none', fontWeight: 600 }}>not-brajesh</a></p>
       </footer>
     </div>
   );
