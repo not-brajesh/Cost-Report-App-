@@ -819,6 +819,30 @@ body {
   min-width: 120px;
 }
 
+/* Geometry Inputs Styling */
+.geometry-inputs {
+  background: rgba(255, 55, 95, 0.05);
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  border: 1px solid rgba(255, 55, 95, 0.1);
+}
+
+.geometry-inputs .form-group label {
+  color: var(--ios-accent);
+  font-weight: 500;
+}
+
+.geometry-inputs .form-input {
+  background: white;
+  border-color: rgba(255, 55, 95, 0.2);
+}
+
+.geometry-inputs .form-input:focus {
+  border-color: var(--ios-accent);
+  box-shadow: 0 0 0 3px rgba(255, 55, 95, 0.15);
+}
+
 .cost-display {
   display: flex;
   justify-content: space-between;

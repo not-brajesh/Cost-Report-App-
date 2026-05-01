@@ -22,11 +22,66 @@ const safeEvaluateFormula = (formula) => {
   }
 };
 
-export const calculateMaterialCost = (material, size1 = 0, size2 = 0, quantity = 1) => {
+export const calculateMaterialCost = (material, size1 = 0, size2 = 0, quantity = 1, geometry = {}) => {
   if (!material) return 0;
+  
+  // Calculate geometry-based mass if geometry data is provided
+  let geometryMultiplier = 1;
+  let calculatedMass = 0;
+  
+  if (material.geometry && geometry && material.density) {
+    const { length, width, height, thickness } = geometry;
+    const density = material.density || 0; // kg per cm³
+    
+    switch (material.geometry) {
+      case 'length':
+        // For rods/tubing: mass = length × cross-section area × density
+        // size1 is used as diameter for tubing
+        if (length && size1) {
+          const radius = (size1 || 0) / 2; // radius in cm
+          const crossSectionArea = Math.PI * radius * radius; // cm²
+          const volume = (length || 0) * crossSectionArea; // cm³
+          calculatedMass = volume * density; // kg
+          geometryMultiplier = calculatedMass;
+        }
+        break;
+        
+      case 'area':
+        // For sheets/plates/fibers: mass = area × thickness × density
+        if (length && width) {
+          const area = (length || 0) * (width || 0); // cm²
+          const effectiveThickness = thickness || size1 || 0.1; // default 1mm if not specified
+          const volume = area * effectiveThickness; // cm³
+          calculatedMass = volume * density; // kg
+          geometryMultiplier = calculatedMass;
+        }
+        break;
+        
+      case 'volume':
+        // For blocks/billets: mass = volume × density
+        if (length && width && height) {
+          const volume = (length || 0) * (width || 0) * (height || 0); // cm³
+          calculatedMass = volume * density; // kg
+          geometryMultiplier = calculatedMass;
+        } else if (length && width && thickness) {
+          // Alternative: length × width × thickness
+          const volume = (length || 0) * (width || 0) * (thickness || 0); // cm³
+          calculatedMass = volume * density; // kg
+          geometryMultiplier = calculatedMass;
+        }
+        break;
+        
+      default:
+        geometryMultiplier = 1;
+    }
+  }
   
   // If material has a fixed price
   if (material.price !== undefined) {
+    // For geometry-based materials, use calculated mass × price per kg
+    if (material.geometry && calculatedMass > 0) {
+      return material.price * calculatedMass * quantity;
+    }
     return material.price * quantity;
   }
   

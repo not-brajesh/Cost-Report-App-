@@ -155,6 +155,11 @@ function App() {
       size1: 0,
       size2: 0,
       materialQuantity: 1,
+      // Geometry fields for material calculation
+      materialLength: 0,
+      materialWidth: 0,
+      materialHeight: 0,
+      materialThickness: 0,
       fastener: '',
       fastenerSize1: 0,
       fastenerSize2: 0,
@@ -190,6 +195,11 @@ function App() {
       size1: 0,
       size2: 0,
       materialQuantity: 1,
+      // Geometry fields for material calculation
+      materialLength: 0,
+      materialWidth: 0,
+      materialHeight: 0,
+      materialThickness: 0,
       fastener: '',
       fastenerSize1: 0,
       fastenerSize2: 0,
@@ -226,13 +236,20 @@ function App() {
             const updatedItem = { ...item, [field]: value };
             
             // Recalculate costs when relevant fields change
-            if (['material', 'size1', 'size2', 'materialQuantity'].includes(field)) {
+            if (['material', 'size1', 'size2', 'materialQuantity', 'materialLength', 'materialWidth', 'materialHeight', 'materialThickness'].includes(field)) {
               const material = materialsDatabase[updatedItem.material] || customMaterials.find(m => m.name === updatedItem.material);
+              const geometry = {
+                length: parseFloat(updatedItem.materialLength) || 0,
+                width: parseFloat(updatedItem.materialWidth) || 0,
+                height: parseFloat(updatedItem.materialHeight) || 0,
+                thickness: parseFloat(updatedItem.materialThickness) || 0
+              };
               updatedItem.materialCost = calculateMaterialCost(
                 material,
                 parseFloat(updatedItem.size1) || 0,
                 parseFloat(updatedItem.size2) || 0,
-                parseFloat(updatedItem.materialQuantity) || 1
+                parseFloat(updatedItem.materialQuantity) || 1,
+                geometry
               );
             }
             
@@ -248,11 +265,7 @@ function App() {
             
             if (['assembly', 'assemblyQuantity'].includes(field)) {
               const assembly = assemblyDatabase[updatedItem.assembly] || customAssemblies.find(a => a.name === updatedItem.assembly);
-              updatedItem.assemblyCost = calculateProcessCost(
-                assembly,
-                parseFloat(updatedItem.assemblyQuantity) || 1,
-                1
-              );
+              updatedItem.assemblyCost = (assembly?.cost || 0) * (parseFloat(updatedItem.assemblyQuantity) || 1);
             }
             
             if (['process', 'processQuantity', 'multiplier'].includes(field)) {
@@ -265,7 +278,7 @@ function App() {
             }
             
             if (['tooling', 'toolingQuantity'].includes(field)) {
-              const tooling = toolingDatabase[updatedItem.tooling] || customTooling.find(t => t.name === updatedItem.tooling);
+              const tooling = toolingDatabase[updatedItem.tooling] || customTooling.find(t => t.id === parseInt(updatedItem.tooling));
               updatedItem.toolingCost = calculateToolingCost(
                 tooling,
                 parseFloat(updatedItem.toolingQuantity) || 1
@@ -299,13 +312,20 @@ function App() {
             const updatedItem = { ...item, [field]: value };
             
             // Recalculate costs when relevant fields change
-            if (['material', 'size1', 'size2', 'materialQuantity'].includes(field)) {
+            if (['material', 'size1', 'size2', 'materialQuantity', 'materialLength', 'materialWidth', 'materialHeight', 'materialThickness'].includes(field)) {
               const material = materialsDatabase[updatedItem.material] || customMaterials.find(m => m.name === updatedItem.material);
+              const geometry = {
+                length: parseFloat(updatedItem.materialLength) || 0,
+                width: parseFloat(updatedItem.materialWidth) || 0,
+                height: parseFloat(updatedItem.materialHeight) || 0,
+                thickness: parseFloat(updatedItem.materialThickness) || 0
+              };
               updatedItem.materialCost = calculateMaterialCost(
                 material,
                 parseFloat(updatedItem.size1) || 0,
                 parseFloat(updatedItem.size2) || 0,
-                parseFloat(updatedItem.materialQuantity) || 1
+                parseFloat(updatedItem.materialQuantity) || 1,
+                geometry
               );
             }
             
@@ -966,7 +986,90 @@ function App() {
                             </div>
                           </div>
                         )}
-                        {materialsDatabase[item.material]?.price !== undefined && (
+                        {/* Geometry inputs for raw materials */}
+                        {materialsDatabase[item.material]?.geometry && (
+                          <div className="form-row geometry-inputs">
+                            {(materialsDatabase[item.material]?.geometry === 'length' || 
+                              materialsDatabase[item.material]?.geometry === 'area' || 
+                              materialsDatabase[item.material]?.geometry === 'volume') && (
+                              <div className="form-group">
+                                <label>Length (cm):</label>
+                                <input
+                                  type="number"
+                                  value={item.materialLength}
+                                  onChange={(e) => updatePartItem(part.id, item.id, 'materialLength', e.target.value)}
+                                  className="form-input"
+                                  step="0.1"
+                                  placeholder="cm"
+                                />
+                              </div>
+                            )}
+                            {(materialsDatabase[item.material]?.geometry === 'area' || 
+                              materialsDatabase[item.material]?.geometry === 'volume') && (
+                              <div className="form-group">
+                                <label>Width (cm):</label>
+                                <input
+                                  type="number"
+                                  value={item.materialWidth}
+                                  onChange={(e) => updatePartItem(part.id, item.id, 'materialWidth', e.target.value)}
+                                  className="form-input"
+                                  step="0.1"
+                                  placeholder="cm"
+                                />
+                              </div>
+                            )}
+                            {(materialsDatabase[item.material]?.geometry === 'volume') && (
+                              <>
+                                <div className="form-group">
+                                  <label>Height (cm):</label>
+                                  <input
+                                    type="number"
+                                    value={item.materialHeight}
+                                    onChange={(e) => updatePartItem(part.id, item.id, 'materialHeight', e.target.value)}
+                                    className="form-input"
+                                    step="0.1"
+                                    placeholder="cm"
+                                  />
+                                </div>
+                                <div className="form-group">
+                                  <label>Thickness (cm):</label>
+                                  <input
+                                    type="number"
+                                    value={item.materialThickness}
+                                    onChange={(e) => updatePartItem(part.id, item.id, 'materialThickness', e.target.value)}
+                                    className="form-input"
+                                    step="0.01"
+                                    placeholder="cm"
+                                  />
+                                </div>
+                              </>
+                            )}
+                            {materialsDatabase[item.material]?.geometry === 'area' && (
+                              <div className="form-group">
+                                <label>Thickness (cm):</label>
+                                <input
+                                  type="number"
+                                  value={item.materialThickness}
+                                  onChange={(e) => updatePartItem(part.id, item.id, 'materialThickness', e.target.value)}
+                                  className="form-input"
+                                  step="0.01"
+                                  placeholder="cm"
+                                />
+                              </div>
+                            )}
+                            <div className="form-group">
+                              <label>Quantity:</label>
+                              <input
+                                type="number"
+                                value={item.materialQuantity}
+                                onChange={(e) => updatePartItem(part.id, item.id, 'materialQuantity', e.target.value)}
+                                className="form-input"
+                                min="1"
+                              />
+                            </div>
+                          </div>
+                        )}
+                        {materialsDatabase[item.material]?.price !== undefined && !materialsDatabase[item.material]?.geometry && (
                           <div className="form-row">
                             <div className="form-group">
                               <label>Quantity:</label>
@@ -1283,7 +1386,90 @@ function App() {
                             </div>
                           </div>
                         )}
-                        {materialsDatabase[item.material]?.price !== undefined && (
+                        {/* Geometry inputs for raw materials */}
+                        {materialsDatabase[item.material]?.geometry && (
+                          <div className="form-row geometry-inputs">
+                            {(materialsDatabase[item.material]?.geometry === 'length' || 
+                              materialsDatabase[item.material]?.geometry === 'area' || 
+                              materialsDatabase[item.material]?.geometry === 'volume') && (
+                              <div className="form-group">
+                                <label>Length (cm):</label>
+                                <input
+                                  type="number"
+                                  value={item.materialLength}
+                                  onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'materialLength', e.target.value)}
+                                  className="form-input"
+                                  step="0.1"
+                                  placeholder="cm"
+                                />
+                              </div>
+                            )}
+                            {(materialsDatabase[item.material]?.geometry === 'area' || 
+                              materialsDatabase[item.material]?.geometry === 'volume') && (
+                              <div className="form-group">
+                                <label>Width (cm):</label>
+                                <input
+                                  type="number"
+                                  value={item.materialWidth}
+                                  onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'materialWidth', e.target.value)}
+                                  className="form-input"
+                                  step="0.1"
+                                  placeholder="cm"
+                                />
+                              </div>
+                            )}
+                            {(materialsDatabase[item.material]?.geometry === 'volume') && (
+                              <>
+                                <div className="form-group">
+                                  <label>Height (cm):</label>
+                                  <input
+                                    type="number"
+                                    value={item.materialHeight}
+                                    onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'materialHeight', e.target.value)}
+                                    className="form-input"
+                                    step="0.1"
+                                    placeholder="cm"
+                                  />
+                                </div>
+                                <div className="form-group">
+                                  <label>Thickness (cm):</label>
+                                  <input
+                                    type="number"
+                                    value={item.materialThickness}
+                                    onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'materialThickness', e.target.value)}
+                                    className="form-input"
+                                    step="0.01"
+                                    placeholder="cm"
+                                  />
+                                </div>
+                              </>
+                            )}
+                            {materialsDatabase[item.material]?.geometry === 'area' && (
+                              <div className="form-group">
+                                <label>Thickness (cm):</label>
+                                <input
+                                  type="number"
+                                  value={item.materialThickness}
+                                  onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'materialThickness', e.target.value)}
+                                  className="form-input"
+                                  step="0.01"
+                                  placeholder="cm"
+                                />
+                              </div>
+                            )}
+                            <div className="form-group">
+                              <label>Quantity:</label>
+                              <input
+                                type="number"
+                                value={item.materialQuantity}
+                                onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'materialQuantity', e.target.value)}
+                                className="form-input"
+                                min="1"
+                              />
+                            </div>
+                          </div>
+                        )}
+                        {materialsDatabase[item.material]?.price !== undefined && !materialsDatabase[item.material]?.geometry && (
                           <div className="form-row">
                             <div className="form-group">
                               <label>Quantity:</label>
