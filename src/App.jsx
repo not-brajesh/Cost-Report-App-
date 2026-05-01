@@ -776,908 +776,274 @@ function App() {
     };
   };
 
+  // Calculate stats for dashboard cards
+  const partsCount = parts.length;
+  const assembliesCount = assemblies.length;
+  const totalItems = parts.reduce((sum, p) => sum + p.items.length, 0) + 
+                     assemblies.reduce((sum, a) => sum + a.items.length, 0);
+
+  // Active tab state
+  const [activeTab, setActiveTab] = useState('summary');
+
+  // Navigation icons
+  const Activity = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M12 6v6l4 2"/>
+    </svg>
+  );
+
+  const Box = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+      <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+      <line x1="12" y1="22.08" x2="12" y2="12"/>
+    </svg>
+  );
+
+  const Layers = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+      <polyline points="2 17 12 22 22 17"/>
+      <polyline points="2 12 12 17 22 12"/>
+    </svg>
+  );
+
+  const TrendingUp = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+      <polyline points="17 6 23 6 23 12"/>
+    </svg>
+  );
+
+  const Users = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+      <circle cx="9" cy="7" r="4"/>
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+    </svg>
+  );
+
   return (
-    <div className={`app ${darkMode ? 'dark-mode' : ''}`}>
+    <div className="app dark-mode">
+      {/* Header */}
       <header className="app-header">
-        <div className="header-content">
-          <div className="logo">
-            <Calculator className="logo-icon" size={32} strokeWidth={2} />
-            <h1>SUPRA SAEINDIA Cost Report</h1>
+        <div className="header-left">
+          <div className="user-avatar">{headerData.teamName.charAt(0) || 'T'}</div>
+          <div>
+            <div className="header-subtitle">{headerData.university}</div>
+            <div className="header-title">Summary</div>
           </div>
-          <div className="header-actions">
-            <button 
-              onClick={() => setDarkMode(!darkMode)} 
-              className="btn btn-icon"
-              title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-            >
-              {darkMode ? <Sun size={22} strokeWidth={2} className="icon-accent" /> : <Moon size={22} strokeWidth={2} className="icon-accent" />}
-            </button>
-            <button onClick={addPart} className="btn btn-primary">
-              <Plus size={20} strokeWidth={2.5} className="icon-white" />
-              Add Part
-            </button>
-            <button onClick={addAssembly} className="btn btn-primary">
-              <Plus size={20} strokeWidth={2.5} className="icon-white" />
-              Add Assembly
-            </button>
-            <button onClick={exportData} className="btn btn-secondary">
-              <FileSpreadsheet size={20} strokeWidth={2} className="icon-secondary" />
-              Export Excel
-            </button>
-            <button onClick={clearAll} className="btn btn-danger">
-              <Trash2 size={20} strokeWidth={2} className="icon-white" />
-              Clear
-            </button>
-          </div>
+        </div>
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <button className="icon-btn" onClick={exportData} title="Export Excel">
+            <Download size={18} />
+          </button>
+          <button className="icon-btn" onClick={clearAll} title="Clear All">
+            <Trash2 size={18} />
+          </button>
         </div>
       </header>
 
-      <main className="app-main">
-        <div className="header-section">
-          <h3>Report Header</h3>
-          <div className="header-form">
-            <div className="form-group">
-              <label>University:</label>
-              <input
-                type="text"
+      {/* Main Content */}
+      <main className="main-content">
+        {/* Activity Ring Card - Total Cost */}
+        <div className="card card-large card-move" style={{ marginBottom: '16px' }}>
+          <div className="activity-ring">
+            <div className="ring-container">
+              <svg className="ring-svg" viewBox="0 0 100 100">
+                <circle className="ring-bg" cx="50" cy="50" r="42"/>
+                <circle 
+                  className="ring-progress" 
+                  cx="50" cy="50" r="42"
+                  strokeDasharray={`${2 * Math.PI * 42}`}
+                  strokeDashoffset={`${2 * Math.PI * 42 * (1 - Math.min(totalCost / 500000, 1))}`}
+                />
+              </svg>
+            </div>
+            <div className="ring-info">
+              <h3>Total Cost</h3>
+              <div className="value">₹{totalCost.toLocaleString()}</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Dashboard Grid */}
+        <div className="dashboard-grid">
+          <div className="card card-move">
+            <div className="card-header">
+              <div className="card-icon"><Activity /></div>
+              <span className="card-title">Parts</span>
+            </div>
+            <div className="card-value">{partsCount}</div>
+            <div className="card-subtitle">Active Parts</div>
+          </div>
+
+          <div className="card card-exercise">
+            <div className="card-header">
+              <div className="card-icon"><Layers /></div>
+              <span className="card-title">Assemblies</span>
+            </div>
+            <div className="card-value">{assembliesCount}</div>
+            <div className="card-subtitle">Active Assemblies</div>
+          </div>
+
+          <div className="card card-stand">
+            <div className="card-header">
+              <div className="card-icon"><Box /></div>
+              <span className="card-title">Items</span>
+            </div>
+            <div className="card-value">{totalItems}</div>
+            <div className="card-subtitle">Total Items</div>
+          </div>
+
+          <div className="card card-purple">
+            <div className="card-header">
+              <div className="card-icon"><TrendingUp /></div>
+              <span className="card-title">Avg Cost</span>
+            </div>
+            <div className="card-value">
+              {totalItems > 0 ? `₹${Math.round(totalCost / totalItems).toLocaleString()}` : '₹0'}
+            </div>
+            <div className="card-subtitle">Per Item</div>
+          </div>
+        </div>
+
+        {/* Team Info Card */}
+        <div className="section-header">
+          <span className="section-title">Team Info</span>
+        </div>
+        <div className="card" style={{ marginBottom: '20px' }}>
+          <div className="card-form">
+            <div className="form-group-compact">
+              <label>University</label>
+              <input 
+                type="text" 
                 value={headerData.university}
                 onChange={(e) => setHeaderData({...headerData, university: e.target.value})}
-                className="form-input"
+                className="form-input-dark"
               />
             </div>
-            <div className="form-group">
-              <label>Team Name:</label>
-              <input
-                type="text"
-                value={headerData.teamName}
-                onChange={(e) => setHeaderData({...headerData, teamName: e.target.value})}
-                className="form-input"
-              />
-            </div>
-            <div className="form-group">
-              <label>Car #:</label>
-              <input
-                type="text"
-                value={headerData.carNumber}
-                onChange={(e) => setHeaderData({...headerData, carNumber: e.target.value})}
-                className="form-input"
-              />
-            </div>
-            <div className="form-group">
-              <label>System:</label>
-              <input
-                type="text"
-                value={headerData.system}
-                onChange={(e) => setHeaderData({...headerData, system: e.target.value})}
-                className="form-input"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="summary-card">
-          <div className="summary-item">
-            <span className="summary-label">Total Parts:</span>
-            <span className="summary-value">{parts.length}</span>
-          </div>
-          <div className="summary-item">
-            <span className="summary-label">Total Assemblies:</span>
-            <span className="summary-value">{assemblies.length}</span>
-          </div>
-          <div className="summary-item">
-            <span className="summary-label">Total Cost:</span>
-            <span className="summary-value summary-cost">{formatCurrency(totalCost)}</span>
-          </div>
-        </div>
-
-        <div className="sections-container">
-          <div className="section-block">
-            <h2>Parts</h2>
-            {parts.length === 0 ? (
-              <div className="empty-state">
-                <FileText size={64} strokeWidth={1.5} className="icon-empty" />
-                <p>No Parts added yet. Click "Add Part" to start.</p>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+              <div className="form-group-compact">
+                <label>Team Name</label>
+                <input 
+                  type="text" 
+                  value={headerData.teamName}
+                  onChange={(e) => setHeaderData({...headerData, teamName: e.target.value})}
+                  className="form-input-dark"
+                />
               </div>
-            ) : (
-              parts.map(part => (
-                <div key={part.id} className="part-card">
-                  <div className="part-header">
-                    <div className="part-header-content">
-                      <h3>Part #{parts.findIndex(p => p.id === part.id) + 1}</h3>
-                      <button 
-                        onClick={() => removePart(part.id)}
-                        className="btn-icon btn-remove"
-                        title="Remove Part"
-                      >
-                        <Trash2 size={18} strokeWidth={2} className="icon-danger" />
-                      </button>
-                    </div>
-                    <div className="part-header-form">
-                      <div className="form-group">
-                        <label>Assembly Name:</label>
-                        <input
-                          type="text"
-                          value={part.assemblyName}
-                          onChange={(e) => updatePartHeader(part.id, 'assemblyName', e.target.value)}
-                          className="form-input"
-                        />
-                      </div>
-                      <div className="form-group">
-                        <label>Part Name:</label>
-                        <input
-                          type="text"
-                          value={part.name}
-                          onChange={(e) => updatePartHeader(part.id, 'name', e.target.value)}
-                          className="form-input"
-                        />
-                      </div>
-                      <div className="form-group">
-                        <label>External Cost (₹):</label>
-                        <input
-                          type="number"
-                          value={part.externalCost}
-                          onChange={(e) => updatePartHeader(part.id, 'externalCost', parseFloat(e.target.value) || 0)}
-                          className="form-input"
-                          step="0.01"
-                        />
-                      </div>
-                    </div>
-                    <button onClick={() => addItemToPart(part.id)} className="btn btn-sm btn-primary">
-                      <Plus size={18} strokeWidth={2.5} className="icon-white" />
-                      Add Item
-                    </button>
-                  </div>
-
-                  {part.items.map(item => (
-                    <div key={item.id} className="item-card">
-                      <div className="item-header">
-                        <h4>Item #{part.items.findIndex(i => i.id === item.id) + 1}</h4>
-                        <button 
-                          onClick={() => removePartItem(part.id, item.id)}
-                          className="btn-icon btn-remove"
-                          title="Remove item"
-                        >
-                          <Trash2 size={18} strokeWidth={2} className="icon-danger" />
-                        </button>
-                      </div>
-                      <div className="item-section">
-                        <h4>Material</h4>
-                        <div className="form-row">
-                          <SearchableSelect
-                            value={item.material}
-                            onChange={(value) => updatePartItem(part.id, item.id, 'material', value)}
-                            options={getAllMaterials()}
-                            placeholder="Select Material"
-                            customType="material"
-                            onCustomAdd={handleCustomMaterialAdd}
-                          />
-                        </div>
-                        {materialsDatabase[item.material]?.formula && (
-                          <div className="form-row">
-                            <div className="form-group">
-                              <label>Size 1:</label>
-                              <input
-                                type="number"
-                                value={item.size1}
-                                onChange={(e) => updatePartItem(part.id, item.id, 'size1', e.target.value)}
-                                className="form-input"
-                                step="0.01"
-                              />
-                            </div>
-                            <div className="form-group">
-                              <label>Size 2:</label>
-                              <input
-                                type="number"
-                                value={item.size2}
-                                onChange={(e) => updatePartItem(part.id, item.id, 'size2', e.target.value)}
-                                className="form-input"
-                                step="0.01"
-                              />
-                            </div>
-                            <div className="form-group">
-                              <label>Quantity:</label>
-                              <input
-                                type="number"
-                                value={item.materialQuantity}
-                                onChange={(e) => updatePartItem(part.id, item.id, 'materialQuantity', e.target.value)}
-                                className="form-input"
-                                min="1"
-                              />
-                            </div>
-                          </div>
-                        )}
-                        {/* Geometry inputs for raw materials */}
-                        {materialsDatabase[item.material]?.geometry && (
-                          <div className="form-row geometry-inputs">
-                            {(materialsDatabase[item.material]?.geometry === 'length' || 
-                              materialsDatabase[item.material]?.geometry === 'area' || 
-                              materialsDatabase[item.material]?.geometry === 'volume') && (
-                              <div className="form-group">
-                                <label>Length (mm):</label>
-                                <input
-                                  type="number"
-                                  value={item.materialLength}
-                                  onChange={(e) => updatePartItem(part.id, item.id, 'materialLength', e.target.value)}
-                                  className="form-input"
-                                  step="0.1"
-                                  placeholder="mm"
-                                />
-                              </div>
-                            )}
-                            {(materialsDatabase[item.material]?.geometry === 'area' || 
-                              materialsDatabase[item.material]?.geometry === 'volume') && (
-                              <div className="form-group">
-                                <label>Width (mm):</label>
-                                <input
-                                  type="number"
-                                  value={item.materialWidth}
-                                  onChange={(e) => updatePartItem(part.id, item.id, 'materialWidth', e.target.value)}
-                                  className="form-input"
-                                  step="0.1"
-                                  placeholder="mm"
-                                />
-                              </div>
-                            )}
-                            {(materialsDatabase[item.material]?.geometry === 'volume') && (
-                              <>
-                                <div className="form-group">
-                                  <label>Height (mm):</label>
-                                  <input
-                                    type="number"
-                                    value={item.materialHeight}
-                                    onChange={(e) => updatePartItem(part.id, item.id, 'materialHeight', e.target.value)}
-                                    className="form-input"
-                                    step="0.1"
-                                    placeholder="mm"
-                                  />
-                                </div>
-                                <div className="form-group">
-                                  <label>Thickness (mm):</label>
-                                  <input
-                                    type="number"
-                                    value={item.materialThickness}
-                                    onChange={(e) => updatePartItem(part.id, item.id, 'materialThickness', e.target.value)}
-                                    className="form-input"
-                                    step="0.01"
-                                    placeholder="mm"
-                                  />
-                                </div>
-                              </>
-                            )}
-                            {materialsDatabase[item.material]?.geometry === 'area' && (
-                              <div className="form-group">
-                                <label>Thickness (mm):</label>
-                                <input
-                                  type="number"
-                                  value={item.materialThickness}
-                                  onChange={(e) => updatePartItem(part.id, item.id, 'materialThickness', e.target.value)}
-                                  className="form-input"
-                                  step="0.01"
-                                  placeholder="mm"
-                                />
-                              </div>
-                            )}
-                            <div className="form-group">
-                              <label>Quantity:</label>
-                              <input
-                                type="number"
-                                value={item.materialQuantity}
-                                onChange={(e) => updatePartItem(part.id, item.id, 'materialQuantity', e.target.value)}
-                                className="form-input"
-                                min="1"
-                              />
-                            </div>
-                          </div>
-                        )}
-                        {materialsDatabase[item.material]?.price !== undefined && !materialsDatabase[item.material]?.geometry && (
-                          <div className="form-row">
-                            <div className="form-group">
-                              <label>Quantity:</label>
-                              <input
-                                type="number"
-                                value={item.materialQuantity}
-                                onChange={(e) => updatePartItem(part.id, item.id, 'materialQuantity', e.target.value)}
-                                className="form-input"
-                                min="1"
-                              />
-                            </div>
-                          </div>
-                        )}
-                        <div className="cost-display">
-                          <span>Material Cost:</span>
-                          <span className="cost-value">{formatCurrency(item.materialCost)}</span>
-                        </div>
-                      </div>
-
-                      <div className="item-section">
-                        <h4>Fastener</h4>
-                        <div className="form-row">
-                          <SearchableSelect
-                            value={item.fastener}
-                            onChange={(value) => updatePartItem(part.id, item.id, 'fastener', value)}
-                            options={getAllFasteners()}
-                            placeholder="Select Fastener"
-                            customType="fastener"
-                            onCustomAdd={handleCustomFastenerAdd}
-                          />
-                        </div>
-                        {fastenersDatabase[item.fastener]?.formula && (
-                          <div className="form-row">
-                            <div className="form-group">
-                              <label>Size 1:</label>
-                              <input
-                                type="number"
-                                value={item.fastenerSize1}
-                                onChange={(e) => updatePartItem(part.id, item.id, 'fastenerSize1', e.target.value)}
-                                className="form-input"
-                                step="0.01"
-                              />
-                            </div>
-                            <div className="form-group">
-                              <label>Size 2:</label>
-                              <input
-                                type="number"
-                                value={item.fastenerSize2}
-                                onChange={(e) => updatePartItem(part.id, item.id, 'fastenerSize2', e.target.value)}
-                                className="form-input"
-                                step="0.01"
-                              />
-                            </div>
-                            <div className="form-group">
-                              <label>Quantity:</label>
-                              <input
-                                type="number"
-                                value={item.fastenerQuantity}
-                                onChange={(e) => updatePartItem(part.id, item.id, 'fastenerQuantity', e.target.value)}
-                                className="form-input"
-                                min="1"
-                              />
-                            </div>
-                          </div>
-                        )}
-                        {fastenersDatabase[item.fastener]?.price !== undefined && (
-                          <div className="form-row">
-                            <div className="form-group">
-                              <label>Quantity:</label>
-                              <input
-                                type="number"
-                                value={item.fastenerQuantity}
-                                onChange={(e) => updatePartItem(part.id, item.id, 'fastenerQuantity', e.target.value)}
-                                className="form-input"
-                                min="1"
-                              />
-                            </div>
-                          </div>
-                        )}
-                        <div className="cost-display">
-                          <span>Fastener Cost:</span>
-                          <span className="cost-value">{formatCurrency(item.fastenerCost)}</span>
-                        </div>
-                      </div>
-
-                      <div className="item-section">
-                        <h4>Assembly</h4>
-                        <div className="form-row">
-                          <SearchableSelect
-                            value={item.assembly}
-                            onChange={(value) => updatePartItem(part.id, item.id, 'assembly', value)}
-                            options={getAllAssemblies()}
-                            placeholder="Select Assembly"
-                            customType="assembly"
-                            onCustomAdd={handleCustomAssemblyAdd}
-                          />
-                        </div>
-                        <div className="form-row">
-                          <div className="form-group">
-                            <label>Quantity:</label>
-                            <input
-                              type="number"
-                              value={item.assemblyQuantity}
-                              onChange={(e) => updatePartItem(part.id, item.id, 'assemblyQuantity', e.target.value)}
-                              className="form-input"
-                              min="1"
-                            />
-                          </div>
-                        </div>
-                        <div className="cost-display">
-                          <span>Assembly Cost:</span>
-                          <span className="cost-value">{formatCurrency(item.assemblyCost)}</span>
-                        </div>
-                      </div>
-
-                      <div className="item-section">
-                        <h4>Process</h4>
-                        <div className="form-row">
-                          <SearchableSelect
-                            value={item.process}
-                            onChange={(value) => updatePartItem(part.id, item.id, 'process', value)}
-                            options={getAllProcesses()}
-                            placeholder="Select Process"
-                            customType="process"
-                            onCustomAdd={handleCustomProcessAdd}
-                          />
-                        </div>
-                        <div className="form-row">
-                          <div className="form-group">
-                            <label>Quantity:</label>
-                            <input
-                              type="number"
-                              value={item.processQuantity}
-                              onChange={(e) => updatePartItem(part.id, item.id, 'processQuantity', e.target.value)}
-                              className="form-input"
-                              min="1"
-                            />
-                          </div>
-                          <div className="form-group">
-                            <label>Multiplier:</label>
-                            <select
-                              value={item.multiplier}
-                              onChange={(e) => updatePartItem(part.id, item.id, 'multiplier', parseFloat(e.target.value))}
-                              className="form-select"
-                            >
-                              <option value={1}>1.0 (None)</option>
-                              {Object.entries(multipliersDatabase).map(([id, mult]) => (
-                                <option key={id} value={mult.multiplier}>
-                                  {mult.multiplier} - {mult.name}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                        </div>
-                        <div className="cost-display">
-                          <span>Process Cost:</span>
-                          <span className="cost-value">{formatCurrency(item.processCost)}</span>
-                        </div>
-                      </div>
-
-                      <div className="item-section">
-                        <h4>Tooling</h4>
-                        <div className="form-row">
-                          <SearchableSelect
-                            value={item.tooling}
-                            onChange={(value) => updatePartItem(part.id, item.id, 'tooling', value)}
-                            options={getAllTooling()}
-                            placeholder="Select Tooling"
-                            customType="tooling"
-                            onCustomAdd={handleCustomToolingAdd}
-                          />
-                        </div>
-                        <div className="form-row">
-                          <div className="form-group">
-                            <label>Quantity:</label>
-                            <input
-                              type="number"
-                              value={item.toolingQuantity}
-                              onChange={(e) => updatePartItem(part.id, item.id, 'toolingQuantity', e.target.value)}
-                              className="form-input"
-                              min="1"
-                            />
-                          </div>
-                        </div>
-                        <div className="cost-display">
-                          <span>Tooling Cost:</span>
-                          <span className="cost-value">{formatCurrency(item.toolingCost)}</span>
-                        </div>
-                      </div>
-
-                      <div className="item-total">
-                        <span>Total Item Cost:</span>
-                        <span className="total-value">{formatCurrency(item.totalItemCost)}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ))
-            )}
-          </div>
-
-          <div className="section-block">
-            <h2>Assemblies</h2>
-            {assemblies.length === 0 ? (
-              <div className="empty-state">
-                <FileText size={64} strokeWidth={1.5} className="icon-empty" />
-                <p>No Assemblies added yet. Click "Add Assembly" to start.</p>
+              <div className="form-group-compact">
+                <label>Car Number</label>
+                <input 
+                  type="text" 
+                  value={headerData.carNumber}
+                  onChange={(e) => setHeaderData({...headerData, carNumber: e.target.value})}
+                  className="form-input-dark"
+                />
               </div>
-            ) : (
-              assemblies.map(assembly => (
-                <div key={assembly.id} className="assembly-card">
-                  <div className="assembly-header">
-                    <div className="assembly-header-content">
-                      <h3>Assembly #{assemblies.findIndex(a => a.id === assembly.id) + 1}</h3>
-                      <button 
-                        onClick={() => removeAssembly(assembly.id)}
-                        className="btn-icon btn-remove"
-                        title="Remove Assembly"
-                      >
-                        <Trash2 size={18} strokeWidth={2} className="icon-danger" />
-                      </button>
-                    </div>
-                    <div className="assembly-header-form">
-                      <div className="form-group">
-                        <label>Assembly Name:</label>
-                        <input
-                          type="text"
-                          value={assembly.name}
-                          onChange={(e) => updateAssemblyHeader(assembly.id, 'name', e.target.value)}
-                          className="form-input"
-                        />
-                      </div>
-                      <div className="form-group">
-                        <label>Part Name:</label>
-                        <input
-                          type="text"
-                          value={assembly.partName}
-                          onChange={(e) => updateAssemblyHeader(assembly.id, 'partName', e.target.value)}
-                          className="form-input"
-                        />
-                      </div>
-                      <div className="form-group">
-                        <label>External Cost (₹):</label>
-                        <input
-                          type="number"
-                          value={assembly.externalCost}
-                          onChange={(e) => updateAssemblyHeader(assembly.id, 'externalCost', parseFloat(e.target.value) || 0)}
-                          className="form-input"
-                          step="0.01"
-                        />
-                      </div>
-                    </div>
-                    <button onClick={() => addItemToAssembly(assembly.id)} className="btn btn-sm btn-primary">
-                      <Plus size={18} strokeWidth={2.5} className="icon-white" />
-                      Add Item
-                    </button>
-                  </div>
-
-                  {assembly.items.map(item => (
-                    <div key={item.id} className="item-card">
-                      <div className="item-header">
-                        <h4>Item #{assembly.items.findIndex(i => i.id === item.id) + 1}</h4>
-                        <button 
-                          onClick={() => removeAssemblyItem(assembly.id, item.id)}
-                          className="btn-icon btn-remove"
-                          title="Remove item"
-                        >
-                          <Trash2 size={18} strokeWidth={2} className="icon-danger" />
-                        </button>
-                      </div>
-                      <div className="item-section">
-                        <h4>Material</h4>
-                        <div className="form-row">
-                          <SearchableSelect
-                            value={item.material}
-                            onChange={(value) => updateAssemblyItem(assembly.id, item.id, 'material', value)}
-                            options={getAllMaterials()}
-                            placeholder="Select Material"
-                            customType="material"
-                            onCustomAdd={handleCustomMaterialAdd}
-                          />
-                        </div>
-                        {materialsDatabase[item.material]?.formula && (
-                          <div className="form-row">
-                            <div className="form-group">
-                              <label>Size 1:</label>
-                              <input
-                                type="number"
-                                value={item.size1}
-                                onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'size1', e.target.value)}
-                                className="form-input"
-                                step="0.01"
-                              />
-                            </div>
-                            <div className="form-group">
-                              <label>Size 2:</label>
-                              <input
-                                type="number"
-                                value={item.size2}
-                                onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'size2', e.target.value)}
-                                className="form-input"
-                                step="0.01"
-                              />
-                            </div>
-                            <div className="form-group">
-                              <label>Quantity:</label>
-                              <input
-                                type="number"
-                                value={item.materialQuantity}
-                                onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'materialQuantity', e.target.value)}
-                                className="form-input"
-                                min="1"
-                              />
-                            </div>
-                          </div>
-                        )}
-                        {/* Geometry inputs for raw materials */}
-                        {materialsDatabase[item.material]?.geometry && (
-                          <div className="form-row geometry-inputs">
-                            {(materialsDatabase[item.material]?.geometry === 'length' || 
-                              materialsDatabase[item.material]?.geometry === 'area' || 
-                              materialsDatabase[item.material]?.geometry === 'volume') && (
-                              <div className="form-group">
-                                <label>Length (mm):</label>
-                                <input
-                                  type="number"
-                                  value={item.materialLength}
-                                  onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'materialLength', e.target.value)}
-                                  className="form-input"
-                                  step="0.1"
-                                  placeholder="mm"
-                                />
-                              </div>
-                            )}
-                            {(materialsDatabase[item.material]?.geometry === 'area' || 
-                              materialsDatabase[item.material]?.geometry === 'volume') && (
-                              <div className="form-group">
-                                <label>Width (mm):</label>
-                                <input
-                                  type="number"
-                                  value={item.materialWidth}
-                                  onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'materialWidth', e.target.value)}
-                                  className="form-input"
-                                  step="0.1"
-                                  placeholder="mm"
-                                />
-                              </div>
-                            )}
-                            {(materialsDatabase[item.material]?.geometry === 'volume') && (
-                              <>
-                                <div className="form-group">
-                                  <label>Height (mm):</label>
-                                  <input
-                                    type="number"
-                                    value={item.materialHeight}
-                                    onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'materialHeight', e.target.value)}
-                                    className="form-input"
-                                    step="0.1"
-                                    placeholder="mm"
-                                  />
-                                </div>
-                                <div className="form-group">
-                                  <label>Thickness (mm):</label>
-                                  <input
-                                    type="number"
-                                    value={item.materialThickness}
-                                    onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'materialThickness', e.target.value)}
-                                    className="form-input"
-                                    step="0.01"
-                                    placeholder="mm"
-                                  />
-                                </div>
-                              </>
-                            )}
-                            {materialsDatabase[item.material]?.geometry === 'area' && (
-                              <div className="form-group">
-                                <label>Thickness (mm):</label>
-                                <input
-                                  type="number"
-                                  value={item.materialThickness}
-                                  onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'materialThickness', e.target.value)}
-                                  className="form-input"
-                                  step="0.01"
-                                  placeholder="mm"
-                                />
-                              </div>
-                            )}
-                            <div className="form-group">
-                              <label>Quantity:</label>
-                              <input
-                                type="number"
-                                value={item.materialQuantity}
-                                onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'materialQuantity', e.target.value)}
-                                className="form-input"
-                                min="1"
-                              />
-                            </div>
-                          </div>
-                        )}
-                        {materialsDatabase[item.material]?.price !== undefined && !materialsDatabase[item.material]?.geometry && (
-                          <div className="form-row">
-                            <div className="form-group">
-                              <label>Quantity:</label>
-                              <input
-                                type="number"
-                                value={item.materialQuantity}
-                                onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'materialQuantity', e.target.value)}
-                                className="form-input"
-                                min="1"
-                              />
-                            </div>
-                          </div>
-                        )}
-                        <div className="cost-display">
-                          <span>Material Cost:</span>
-                          <span className="cost-value">{formatCurrency(item.materialCost)}</span>
-                        </div>
-                      </div>
-
-                      <div className="item-section">
-                        <h4>Fastener</h4>
-                        <div className="form-row">
-                          <SearchableSelect
-                            value={item.fastener}
-                            onChange={(value) => updateAssemblyItem(assembly.id, item.id, 'fastener', value)}
-                            options={getAllFasteners()}
-                            placeholder="Select Fastener"
-                            customType="fastener"
-                            onCustomAdd={handleCustomFastenerAdd}
-                          />
-                        </div>
-                        {fastenersDatabase[item.fastener]?.formula && (
-                          <div className="form-row">
-                            <div className="form-group">
-                              <label>Size 1:</label>
-                              <input
-                                type="number"
-                                value={item.fastenerSize1}
-                                onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'fastenerSize1', e.target.value)}
-                                className="form-input"
-                                step="0.01"
-                              />
-                            </div>
-                            <div className="form-group">
-                              <label>Size 2:</label>
-                              <input
-                                type="number"
-                                value={item.fastenerSize2}
-                                onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'fastenerSize2', e.target.value)}
-                                className="form-input"
-                                step="0.01"
-                              />
-                            </div>
-                            <div className="form-group">
-                              <label>Quantity:</label>
-                              <input
-                                type="number"
-                                value={item.fastenerQuantity}
-                                onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'fastenerQuantity', e.target.value)}
-                                className="form-input"
-                                min="1"
-                              />
-                            </div>
-                          </div>
-                        )}
-                        {fastenersDatabase[item.fastener]?.price !== undefined && (
-                          <div className="form-row">
-                            <div className="form-group">
-                              <label>Quantity:</label>
-                              <input
-                                type="number"
-                                value={item.fastenerQuantity}
-                                onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'fastenerQuantity', e.target.value)}
-                                className="form-input"
-                                min="1"
-                              />
-                            </div>
-                          </div>
-                        )}
-                        <div className="cost-display">
-                          <span>Fastener Cost:</span>
-                          <span className="cost-value">{formatCurrency(item.fastenerCost)}</span>
-                        </div>
-                      </div>
-
-                      <div className="item-section">
-                        <h4>Assembly</h4>
-                        <div className="form-row">
-                          <SearchableSelect
-                            value={item.assembly}
-                            onChange={(value) => updateAssemblyItem(assembly.id, item.id, 'assembly', value)}
-                            options={getAllAssemblies()}
-                            placeholder="Select Assembly"
-                            customType="assembly"
-                            onCustomAdd={handleCustomAssemblyAdd}
-                          />
-                        </div>
-                        <div className="form-row">
-                          <div className="form-group">
-                            <label>Quantity:</label>
-                            <input
-                              type="number"
-                              value={item.assemblyQuantity}
-                              onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'assemblyQuantity', e.target.value)}
-                              className="form-input"
-                              min="1"
-                            />
-                          </div>
-                        </div>
-                        <div className="cost-display">
-                          <span>Assembly Cost:</span>
-                          <span className="cost-value">{formatCurrency(item.assemblyCost)}</span>
-                        </div>
-                      </div>
-
-                      <div className="item-section">
-                        <h4>Process</h4>
-                        <div className="form-row">
-                          <SearchableSelect
-                            value={item.process}
-                            onChange={(value) => updateAssemblyItem(assembly.id, item.id, 'process', value)}
-                            options={getAllProcesses()}
-                            placeholder="Select Process"
-                            customType="process"
-                            onCustomAdd={handleCustomProcessAdd}
-                          />
-                        </div>
-                        <div className="form-row">
-                          <div className="form-group">
-                            <label>Quantity:</label>
-                            <input
-                              type="number"
-                              value={item.processQuantity}
-                              onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'processQuantity', e.target.value)}
-                              className="form-input"
-                              min="1"
-                            />
-                          </div>
-                          <div className="form-group">
-                            <label>Multiplier:</label>
-                            <select
-                              value={item.multiplier}
-                              onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'multiplier', parseFloat(e.target.value))}
-                              className="form-select"
-                            >
-                              <option value={1}>1.0 (None)</option>
-                              {Object.entries(multipliersDatabase).map(([id, mult]) => (
-                                <option key={id} value={mult.multiplier}>
-                                  {mult.multiplier} - {mult.name}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                        </div>
-                        <div className="cost-display">
-                          <span>Process Cost:</span>
-                          <span className="cost-value">{formatCurrency(item.processCost)}</span>
-                        </div>
-                      </div>
-
-                      <div className="item-section">
-                        <h4>Tooling</h4>
-                        <div className="form-row">
-                          <SearchableSelect
-                            value={item.tooling}
-                            onChange={(value) => updateAssemblyItem(assembly.id, item.id, 'tooling', value)}
-                            options={getAllTooling()}
-                            placeholder="Select Tooling"
-                            customType="tooling"
-                            onCustomAdd={handleCustomToolingAdd}
-                          />
-                        </div>
-                        <div className="form-row">
-                          <div className="form-group">
-                            <label>Quantity:</label>
-                            <input
-                              type="number"
-                              value={item.toolingQuantity}
-                              onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'toolingQuantity', e.target.value)}
-                              className="form-input"
-                              min="1"
-                            />
-                          </div>
-                        </div>
-                        <div className="cost-display">
-                          <span>Tooling Cost:</span>
-                          <span className="cost-value">{formatCurrency(item.toolingCost)}</span>
-                        </div>
-                      </div>
-
-                      <div className="item-total">
-                        <span>Total Item Cost:</span>
-                        <span className="total-value">{formatCurrency(item.totalItemCost)}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ))
-            )}
+            </div>
           </div>
         </div>
+
+        {/* Quick Actions */}
+        <div className="section-header">
+          <span className="section-title">Quick Actions</span>
+        </div>
+        <div style={{ display: 'flex', gap: '12px', marginBottom: '24px' }}>
+          <button onClick={addPart} className="btn-glow" style={{ flex: 1 }}>
+            <Plus size={18} style={{ marginRight: '8px', display: 'inline' }} />
+            Add Part
+          </button>
+          <button onClick={addAssembly} className="btn-secondary" style={{ flex: 1 }}>
+            <Plus size={18} style={{ marginRight: '8px', display: 'inline' }} />
+            Add Assembly
+          </button>
+        </div>
+
+        {/* Parts Section */}
+        {parts.length > 0 && (
+          <>
+            <div className="section-header">
+              <span className="section-title">Parts</span>
+              <span className="section-link">{parts.length} items</span>
+            </div>
+            <div className="list-container" style={{ marginBottom: '24px' }}>
+              {parts.map(part => (
+                <div key={part.id} className="list-item">
+                  <div className="list-item-left">
+                    <div className="list-item-icon"><Box /></div>
+                    <div>
+                      <div className="list-item-title">{part.name || 'Unnamed Part'}</div>
+                      <div className="list-item-subtitle">{part.items.length} items · {part.assemblyName || 'No Assembly'}</div>
+                    </div>
+                  </div>
+                  <div className="list-item-value">
+                    ₹{part.items.reduce((sum, i) => sum + (i.totalItemCost || 0), 0).toLocaleString()}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+
+        {/* Assemblies Section */}
+        {assemblies.length > 0 && (
+          <>
+            <div className="section-header">
+              <span className="section-title">Assemblies</span>
+              <span className="section-link">{assemblies.length} items</span>
+            </div>
+            <div className="list-container" style={{ marginBottom: '24px' }}>
+              {assemblies.map(assembly => (
+                <div key={assembly.id} className="list-item">
+                  <div className="list-item-left">
+                    <div className="list-item-icon"><Layers /></div>
+                    <div>
+                      <div className="list-item-title">{assembly.name || 'Unnamed Assembly'}</div>
+                      <div className="list-item-subtitle">{assembly.items.length} items · {assembly.partName || 'No Part'}</div>
+                    </div>
+                  </div>
+                  <div className="list-item-value">
+                    ₹{assembly.items.reduce((sum, i) => sum + (i.totalItemCost || 0), 0).toLocaleString()}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+
+        {/* Empty State */}
+        {parts.length === 0 && assemblies.length === 0 && (
+          <div className="empty-state">
+            <div className="empty-state-icon"><Box /></div>
+            <div style={{ fontSize: '17px', fontWeight: 600, marginBottom: '8px' }}>No Items Yet</div>
+            <div style={{ fontSize: '15px' }}>Add a Part or Assembly to get started</div>
+          </div>
+        )}
       </main>
 
-      <footer className="app-footer">
-        <p>SUPRA SAEINDIA Cost Report Application - Javitron</p>
-        <p>Version 1.4 | 2026 Cost Tables</p>
-        <p>developed by <a href="https://www.linkedin.com/in/not-brajesh" target="_blank" rel="noopener noreferrer" style={{ color: '#ff375f', textDecoration: 'none', fontWeight: 600 }}>not-brajesh</a></p>
-      </footer>
+      {/* Bottom Navigation */}
+      <nav className="bottom-nav">
+        <a className="nav-item active" onClick={() => setActiveTab('summary')}>
+          <Activity className="nav-icon" />
+          <span className="nav-label">Summary</span>
+        </a>
+        <a className="nav-item" onClick={() => setActiveTab('parts')}>
+          <Box className="nav-icon" />
+          <span className="nav-label">Parts</span>
+        </a>
+        <a className="nav-item" onClick={() => setActiveTab('assemblies')}>
+          <Layers className="nav-icon" />
+          <span className="nav-label">Assemblies</span>
+        </a>
+        <a className="nav-item" onClick={() => setActiveTab('sharing')}>
+          <Users className="nav-icon" />
+          <span className="nav-label">Team</span>
+        </a>
+      </nav>
     </div>
   );
 }
