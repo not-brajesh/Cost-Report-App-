@@ -792,22 +792,24 @@ function App() {
             >
               {darkMode ? <Sun size={22} strokeWidth={2} className="icon-accent" /> : <Moon size={22} strokeWidth={2} className="icon-accent" />}
             </button>
-            <button onClick={addPart} className="btn btn-primary">
-              <Plus size={20} strokeWidth={2.5} className="icon-white" />
-              Add Part
-            </button>
-            <button onClick={addAssembly} className="btn btn-primary">
-              <Plus size={20} strokeWidth={2.5} className="icon-white" />
-              Add Assembly
-            </button>
-            <button onClick={exportData} className="btn btn-secondary">
-              <FileSpreadsheet size={20} strokeWidth={2} className="icon-secondary" />
-              Export Excel
-            </button>
-            <button onClick={clearAll} className="btn btn-danger">
-              <Trash2 size={20} strokeWidth={2} className="icon-white" />
-              Clear
-            </button>
+            <div className="action-grid">
+              <div className="action-card" onClick={addPart}>
+                <Plus size={28} strokeWidth={2} />
+                <p>Add Part</p>
+              </div>
+              <div className="action-card" onClick={addAssembly}>
+                <Plus size={28} strokeWidth={2} />
+                <p>Add Assembly</p>
+              </div>
+              <div className="action-card" onClick={exportData}>
+                <FileSpreadsheet size={28} strokeWidth={2} />
+                <p>Export Excel</p>
+              </div>
+              <div className="action-card danger" onClick={clearAll}>
+                <Trash2 size={28} strokeWidth={2} />
+                <p>Clear</p>
+              </div>
+            </div>
           </div>
         </div>
       </header>

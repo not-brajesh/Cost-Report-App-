@@ -1098,3 +1098,72 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(102, 126, 234, 0.7);
 }
+
+/* Apple-Style Action Cards */
+.action-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin: 20px 0;
+  min-width: 280px;
+}
+
+.action-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: all 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.action-card svg {
+  display: block;
+  margin: 0 auto 8px;
+  color: #ff375f;
+}
+
+.action-card p {
+  font-size: 14px;
+  color: #ccc;
+  margin: 0;
+  font-weight: 500;
+}
+
+.action-card:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.action-card:active {
+  transform: scale(0.95);
+}
+
+.action-card:nth-child(1),
+.action-card:nth-child(2) {
+  border: 1px solid #ff2d55;
+}
+
+.action-card:nth-child(3) {
+  border: 1px solid #888;
+}
+
+.action-card.danger {
+  border: 1px solid #ff3b30;
+}
+
+.action-card.danger svg {
+  color: #ff3b30;
+}
+
+.app.dark-mode .action-card {
+  background: rgba(44, 44, 46, 0.8);
+}
+
+.app.dark-mode .action-card:hover {
+  background: rgba(58, 58, 60, 0.9);
+}
