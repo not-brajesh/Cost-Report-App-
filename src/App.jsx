@@ -761,7 +761,7 @@ function App() {
       <header className="app-header">
         <div className="header-content">
           <div className="logo">
-            <Calculator className="logo-icon" />
+            <Calculator className="logo-icon" size={32} strokeWidth={2} />
             <h1>SUPRA SAEINDIA Cost Report</h1>
           </div>
           <div className="header-actions">
@@ -770,22 +770,22 @@ function App() {
               className="btn btn-icon"
               title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
             >
-              {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+              {darkMode ? <Sun size={22} strokeWidth={2} className="icon-accent" /> : <Moon size={22} strokeWidth={2} className="icon-accent" />}
             </button>
             <button onClick={addPart} className="btn btn-primary">
-              <Plus size={18} />
+              <Plus size={20} strokeWidth={2.5} className="icon-white" />
               Add Part
             </button>
             <button onClick={addAssembly} className="btn btn-primary">
-              <Plus size={18} />
+              <Plus size={20} strokeWidth={2.5} className="icon-white" />
               Add Assembly
             </button>
             <button onClick={exportData} className="btn btn-secondary">
-              <FileSpreadsheet size={18} />
+              <FileSpreadsheet size={20} strokeWidth={2} className="icon-secondary" />
               Export Excel
             </button>
             <button onClick={clearAll} className="btn btn-danger">
-              <Trash2 size={18} />
+              <Trash2 size={20} strokeWidth={2} className="icon-white" />
               Clear
             </button>
           </div>
@@ -855,7 +855,7 @@ function App() {
             <h2>Parts</h2>
             {parts.length === 0 ? (
               <div className="empty-state">
-                <FileText size={48} />
+                <FileText size={64} strokeWidth={1.5} className="icon-empty" />
                 <p>No Parts added yet. Click "Add Part" to start.</p>
               </div>
             ) : (
@@ -869,7 +869,7 @@ function App() {
                         className="btn-icon btn-remove"
                         title="Remove Part"
                       >
-                        <Trash2 size={16} />
+                        <Trash2 size={18} strokeWidth={2} className="icon-danger" />
                       </button>
                     </div>
                     <div className="part-header-form">
@@ -903,7 +903,7 @@ function App() {
                       </div>
                     </div>
                     <button onClick={() => addItemToPart(part.id)} className="btn btn-sm btn-primary">
-                      <Plus size={16} />
+                      <Plus size={18} strokeWidth={2.5} className="icon-white" />
                       Add Item
                     </button>
                   </div>
@@ -917,7 +917,7 @@ function App() {
                           className="btn-icon btn-remove"
                           title="Remove item"
                         >
-                          <Trash2 size={16} />
+                          <Trash2 size={18} strokeWidth={2} className="icon-danger" />
                         </button>
                       </div>
                       <div className="item-section">
@@ -1172,7 +1172,7 @@ function App() {
             <h2>Assemblies</h2>
             {assemblies.length === 0 ? (
               <div className="empty-state">
-                <FileText size={48} />
+                <FileText size={64} strokeWidth={1.5} className="icon-empty" />
                 <p>No Assemblies added yet. Click "Add Assembly" to start.</p>
               </div>
             ) : (
@@ -1186,7 +1186,7 @@ function App() {
                         className="btn-icon btn-remove"
                         title="Remove Assembly"
                       >
-                        <Trash2 size={16} />
+                        <Trash2 size={18} strokeWidth={2} className="icon-danger" />
                       </button>
                     </div>
                     <div className="assembly-header-form">
@@ -1220,7 +1220,7 @@ function App() {
                       </div>
                     </div>
                     <button onClick={() => addItemToAssembly(assembly.id)} className="btn btn-sm btn-primary">
-                      <Plus size={16} />
+                      <Plus size={18} strokeWidth={2.5} className="icon-white" />
                       Add Item
                     </button>
                   </div>
@@ -1234,7 +1234,7 @@ function App() {
                           className="btn-icon btn-remove"
                           title="Remove item"
                         >
-                          <Trash2 size={16} />
+                          <Trash2 size={18} strokeWidth={2} className="icon-danger" />
                         </button>
                       </div>
                       <div className="item-section">

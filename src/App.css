@@ -254,6 +254,121 @@ body {
 
 .logo-icon {
   color: #ff375f;
+  filter: drop-shadow(0 2px 8px rgba(255, 55, 95, 0.3));
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo:hover .logo-icon {
+  transform: rotate(-5deg) scale(1.05);
+  filter: drop-shadow(0 4px 12px rgba(255, 55, 95, 0.4));
+}
+
+/* Professional Icon Styles */
+.icon-white {
+  color: #ffffff;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+.icon-accent {
+  color: #ff375f;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-icon:hover .icon-accent {
+  color: #ff2d55;
+  transform: rotate(15deg) scale(1.1);
+  filter: drop-shadow(0 2px 8px rgba(255, 55, 95, 0.3));
+}
+
+.icon-secondary {
+  color: #1d1d1f;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover .icon-secondary {
+  color: #ff375f;
+  transform: translateX(-1px);
+}
+
+.icon-danger {
+  color: #ff453a;
+  transition: all 0.2s ease;
+}
+
+.btn-remove:hover .icon-danger,
+.btn-icon:hover .icon-danger {
+  color: #ff3b30;
+  transform: scale(1.1);
+  filter: drop-shadow(0 2px 6px rgba(255, 69, 58, 0.3));
+}
+
+.icon-empty {
+  color: #d1d1d6;
+  opacity: 0.7;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Button icon animations */
+.btn-primary .icon-white,
+.btn-sm .icon-white {
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover .icon-white,
+.btn-sm:hover .icon-white {
+  transform: rotate(90deg) scale(1.1);
+}
+
+.btn-danger:hover .icon-white {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px) rotate(-5deg); }
+  75% { transform: translateX(2px) rotate(5deg); }
+}
+
+/* Searchable Select Icons */
+.search-icon {
+  color: #86868b;
+  transition: all 0.2s ease;
+}
+
+.select-trigger:hover .search-icon {
+  color: #ff375f;
+}
+
+.search-input-icon {
+  color: #86868b;
+}
+
+/* Dark mode icon adjustments */
+.app.dark-mode .icon-secondary {
+  color: #f5f5f7;
+}
+
+.app.dark-mode .btn-secondary:hover .icon-secondary {
+  color: #ff375f;
+}
+
+.app.dark-mode .icon-empty {
+  color: #48484a;
+  opacity: 0.5;
+}
+
+.app.dark-mode .search-icon {
+  color: #98989d;
 }
 
 .logo h1 {
