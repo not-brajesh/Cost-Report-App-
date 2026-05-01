@@ -6,13 +6,13 @@
 }
 
 :root {
-  /* Apple Color System */
-  --ios-bg: #f5f5f7;
-  --ios-bg-secondary: #ffffff;
-  --ios-text: #1d1d1f;
-  --ios-text-secondary: #6e6e73;
+  /* Apple Color System - Dark Mode */
+  --ios-bg: #000000;
+  --ios-bg-secondary: #1c1c1e;
+  --ios-text: #f5f5f7;
+  --ios-text-secondary: #98989d;
   --ios-tertiary: #8e8e93;
-  --ios-separator: rgba(60, 60, 67, 0.1);
+  --ios-separator: rgba(255, 255, 255, 0.1);
   --ios-accent: #ff375f;
   --ios-accent-secondary: #ff2d55;
   --ios-success: #34c759;
@@ -64,12 +64,12 @@ body {
 
 /* Dark Mode */
 .app.dark-mode {
-  background: linear-gradient(135deg, #1c1c1e 0%, #2c2c2e 100%);
+  background: #000000;
   color: #f5f5f7;
 }
 
 .app.dark-mode body {
-  background: linear-gradient(135deg, #1c1c1e 0%, #2c2c2e 100%);
+  background: #000000;
   color: #f5f5f7;
 }
 
