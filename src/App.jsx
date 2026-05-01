@@ -993,67 +993,67 @@ function App() {
                               materialsDatabase[item.material]?.geometry === 'area' || 
                               materialsDatabase[item.material]?.geometry === 'volume') && (
                               <div className="form-group">
-                                <label>Length (cm):</label>
+                                <label>Length (mm):</label>
                                 <input
                                   type="number"
                                   value={item.materialLength}
                                   onChange={(e) => updatePartItem(part.id, item.id, 'materialLength', e.target.value)}
                                   className="form-input"
                                   step="0.1"
-                                  placeholder="cm"
+                                  placeholder="mm"
                                 />
                               </div>
                             )}
                             {(materialsDatabase[item.material]?.geometry === 'area' || 
                               materialsDatabase[item.material]?.geometry === 'volume') && (
                               <div className="form-group">
-                                <label>Width (cm):</label>
+                                <label>Width (mm):</label>
                                 <input
                                   type="number"
                                   value={item.materialWidth}
                                   onChange={(e) => updatePartItem(part.id, item.id, 'materialWidth', e.target.value)}
                                   className="form-input"
                                   step="0.1"
-                                  placeholder="cm"
+                                  placeholder="mm"
                                 />
                               </div>
                             )}
                             {(materialsDatabase[item.material]?.geometry === 'volume') && (
                               <>
                                 <div className="form-group">
-                                  <label>Height (cm):</label>
+                                  <label>Height (mm):</label>
                                   <input
                                     type="number"
                                     value={item.materialHeight}
                                     onChange={(e) => updatePartItem(part.id, item.id, 'materialHeight', e.target.value)}
                                     className="form-input"
                                     step="0.1"
-                                    placeholder="cm"
+                                    placeholder="mm"
                                   />
                                 </div>
                                 <div className="form-group">
-                                  <label>Thickness (cm):</label>
+                                  <label>Thickness (mm):</label>
                                   <input
                                     type="number"
                                     value={item.materialThickness}
                                     onChange={(e) => updatePartItem(part.id, item.id, 'materialThickness', e.target.value)}
                                     className="form-input"
                                     step="0.01"
-                                    placeholder="cm"
+                                    placeholder="mm"
                                   />
                                 </div>
                               </>
                             )}
                             {materialsDatabase[item.material]?.geometry === 'area' && (
                               <div className="form-group">
-                                <label>Thickness (cm):</label>
+                                <label>Thickness (mm):</label>
                                 <input
                                   type="number"
                                   value={item.materialThickness}
                                   onChange={(e) => updatePartItem(part.id, item.id, 'materialThickness', e.target.value)}
                                   className="form-input"
                                   step="0.01"
-                                  placeholder="cm"
+                                  placeholder="mm"
                                 />
                               </div>
                             )}
@@ -1393,67 +1393,67 @@ function App() {
                               materialsDatabase[item.material]?.geometry === 'area' || 
                               materialsDatabase[item.material]?.geometry === 'volume') && (
                               <div className="form-group">
-                                <label>Length (cm):</label>
+                                <label>Length (mm):</label>
                                 <input
                                   type="number"
                                   value={item.materialLength}
                                   onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'materialLength', e.target.value)}
                                   className="form-input"
                                   step="0.1"
-                                  placeholder="cm"
+                                  placeholder="mm"
                                 />
                               </div>
                             )}
                             {(materialsDatabase[item.material]?.geometry === 'area' || 
                               materialsDatabase[item.material]?.geometry === 'volume') && (
                               <div className="form-group">
-                                <label>Width (cm):</label>
+                                <label>Width (mm):</label>
                                 <input
                                   type="number"
                                   value={item.materialWidth}
                                   onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'materialWidth', e.target.value)}
                                   className="form-input"
                                   step="0.1"
-                                  placeholder="cm"
+                                  placeholder="mm"
                                 />
                               </div>
                             )}
                             {(materialsDatabase[item.material]?.geometry === 'volume') && (
                               <>
                                 <div className="form-group">
-                                  <label>Height (cm):</label>
+                                  <label>Height (mm):</label>
                                   <input
                                     type="number"
                                     value={item.materialHeight}
                                     onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'materialHeight', e.target.value)}
                                     className="form-input"
                                     step="0.1"
-                                    placeholder="cm"
+                                    placeholder="mm"
                                   />
                                 </div>
                                 <div className="form-group">
-                                  <label>Thickness (cm):</label>
+                                  <label>Thickness (mm):</label>
                                   <input
                                     type="number"
                                     value={item.materialThickness}
                                     onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'materialThickness', e.target.value)}
                                     className="form-input"
                                     step="0.01"
-                                    placeholder="cm"
+                                    placeholder="mm"
                                   />
                                 </div>
                               </>
                             )}
                             {materialsDatabase[item.material]?.geometry === 'area' && (
                               <div className="form-group">
-                                <label>Thickness (cm):</label>
+                                <label>Thickness (mm):</label>
                                 <input
                                   type="number"
                                   value={item.materialThickness}
                                   onChange={(e) => updateAssemblyItem(assembly.id, item.id, 'materialThickness', e.target.value)}
                                   className="form-input"
                                   step="0.01"
-                                  placeholder="cm"
+                                  placeholder="mm"
                                 />
                               </div>
                             )}

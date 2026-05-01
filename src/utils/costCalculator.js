@@ -33,14 +33,21 @@ export const calculateMaterialCost = (material, size1 = 0, size2 = 0, quantity =
     const { length, width, height, thickness } = geometry;
     const density = material.density || 0; // kg per cm³
     
+    // Convert mm inputs to cm for calculation (divide by 10)
+    const lengthCm = (length || 0) / 10;
+    const widthCm = (width || 0) / 10;
+    const heightCm = (height || 0) / 10;
+    const thicknessCm = (thickness || 0) / 10;
+    const size1Cm = (size1 || 0) / 10;
+    
     switch (material.geometry) {
       case 'length':
         // For rods/tubing: mass = length × cross-section area × density
         // size1 is used as diameter for tubing
         if (length && size1) {
-          const radius = (size1 || 0) / 2; // radius in cm
+          const radius = size1Cm / 2; // radius in cm
           const crossSectionArea = Math.PI * radius * radius; // cm²
-          const volume = (length || 0) * crossSectionArea; // cm³
+          const volume = lengthCm * crossSectionArea; // cm³
           calculatedMass = volume * density; // kg
           geometryMultiplier = calculatedMass;
         }
@@ -49,8 +56,8 @@ export const calculateMaterialCost = (material, size1 = 0, size2 = 0, quantity =
       case 'area':
         // For sheets/plates/fibers: mass = area × thickness × density
         if (length && width) {
-          const area = (length || 0) * (width || 0); // cm²
-          const effectiveThickness = thickness || size1 || 0.1; // default 1mm if not specified
+          const area = lengthCm * widthCm; // cm²
+          const effectiveThickness = thicknessCm || size1Cm || 0.1; // default 1mm (0.1cm) if not specified
           const volume = area * effectiveThickness; // cm³
           calculatedMass = volume * density; // kg
           geometryMultiplier = calculatedMass;
@@ -60,12 +67,12 @@ export const calculateMaterialCost = (material, size1 = 0, size2 = 0, quantity =
       case 'volume':
         // For blocks/billets: mass = volume × density
         if (length && width && height) {
-          const volume = (length || 0) * (width || 0) * (height || 0); // cm³
+          const volume = lengthCm * widthCm * heightCm; // cm³
           calculatedMass = volume * density; // kg
           geometryMultiplier = calculatedMass;
         } else if (length && width && thickness) {
           // Alternative: length × width × thickness
-          const volume = (length || 0) * (width || 0) * (thickness || 0); // cm³
+          const volume = lengthCm * widthCm * thicknessCm; // cm³
           calculatedMass = volume * density; // kg
           geometryMultiplier = calculatedMass;
         }
