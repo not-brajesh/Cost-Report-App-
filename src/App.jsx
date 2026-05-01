@@ -793,22 +793,22 @@ function App() {
               {darkMode ? <Sun size={22} strokeWidth={2} className="icon-accent" /> : <Moon size={22} strokeWidth={2} className="icon-accent" />}
             </button>
             <div className="action-grid">
-              <div className="action-card" onClick={addPart}>
+              <button className="action-card" onClick={addPart}>
                 <Plus size={28} strokeWidth={2} />
                 <p>Add Part</p>
-              </div>
-              <div className="action-card" onClick={addAssembly}>
+              </button>
+              <button className="action-card" onClick={addAssembly}>
                 <Plus size={28} strokeWidth={2} />
                 <p>Add Assembly</p>
-              </div>
-              <div className="action-card" onClick={exportData}>
+              </button>
+              <button className="action-card" onClick={exportData}>
                 <FileSpreadsheet size={28} strokeWidth={2} />
                 <p>Export Excel</p>
-              </div>
-              <div className="action-card danger" onClick={clearAll}>
+              </button>
+              <button className="action-card danger" onClick={clearAll}>
                 <Trash2 size={28} strokeWidth={2} />
                 <p>Clear</p>
-              </div>
+              </button>
             </div>
           </div>
         </div>
