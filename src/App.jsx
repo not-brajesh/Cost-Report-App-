@@ -26,6 +26,12 @@ function App() {
     return saved ? JSON.parse(saved) : false;
   });
   
+  // Export history state
+  const [exportHistory, setExportHistory] = useState(() => {
+    const saved = localStorage.getItem('exportHistory');
+    return saved ? JSON.parse(saved) : [];
+  });
+  
   // Header fields (global)
   const [headerData, setHeaderData] = useState({
     university: 'Ajeenkya DY Patil University',
@@ -79,6 +85,16 @@ function App() {
         setHeaderData(JSON.parse(savedHeader));
       } catch (e) {
         console.error('Error loading header data:', e);
+      }
+    }
+    
+    // Load export history
+    const savedHistory = localStorage.getItem('exportHistory');
+    if (savedHistory) {
+      try {
+        setExportHistory(JSON.parse(savedHistory));
+      } catch (e) {
+        console.error('Error loading export history:', e);
       }
     }
   }, []);
@@ -709,7 +725,34 @@ function App() {
     
     // Generate filename with date
     const date = new Date().toISOString().split('T')[0];
-    XLSX.writeFile(wb, `cost-report-${date}.xlsx`);
+    const fileName = `cost-report-${date}.xlsx`;
+    
+    // Generate Excel as binary for history storage
+    const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    const blob = new Blob([wbout], { type: 'application/octet-stream' });
+    
+    // Convert to base64 for localStorage
+    const reader = new FileReader();
+    reader.readAsDataURL(blob);
+    reader.onloadend = () => {
+      const base64data = reader.result;
+      
+      // Save to history (limit to last 20 files)
+      const historyItem = {
+        id: Date.now(),
+        name: fileName,
+        date: new Date().toLocaleString(),
+        data: base64data,
+        size: blob.size
+      };
+      
+      const updatedHistory = [historyItem, ...exportHistory].slice(0, 20);
+      setExportHistory(updatedHistory);
+      localStorage.setItem('exportHistory', JSON.stringify(updatedHistory));
+    };
+    
+    // Download file (existing functionality)
+    XLSX.writeFile(wb, fileName);
   };
 
   // Clear all
@@ -719,6 +762,55 @@ function App() {
       setAssemblies([]);
       localStorage.removeItem('costReportParts');
       localStorage.removeItem('costReportAssemblies');
+    }
+  };
+
+  // Export History functions
+  const viewExportFile = (historyItem) => {
+    // Convert base64 to blob and open in new tab
+    const byteString = atob(historyItem.data.split(',')[1]);
+    const mimeType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    const blob = new Blob([ab], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    window.open(url, '_blank');
+    URL.revokeObjectURL(url);
+  };
+
+  const downloadExportFile = (historyItem) => {
+    // Convert base64 to blob and download
+    const byteString = atob(historyItem.data.split(',')[1]);
+    const mimeType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    const blob = new Blob([ab], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = historyItem.name;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
+  const deleteExportHistory = (id) => {
+    const updatedHistory = exportHistory.filter(item => item.id !== id);
+    setExportHistory(updatedHistory);
+    localStorage.setItem('exportHistory', JSON.stringify(updatedHistory));
+  };
+
+  const clearAllExportHistory = () => {
+    if (confirm('Are you sure you want to clear all export history?')) {
+      setExportHistory([]);
+      localStorage.removeItem('exportHistory');
     }
   };
 
@@ -871,6 +963,76 @@ function App() {
             <span className="summary-value summary-cost">{formatCurrency(totalCost)}</span>
           </div>
         </div>
+
+        {/* Export History Section */}
+        {exportHistory.length > 0 && (
+          <div className="section-block">
+            <div className="section-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+              <h2>Export History</h2>
+              <button 
+                onClick={clearAllExportHistory}
+                className="btn btn-sm btn-danger"
+                style={{ padding: '0.375rem 0.75rem', fontSize: '0.8125rem' }}
+              >
+                <Trash2 size={14} strokeWidth={2} style={{ marginRight: '4px' }} />
+                Clear All
+              </button>
+            </div>
+            <div className="export-history-list" style={{ maxHeight: '300px', overflowY: 'auto' }}>
+              {exportHistory.map((item) => (
+                <div 
+                  key={item.id} 
+                  className="export-history-item"
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    padding: '0.75rem 1rem',
+                    marginBottom: '0.5rem',
+                    background: 'var(--ios-bg-secondary)',
+                    borderRadius: '12px',
+                    border: '1px solid var(--ios-separator)'
+                  }}
+                >
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontWeight: '600', fontSize: '0.9375rem', color: 'var(--ios-text)', marginBottom: '2px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      {item.name}
+                    </div>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--ios-text-secondary)' }}>
+                      {item.date} • {(item.size / 1024).toFixed(1)} KB
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', gap: '8px', marginLeft: '12px' }}>
+                    <button 
+                      onClick={() => viewExportFile(item)}
+                      className="btn btn-sm"
+                      style={{ padding: '0.375rem 0.625rem' }}
+                      title="View"
+                    >
+                      <FileSpreadsheet size={16} strokeWidth={2} />
+                    </button>
+                    <button 
+                      onClick={() => downloadExportFile(item)}
+                      className="btn btn-sm btn-primary"
+                      style={{ padding: '0.375rem 0.625rem' }}
+                      title="Download"
+                    >
+                      <Download size={16} strokeWidth={2} />
+                    </button>
+                    <button 
+                      onClick={() => deleteExportHistory(item.id)}
+                      className="btn btn-sm btn-danger"
+                      style={{ padding: '0.375rem 0.625rem' }}
+                      title="Delete"
+                    >
+                      <Trash2 size={16} strokeWidth={2} />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="sections-container">
           <div className="section-block">
